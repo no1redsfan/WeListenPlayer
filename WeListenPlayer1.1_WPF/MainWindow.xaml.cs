@@ -21,6 +21,8 @@ using System.Xml;
 using System.Xml.Linq;
 using WeListenPlayer1._1_WPF.APIClasses;
 using WeListenPlayer1._1_WPF.LastFmHandler;
+using WeListenPlayer1._1_WPF.TagLibHandler;
+
 
 namespace WeListenPlayer1._1_WPF
 {
@@ -378,9 +380,9 @@ namespace WeListenPlayer1._1_WPF
         //method for adding song to playlist
         private void AddSongsToPlaylist(ArrayList newFiles, ArrayList newPaths)
         {
-            foreach (string n in newPaths)
+            foreach (string path in newPaths)
             {
-                SongData newSong = getSongTags(n);
+                SongData newSong = new TagLibDataAccesser().getSongTags(path);
                 populateDataGrid(newSong);
 
                 if (dgvPlayList.Items.Count == 1)
@@ -672,9 +674,9 @@ namespace WeListenPlayer1._1_WPF
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 var files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                foreach (var filePath in files)
+                foreach (var path in files)
                 {
-                    SongData newSong = getSongTags(filePath);
+                    SongData newSong = new TagLibDataAccesser().getSongTags(path);
                     populateDataGrid(newSong);
                 }
 
@@ -683,68 +685,11 @@ namespace WeListenPlayer1._1_WPF
         }
 
         ///////////////////////////////////////////////////////
-        // WORKING
+        // MOVED - SPLIT
         // Tag Handler
         // - Grabs tags from file and returns as SongData ojbect
         ///////////////////////////////////////////////////////
-        public SongData getSongTags(string path)
-        {
-            TagLib.File tagFile = TagLib.File.Create(path);
-
-            uint trackNumber = tagFile.Tag.Track;
-            string songTitle = tagFile.Tag.Title;
-            string artist = tagFile.Tag.AlbumArtists.FirstOrDefault();
-            string albumTitle = tagFile.Tag.Album;
-            uint year = tagFile.Tag.Year;
-            string genre = tagFile.Tag.Genres.FirstOrDefault();
-
-            // Set Song title to file name, else UNKNOWN
-            if (songTitle == null)
-                try
-                {
-                    string editedPath = System.IO.Path.GetFileNameWithoutExtension(path);
-                    songTitle = Regex.Replace(editedPath, @"^[\d-]*\s*", "");
-                }
-                catch
-                {
-                    songTitle = "Unknown";
-                }
-
-            // Set Album name to folder name holding file, else UNKNOWN
-            if (albumTitle == null)
-                try
-                {
-                    albumTitle = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(path));
-                }
-                catch
-                {
-
-                }
-
-            // Check for Artist in "Contributing Artists" Meta-Data
-            if (artist == null || artist == "")
-            {
-                artist = tagFile.Tag.JoinedPerformers;
-            }
-            // If still null, set to UNKNOWN
-            if (artist == null || artist == "")
-                try
-                {
-                    artist = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(path)));
-                }
-                catch
-                {
-                    artist = "Unknown";
-                }
-            if (genre == null) { genre = "Unknown"; }
-
-            // Year will default to 0 as a UINT if unknown
-
-            // Assign data to new SongData object
-            var newSongObject = new SongData { Title = songTitle, Artist = artist, Album = albumTitle, Year = year, Genre = genre, Path = path };
-           
-            return newSongObject;
-        }
+        
 
         ///////////////////////////////////////////////////////
         // WORKING
@@ -956,10 +901,10 @@ namespace WeListenPlayer1._1_WPF
         {
             // Process the list of files found in the directory. (Only grabs .mp3's)
             string[] fileEntries = Directory.GetFiles(targetDirectory, "*.mp3");
-            foreach (string fileName in fileEntries)
+            foreach (string path in fileEntries)
             {
 
-                SongData newSong = getSongTags(fileName);
+                SongData newSong = new TagLibDataAccesser().getSongTags(path);
 
                 if (export)
                 {
