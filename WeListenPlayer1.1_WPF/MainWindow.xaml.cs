@@ -1,39 +1,26 @@
 ﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Web;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Xml.Linq;
-using System.Data;
-using System.ComponentModel;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using System.Threading;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using WeListenPlayer1._1_WPF.APIClasses;
-using Newtonsoft.Json.Linq;
 using System.Xml;
-using Newtonsoft.Json;
+using System.Xml.Linq;
+using WeListenPlayer1._1_WPF.APIClasses;
+using WeListenPlayer1._1_WPF.LastFmHandler;
 
 namespace WeListenPlayer1._1_WPF
 {
@@ -42,11 +29,6 @@ namespace WeListenPlayer1._1_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        // Initialize Global Variable
-        // Get your own API_KEY and API_SECRET from http://www.last.fm/api/account
-        string API_KEY = "69473ce24376ae029d0b35211016700c";
-        string API_SECRET = "305fef5dd50570f5da565ffb863a65ef";
 
         //HttpClient for WeListen API
         HttpClient client = new HttpClient();
@@ -610,7 +592,9 @@ namespace WeListenPlayer1._1_WPF
         ///////////////////////////////////////////////////////
         private string GetBaseRequestUrl()
         {
-            string baseUrl = "http://ws.audioscrobbler.com/2.0/?api_key=" + API_KEY;
+            LastFmData LastFmApi = new LastFmDataAccesser().getLastFmCreds();
+
+            string baseUrl = "http://ws.audioscrobbler.com/2.0/?api_key=" + LastFmApi.Key;
             return baseUrl;
         }
 
