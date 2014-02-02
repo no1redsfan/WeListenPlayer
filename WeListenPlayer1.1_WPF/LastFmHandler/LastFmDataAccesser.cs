@@ -9,14 +9,36 @@ namespace WeListenPlayer1._1_WPF.LastFmHandler
 {
     class LastFmDataAccesser : ObservableCollection<LastFmData>
     {
+
+        ///////////////////////////////////////////////////////
+        // LastFM API Credentials
+        // - Assigns Credential values Key/Secret to LastFmData Object
+        //
+        // - Uses       LastFmData LastFmApi = new LastFmDataAccesser().getLastFmCreds();
+        // - Output     LastFmApi.Key = xx | LastFmApi.Secret = xx
+        ///////////////////////////////////////////////////////
         public LastFmData getLastFmCreds()
         {
             LastFmData creds = new LastFmData();
 
-            creds.Key = "69473ce24376ae029d0b35211016700c";
-            creds.Secret = "305fef5dd50570f5da565ffb863a65ef";
+            creds.Key = "69473ce24376ae029d0b35211016700c"; // Different for other users
+            creds.Secret = "305fef5dd50570f5da565ffb863a65ef"; // Different for other users
 
             return creds;
+        }
+
+        ///////////////////////////////////////////////////////
+        // LastFM API Base URL
+        // - Gets base url with API Key for XML Parsing (without variables)
+        //
+        // - Uses       string i = new LastFmDataAccesser().getBaseUrl();
+        // - Output     string baseUrl
+        ///////////////////////////////////////////////////////
+        public string getBaseUrl()
+        {
+            LastFmData LastFmApi = new LastFmDataAccesser().getLastFmCreds();
+            string baseUrl = "http://ws.audioscrobbler.com/2.0/?api_key=" + LastFmApi.Key;
+            return baseUrl;
         }
     }
 }

@@ -585,18 +585,12 @@ namespace WeListenPlayer1._1_WPF
         ////////////////////////////
 
 
-        ///////////////////////////////////////////////////////
-        // WORKING
-        // Base URL Handler
-        // - Set baseUrl for LastFM.API reference (XML page base URL)
-        ///////////////////////////////////////////////////////
-        private string GetBaseRequestUrl()
-        {
-            LastFmData LastFmApi = new LastFmDataAccesser().getLastFmCreds();
+        /////////////////////////////////////////////////////////
+        //// MOVED - SPLIT
+        //// Base URL Handler
+        //// - Set baseUrl for LastFM.API reference (XML page base URL)
+        /////////////////////////////////////////////////////////
 
-            string baseUrl = "http://ws.audioscrobbler.com/2.0/?api_key=" + LastFmApi.Key;
-            return baseUrl;
-        }
 
         ///////////////////////////////////////////////////////
         // WORKING
@@ -801,7 +795,7 @@ namespace WeListenPlayer1._1_WPF
             }
             else
             {
-                string requestUrl = GetBaseRequestUrl();
+                string requestUrl = new LastFmDataAccesser().getBaseUrl();
                 requestUrl += "&method=track.getInfo&artist=" + System.Web.HttpUtility.UrlEncode(artist.Trim()) + "&track=" + System.Web.HttpUtility.UrlEncode(trackName.Trim());
 
                 string serviceResponse = await GetServiceResponse(requestUrl);
