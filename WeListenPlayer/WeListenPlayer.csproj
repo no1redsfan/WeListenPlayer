@@ -87,6 +87,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AmazonHandler\AmazonData.cs" />
+    <Compile Include="AmazonHandler\AmazonDataAccesser.cs" />
+    <Compile Include="AmazonHandler\AmazonUserCredentials.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>AmazonUserCredentials.settings</DependentUpon>
+    </Compile>
     <Compile Include="ButtonHandler\DirButton.cs" />
     <Compile Include="FormHandler\AlbumArtAccesser.cs" />
     <Compile Include="FormHandler\DataGridHandler.cs" />
@@ -136,6 +143,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="AmazonHandler\AmazonUserCredentials.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>AmazonUserCredentials.Designer.cs</LastGenOutput>
+    </None>
     <None Include="LastFmHandler\LastFmUserCredentials.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>LastFmUserCredentials.Designer.cs</LastGenOutput>
