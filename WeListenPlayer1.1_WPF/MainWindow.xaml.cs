@@ -1,16 +1,12 @@
 ﻿using Microsoft.Win32;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,11 +14,10 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Xml;
-using System.Xml.Linq;
 using WeListenPlayer1._1_WPF.APIClasses;
-using WeListenPlayer1._1_WPF.LastFmHandler;
+using WeListenPlayer1._1_WPF.ButtonHandler;
+using WeListenPlayer1._1_WPF.FormHandler;
 using WeListenPlayer1._1_WPF.TagLibHandler;
-using WeListenPlayer1._1_WPF.XmlHandler;
 
 namespace WeListenPlayer1._1_WPF
 {
@@ -384,11 +379,14 @@ namespace WeListenPlayer1._1_WPF
             foreach (string path in newPaths)
             {
                 SongData newSong = new TagLibDataAccesser().getSongTags(path);
-                populateDataGrid(newSong);
 
+                DataGridHandler j = new DataGridHandler();
+                j.populateDataGrid(newSong);
+               
                 if (dgvPlayList.Items.Count == 1)
                 {
-                    RetrieveSongInfo();
+                    DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
+                    i.RetrieveSongInfo();
                 }
             }
         }
@@ -504,7 +502,10 @@ namespace WeListenPlayer1._1_WPF
             {
                 //Select the top song in the playlist data grid
                 SongData playItem = (SongData)dgvPlayList.Items[0];
-                RetrieveSongInfo();
+
+                DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
+                i.RetrieveSongInfo();
+
                 //populate string with the song in the first position of the path arrayList
                 
                 string path = playItem.Path;
@@ -587,56 +588,29 @@ namespace WeListenPlayer1._1_WPF
         // ROBERT - MEDIA MANAGER //
         ////////////////////////////
 
-
-        /////////////////////////////////////////////////////////
-        //// MOVED - SPLIT
-        //// Base URL Handler
-        //// - Set baseUrl for LastFM.API reference (XML page base URL)
-        /////////////////////////////////////////////////////////
-
-
+        //////////////////////////////////////////////////////
+        // WORKING - KEEP IN MAIN
+        // Browse Button Handler
+        // - Requests browser explorer, sets folder path
         ///////////////////////////////////////////////////////
-        // WORKING
-        // Row Selection Handler
-        // - Assigns text variables on row select in DataGrid
-        ///////////////////////////////////////////////////////
-        private void RetrieveSongInfo()
+        private void OnBtnImport_Click(object sender, RoutedEventArgs e)
         {
-            // Show loading label..
-            tbAlbumArtInfo.Text = "Loading Album Art...";
 
-            var Title = "Unknown";
-            var Artist = "Unknown";
-            var Album = "Unknown";
-            var Year = "Unknown";
-            var Genre = "Unknown";
-            var Path = "Unknown";
+            string path = new DirButton().selectDirectory();
 
-            // Cast 'item' as songData object from selected row
-            SongData item = (SongData)dgvPlayList.Items[0];
-
-            Title = item.Title;
-            Artist = item.Artist;
-            Album = item.Album;
-            Year = item.Year.ToString();
-            Genre = item.Genre;
-            Path = item.Path;
-
-            // Assign Text values to labels for song selected in dataGridView1
-            tbTitleInfo.Text = Title;
-            tbArtistInfo.Text = Artist;
-            tbAlbumInfo.Text = Album;
-            tbYearInfo.Text = Year;
-            tbGenreInfo.Text = Genre;
-            tbFilePathInfo.Text = Path;
-
-
-            // Call Asynchronous data gathering from LastFM API (XML Parser)
-            aSyncFileData(Title, Artist);
+            if (path != null)
+            {
+                DirectoryHandler k = new DirectoryHandler();
+                k.processDirectory(path, false);
+            }
+            else
+            {
+                MessageBox.Show("There was a problem getting the folder path.");
+            }
         }
 
         ///////////////////////////////////////////////////////
-        // WORKING
+        // WORKING - KEEP IN MAIN
         // Drag Over handler for DataGrid
         // - Allows drag/drop and changes bg color
         ///////////////////////////////////////////////////////
@@ -655,7 +629,7 @@ namespace WeListenPlayer1._1_WPF
         }
 
         ///////////////////////////////////////////////////////
-        // WORKING
+        // WORKING - KEEP IN MAIN
         // Drag Exit handler for DataGrid
         // - Changes bg color back when exiting DataGrid
         ///////////////////////////////////////////////////////
@@ -666,7 +640,7 @@ namespace WeListenPlayer1._1_WPF
         }
 
         ///////////////////////////////////////////////////////
-        // WORKING
+        // WORKING - KEEP IN MAIN
         // File Drop handler for DataGrid
         // - Process through each file dropped into DataGrid
         ///////////////////////////////////////////////////////
@@ -678,12 +652,27 @@ namespace WeListenPlayer1._1_WPF
                 foreach (var path in files)
                 {
                     SongData newSong = new TagLibDataAccesser().getSongTags(path);
-                    populateDataGrid(newSong);
+
+                    DataGridHandler j = new DataGridHandler();
+                    j.populateDataGrid(newSong);
                 }
 
-                RetrieveSongInfo();
+                DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
+                i.RetrieveSongInfo();
             }
         }
+
+        ///////////////////////////////////////////////////////
+        // MOVED - SPLIT
+        // Base URL Handler
+        // - Set baseUrl for LastFM.API reference (XML page base URL)
+        ///////////////////////////////////////////////////////
+
+        ///////////////////////////////////////////////////////
+        // MOVED - SPLIT
+        // Row Selection Handler
+        // - Assigns text variables on row select in DataGrid
+        ///////////////////////////////////////////////////////
 
         ///////////////////////////////////////////////////////
         // MOVED - SPLIT
@@ -691,39 +680,11 @@ namespace WeListenPlayer1._1_WPF
         // - Grabs tags from file and returns as SongData ojbect
         ///////////////////////////////////////////////////////
         
-
         ///////////////////////////////////////////////////////
-        // WORKING
+        // MOVED - SPLIT
         // DataGrid Population Handler
         // - Adds SongData object to DataGrid
         ///////////////////////////////////////////////////////
-        public void populateDataGrid(SongData songDataObject)
-        {
-            var isDup = false;
-
-            // Check if there are duplicates detected in DataGrid by Path
-            if (dgvPlayList.Items.Count != 0)
-            {
-                foreach (SongData row in dgvPlayList.Items)
-                {
-                    if (row.Path.Equals(songDataObject.Path))
-                    {
-                        //Log the duplicate!
-                        isDup = true;
-                        break;
-                    }
-                }
-
-                if (isDup == false)
-                {
-                    this.dgvPlayList.Items.Add(songDataObject);
-                }
-            }
-            else
-            {
-                this.dgvPlayList.Items.Add(songDataObject);
-            }
-        }
 
         ///////////////////////////////////////////////////////
         // MOVED - SPLIT
@@ -738,102 +699,16 @@ namespace WeListenPlayer1._1_WPF
         ///////////////////////////////////////////////////////
 
         ///////////////////////////////////////////////////////
-        // WORKING
+        // MOVED - SPLIT
         // Album Art Handler
         // - Requests art URL and displays via. image area
         ///////////////////////////////////////////////////////
-        private async void aSyncFileData(string trackName, string artist)
-        {
-            try
-            {
-                // Pull album art from determined Url
-                string Url = await new LastFmXmlParser().GetTrackInfo(trackName, artist);
-
-                imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(Url));
-            }
-            catch
-            {
-                //MessageBox.Show("Error setting album image!");
-            }
-        }
 
         //////////////////////////////////////////////////////
-        // WORKING
-        // Browse Button Handler
-        // - Requests browser explorer, sets folder path
-        ///////////////////////////////////////////////////////
-        private void OnBtnImport_Click(object sender, RoutedEventArgs e)
-        {
-
-            // Begin Windows Dialog .DLL Extension usage
-            var dlg = new CommonOpenFileDialog();
-            var currentDirectory = "";
-            dlg.Title = "Select Music Directory";
-            dlg.IsFolderPicker = true;
-            dlg.InitialDirectory = currentDirectory;
-            dlg.AddToMostRecentlyUsedList = false;
-            dlg.AllowNonFileSystemItems = false;
-            dlg.DefaultDirectory = currentDirectory;
-            dlg.EnsureFileExists = true;
-            dlg.EnsurePathExists = true;
-            dlg.EnsureReadOnly = false;
-            dlg.EnsureValidNames = true;
-            dlg.Multiselect = false;
-            dlg.ShowPlacesList = true;
-
-
-            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                Thread.Sleep(1);
-                var folder = dlg.FileName;
-                Thread.Sleep(1);
-
-                tbMusicDir.Text = folder;
-                ProcessDirectory(folder, false);
-            }
-            else
-            {
-                MessageBox.Show("There was a problem.");
-            }
-        }
-
-        //////////////////////////////////////////////////////
-        // WORKING
+        // MOVED - SPLIT
         // Browse folder handler
         // - Imports .mp3 files and populates DataGrid
         ///////////////////////////////////////////////////////
-        public void ProcessDirectory(string targetDirectory, Boolean export)
-        {
-            // Process the list of files found in the directory. (Only grabs .mp3's)
-            string[] fileEntries = Directory.GetFiles(targetDirectory, "*.mp3");
-            foreach (string path in fileEntries)
-            {
-
-                SongData newSong = new TagLibDataAccesser().getSongTags(path);
-
-                if (export)
-                {
-                    RetrieveSongInfo();
-                    // Add method call to upload to database
-                }
-                else
-                {
-                    populateDataGrid(newSong);
-
-                    if (dgvPlayList.Items.Count == 1)
-                    {
-                        RetrieveSongInfo();
-                    }
-                }
-            }
-
-            // Recurse into subdirectories of this directory. 
-            string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
-            foreach (string subdirectory in subdirectoryEntries)
-            {
-                ProcessDirectory(subdirectory, false);
-            }
-        }
 
         ////////////////////////////////////////////////////
         //Methods for handling logging in and out of the Web

@@ -108,3 +108,4 @@ C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer1.1_WPF\obj\Deb
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer1.1_WPF\obj\Debug\WeListenPlayer1.1_WPF.csproj.GenerateResource.Cache
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer1.1_WPF\obj\Debug\WeListenPlayer1.1_WPF.exe
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer1.1_WPF\obj\Debug\WeListenPlayer1.1_WPF.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer1.1_WPF\obj\Debug\WeListenPlayer1.1_WPF.csprojResolveAssemblyReference.cache

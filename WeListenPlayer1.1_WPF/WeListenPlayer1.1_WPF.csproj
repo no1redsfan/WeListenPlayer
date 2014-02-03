@@ -87,6 +87,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ButtonHandler\DirButton.cs" />
+    <Compile Include="FormHandler\AlbumArtAccesser.cs" />
+    <Compile Include="FormHandler\DataGridHandler.cs" />
+    <Compile Include="FormHandler\DefaultSongInfoAccesser.cs" />
+    <Compile Include="FormHandler\DirectoryHandler.cs" />
     <Compile Include="LastFmHandler\LastFmUserCredentials.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

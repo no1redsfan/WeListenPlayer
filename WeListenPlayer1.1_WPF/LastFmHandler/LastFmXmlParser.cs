@@ -20,7 +20,7 @@ namespace WeListenPlayer1._1_WPF.LastFmHandler
         {
 
             // Define new MainWindow object (for reference)
-            MainWindow mainWindow = new MainWindow();
+            var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
             string art = null;
             string tempArt = null;
