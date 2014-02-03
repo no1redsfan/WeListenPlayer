@@ -417,6 +417,8 @@ namespace WeListenPlayer
         {
             if (wasapiOut == null)
             {
+                btnSkipFwd.IsEnabled = false;
+                btnSkipBck.IsEnabled = false;
                 btnPlay.IsEnabled = true;
                 btnPause.IsEnabled = false;
                 btnStop.IsEnabled = false;
@@ -426,6 +428,8 @@ namespace WeListenPlayer
             {
                 if (wasapiOut.PlaybackState == PlaybackState.Playing)
                 {
+                    btnSkipBck.IsEnabled = true;
+                    btnSkipFwd.IsEnabled = true;
                     btnPlay.IsEnabled = false;
                     btnPause.IsEnabled = true;
                     btnStop.IsEnabled = true;
@@ -433,6 +437,8 @@ namespace WeListenPlayer
                 }
                 else if (wasapiOut.PlaybackState == PlaybackState.Paused)
                 {
+                    btnSkipBck.IsEnabled = true;
+                    btnSkipFwd.IsEnabled = true;
                     btnPlay.IsEnabled = true;
                     btnPause.IsEnabled = false;
                     btnStop.IsEnabled = true;
