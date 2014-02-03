@@ -10,6 +10,7 @@ namespace WeListenPlayer1._1_WPF.TagLibHandler
 {
     class TagLibDataAccesser
     {
+
         ///////////////////////////////////////////////////////
         // TagLib File MetaData Accessor (from string URL Path)
         // - Obtains local file meta-data, assigns UNKNOWN if missing

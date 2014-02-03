@@ -87,7 +87,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LastFmHandler\LastFmUserCredentials.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>LastFmUserCredentials.settings</DependentUpon>
+    </Compile>
+    <Compile Include="LastFmHandler\LastFmXmlParser.cs" />
     <Compile Include="TagLibHandler\TagLibDataAccesser.cs" />
+    <Compile Include="XmlHandler\XmlAccesser.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -124,6 +131,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="LastFmHandler\LastFmUserCredentials.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>LastFmUserCredentials.Designer.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

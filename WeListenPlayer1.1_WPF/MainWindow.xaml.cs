@@ -22,7 +22,7 @@ using System.Xml.Linq;
 using WeListenPlayer1._1_WPF.APIClasses;
 using WeListenPlayer1._1_WPF.LastFmHandler;
 using WeListenPlayer1._1_WPF.TagLibHandler;
-
+using WeListenPlayer1._1_WPF.XmlHandler;
 
 namespace WeListenPlayer1._1_WPF
 {
@@ -42,6 +42,7 @@ namespace WeListenPlayer1._1_WPF
         
         public MainWindow()
         {
+
             InitializeComponent();
 
             //create timer to track song position
@@ -725,111 +726,16 @@ namespace WeListenPlayer1._1_WPF
         }
 
         ///////////////////////////////////////////////////////
-        // WORKING
+        // MOVED - SPLIT
         // LastFM API XML Parser
         // - (Currently) Returns Album art as URL strings
         ///////////////////////////////////////////////////////
-        public async Task<String> GetTrackInfo(string trackName, string artist)
-        {
-            string art = null;
-            string tempArt = null;
-
-            if (String.IsNullOrEmpty(trackName) || String.IsNullOrEmpty(artist))
-            {
-                throw new Exception("Could not get track info. Track and/or artist fields Empty/null.");
-            }
-            else
-            {
-                string requestUrl = new LastFmDataAccesser().getBaseUrl();
-                requestUrl += "&method=track.getInfo&artist=" + System.Web.HttpUtility.UrlEncode(artist.Trim()) + "&track=" + System.Web.HttpUtility.UrlEncode(trackName.Trim());
-
-                string serviceResponse = await GetServiceResponse(requestUrl);
-
-                var xmlResponse = XElement.Parse(serviceResponse);
-
-                // Parse through the returned Xml for the name and match value for each similar artist.
-                var getInfo = from trackInfo in xmlResponse.Descendants("track")
-
-                              select new
-                              {
-                                  trackName = (string)trackInfo.Elements("name").FirstOrDefault() ?? "Unknown",
-                                  trackArtist = (string)trackInfo.Elements("album").Elements("artist").FirstOrDefault() ?? "Unknown",
-                                  trackAlbum = (string)trackInfo.Elements("album").Elements("title").FirstOrDefault() ?? "Unknown",
-                                  albumURL = (string)trackInfo.Elements("album").Elements("image").FirstOrDefault() ?? "Unknown"
-
-                              };
-
-                if (getInfo.Count() > 0)
-                {
-                    foreach (var trackInfo in getInfo)
-                    {
-                        try
-                        {
-                            tempArt = trackInfo.albumURL;
-                            art = tempArt.Replace("/64s/", "/300x300/");
-                            tbAlbumArtInfo.Text = "";
-                        }
-                        catch
-                        {
-                            tbAlbumArtInfo.Text = "Album Art Unavailable";
-                            art = "http://icons.iconseeker.com/png/fullsize/3d-cartoon-icons-pack-iii/adobe-help-center.png";
-                        }
-                    }
-                }
-
-                return art;
-            }
-        }
-
+        
         ///////////////////////////////////////////////////////
-        // WORKING
+        // MOVED - SPLIT
         // Request XML URL Handler
         // - Pulls XML page data for parsing
         ///////////////////////////////////////////////////////
-        private Task<string> GetServiceResponse(string requestUrl)
-        {
-            return Task.Run(() =>
-            {
-                string httpResponse = "";
-
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
-                request.Timeout = 60000;
-                HttpWebResponse response = null;
-                StreamReader reader = null;
-
-                try
-                {
-                    try
-                    {
-                        response = (HttpWebResponse)request.GetResponse();
-                    }
-                    catch (WebException ex)
-                    {
-                        response = (HttpWebResponse)ex.Response;
-                    }
-
-                    reader = new StreamReader(response.GetResponseStream());
-                    httpResponse = reader.ReadToEnd();
-                }
-                catch
-                {
-                    //MessageBox.Show("Script has stopped unexpectedly!");
-                }
-                finally
-                {
-                    if (reader != null)
-                    {
-                        reader.Close();
-                    }
-                    if (response != null)
-                    {
-                        response.Close();
-                    }
-                }
-
-                return httpResponse;
-            });
-        }
 
         ///////////////////////////////////////////////////////
         // WORKING
@@ -838,12 +744,11 @@ namespace WeListenPlayer1._1_WPF
         ///////////////////////////////////////////////////////
         private async void aSyncFileData(string trackName, string artist)
         {
-            MainWindow lastFmRequest = new MainWindow();
-
             try
             {
                 // Pull album art from determined Url
-                string Url = await lastFmRequest.GetTrackInfo(trackName, artist);
+                string Url = await new LastFmXmlParser().GetTrackInfo(trackName, artist);
+
                 imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(Url));
             }
             catch

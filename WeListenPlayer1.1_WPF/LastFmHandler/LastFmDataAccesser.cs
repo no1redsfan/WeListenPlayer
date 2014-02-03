@@ -21,8 +21,8 @@ namespace WeListenPlayer1._1_WPF.LastFmHandler
         {
             LastFmData creds = new LastFmData();
 
-            creds.Key = "69473ce24376ae029d0b35211016700c"; // Different for other users
-            creds.Secret = "305fef5dd50570f5da565ffb863a65ef"; // Different for other users
+            creds.Key = LastFmUserCredentials.Default.Key; // Different for other users
+            creds.Secret = LastFmUserCredentials.Default.Secret; // Different for other users
 
             return creds;
         }
