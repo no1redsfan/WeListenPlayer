@@ -25,7 +25,7 @@ namespace WeListenPlayer.AmazonHandler {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("AKIAJUB3ZROHGM2ISRGA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Key {
             get {
                 return ((string)(this["Key"]));
@@ -37,7 +37,7 @@ namespace WeListenPlayer.AmazonHandler {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4tSUnZMiS7dkG65nHBFhJmRRuVJy8m1Vg4Jbvb+1 ")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Secret {
             get {
                 return ((string)(this["Secret"]));
