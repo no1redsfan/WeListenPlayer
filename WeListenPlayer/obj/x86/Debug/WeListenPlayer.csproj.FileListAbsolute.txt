@@ -26,3 +26,11 @@ C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer\obj\x86\Debug\
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer.csproj.GenerateResource.Cache
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer.exe
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\WeListenPlayer.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\MainWindow.baml
+C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\App.g.cs
+C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\WeListenPlayer_MarkupCompile.cache
+C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\WeListenPlayer.g.resources
+C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\WeListenPlayer.Properties.Resources.resources
+C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\WeListenPlayer.csproj.GenerateResource.Cache
