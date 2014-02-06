@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Xml;
+using WeListenPlayer.AmazonHandler;
 using WeListenPlayer.APIClasses;
 using WeListenPlayer.ButtonHandler;
 using WeListenPlayer.FormHandler;
@@ -712,6 +713,14 @@ namespace WeListenPlayer
         // Browse folder handler
         // - Imports .mp3 files and populates DataGrid
         ///////////////////////////////////////////////////////
+
+        // AMAZON TEST BUTTON
+        private void btnSearchAmazon_Click(object sender, RoutedEventArgs e)
+        {
+            string keyword = tbAmazonSearch.Text.ToString();
+            AmazonAccesser handler = new AmazonAccesser();
+            handler.InitiateSearchRequest(keyword);
+        }
 
         ////////////////////////////////////////////////////
         //Methods for handling logging in and out of the Web

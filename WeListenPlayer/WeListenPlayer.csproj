@@ -33,19 +33,39 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="lastfm-sharp">
-      <HintPath>..\..\lastfm-sharp.dll</HintPath>
+      <HintPath>bin\Debug\lastfm-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack">
-      <HintPath>C:\Users\Rozzly\Desktop\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <HintPath>..\..\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
-      <HintPath>C:\Users\Rozzly\Desktop\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <HintPath>..\..\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="NAudio">
-      <HintPath>..\..\NAudio.dll</HintPath>
+      <HintPath>bin\Debug\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -53,6 +73,7 @@
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Net.Http" />
@@ -60,6 +81,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -71,7 +94,7 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="taglib-sharp">
-      <HintPath>..\..\taglib-sharp.dll</HintPath>
+      <HintPath>bin\Debug\taglib-sharp.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
@@ -79,20 +102,21 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="XmlLib">
-      <HintPath>..\..\XmlLib.dll</HintPath>
+      <HintPath>..\..\XmlLib-master\bin\debug\XmlLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    <Compile Include="AmazonHandler\AmazonAccesser.cs" />
     <Compile Include="AmazonHandler\AmazonData.cs" />
     <Compile Include="AmazonHandler\AmazonDataAccesser.cs" />
+    <Compile Include="AmazonHandler\AmazonUserCredentials.cs" />
     <Compile Include="AmazonHandler\AmazonUserCredentials.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>AmazonUserCredentials.settings</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ButtonHandler\DirButton.cs" />
     <Compile Include="FormHandler\AlbumArtAccesser.cs" />
@@ -107,6 +131,10 @@
     <Compile Include="LastFmHandler\LastFmXmlParser.cs" />
     <Compile Include="TagLibHandler\TagLibDataAccesser.cs" />
     <Compile Include="XmlHandler\XmlAccesser.cs" />
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -114,10 +142,6 @@
     <Compile Include="APIClasses\LoginClass.cs" />
     <Compile Include="APIClasses\SongData.cs" />
     <Compile Include="APIClasses\RequestCollection.cs" />
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="LastFmHandler\LastFmDataAccesser.cs" />
     <Compile Include="LastFmHandler\LastFmData.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -151,7 +175,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>LastFmUserCredentials.Designer.cs</LastGenOutput>
     </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -159,9 +182,20 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\Amazon.PAAPI.WCF.csproj">
+      <Project>{d38b4a40-d315-4158-9bd1-34c1697668bb}</Project>
+      <Name>Amazon.PAAPI.WCF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\AmazonSOAP.csproj">
+      <Project>{986d8407-0e81-4992-8387-7ee9dcec5cff}</Project>
+      <Name>AmazonSOAP</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
