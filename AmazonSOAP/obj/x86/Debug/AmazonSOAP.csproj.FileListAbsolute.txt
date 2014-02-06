@@ -1,0 +1,40 @@
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\amazonTest\bin\Debug\AmazonSOAP.exe.config
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\amazonTest\bin\Debug\AmazonSOAP.exe
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\amazonTest\bin\Debug\AmazonSOAP.pdb
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\amazonTest\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\amazonTest\obj\x86\Debug\AmazonSOAP.exe
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\amazonTest\obj\x86\Debug\AmazonSOAP.pdb
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\amazonTest\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\amazonTest\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\AmazonSOAP\bin\Debug\AmazonSOAP.exe.config
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.pdb
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\AmazonSOAP\bin\Debug\AmazonSOAP.exe
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\AmazonSOAP\bin\Debug\AmazonSOAP.pdb
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\AmazonSOAP\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\AmazonSOAP.exe.config
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.pdb
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.csprojResolveAssemblyReference.cache
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\AmazonSOAP.exe
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\AmazonSOAP.pdb
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\AmazonSOAP.exe.config
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\AmazonSOAP.exe
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\AmazonSOAP.pdb
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe.config
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\AmazonSOAP.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.pdb
