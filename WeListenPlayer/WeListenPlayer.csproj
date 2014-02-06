@@ -187,11 +187,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WeListen Player Repository\Amazon.PAAPI.WCF\Amazon.PAAPI.WCF.csproj">
+    <ProjectReference Include="..\Amazon.PAAPI.WCF\Amazon.PAAPI.WCF.csproj">
       <Project>{d38b4a40-d315-4158-9bd1-34c1697668bb}</Project>
       <Name>Amazon.PAAPI.WCF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\WeListen Player Repository\AmazonSOAP\AmazonSOAP.csproj">
+    <ProjectReference Include="..\AmazonSOAP\AmazonSOAP.csproj">
       <Project>{986d8407-0e81-4992-8387-7ee9dcec5cff}</Project>
       <Name>AmazonSOAP</Name>
     </ProjectReference>

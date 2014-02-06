@@ -34,3 +34,28 @@ C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\WeList
 C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\WeListenPlayer.g.resources
 C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\WeListenPlayer.Properties.Resources.resources
 C:\Users\Rozzly\Desktop\WeListen Player Repo\WeListenPlayer\obj\x86\Debug\WeListenPlayer.csproj.GenerateResource.Cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\WeListenPlayer.exe.config
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer.exe
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer.csprojResolveAssemblyReference.cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\MainWindow.baml
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\App.g.cs
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer_MarkupCompile.cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer.g.resources
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer.Properties.Resources.resources
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\WeListenPlayer.csproj.GenerateResource.Cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\WeListenPlayer.exe
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\WeListenPlayer.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\AmazonSOAP.exe
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\lastfm-sharp.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\NAudio.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\Newtonsoft.Json.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\System.Net.Http.Formatting.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\taglib-sharp.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\AmazonSOAP.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\Newtonsoft.Json.xml
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\System.Net.Http.Formatting.xml
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\XmlLib.xml

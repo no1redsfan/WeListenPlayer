@@ -38,3 +38,11 @@ C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\Amazon.P
 C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.csprojResolveAssemblyReference.cache
 C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe
 C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe.config
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\bin\Debug\AmazonSOAP.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.csprojResolveAssemblyReference.cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.pdb
