@@ -1,0 +1,13 @@
+diff a/WeListenPlayer.sln b/WeListenPlayer.sln	(rejected hunks)
+@@ -5,9 +5,9 @@
+ MinimumVisualStudioVersion = 10.0.40219.1
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeListenPlayer", "WeListenPlayer\WeListenPlayer.csproj", "{A128D2AC-5DAB-4828-8CE2-752A513183C7}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amazon.PAAPI.WCF", "..\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\Amazon.PAAPI.WCF.csproj", "{D38B4A40-D315-4158-9BD1-34C1697668BB}"
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amazon.PAAPI.WCF", "..\WeListen Player Repository\Amazon.PAAPI.WCF\Amazon.PAAPI.WCF.csproj", "{D38B4A40-D315-4158-9BD1-34C1697668BB}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonSOAP", "..\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\AmazonSOAP.csproj", "{986D8407-0E81-4992-8387-7EE9DCEC5CFF}"
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonSOAP", "..\WeListen Player Repository\AmazonSOAP\AmazonSOAP.csproj", "{986D8407-0E81-4992-8387-7EE9DCEC5CFF}"
+ EndProject
+ Global
+ 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
