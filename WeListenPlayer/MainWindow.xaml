@@ -102,7 +102,7 @@
         <TextBlock x:Name="tbGenreInfo" HorizontalAlignment="Left" Margin="137,74,0,0" TextWrapping="Wrap" Text="UNKNOWN" VerticalAlignment="Top" Grid.Column="2"/>
         <TextBlock x:Name="tbFilePathInfo" HorizontalAlignment="Left" Margin="137,90,0,0" TextWrapping="Wrap" Text="UNKNOWN" VerticalAlignment="Top" Grid.Column="2"/>
         <TextBlock x:Name="tbAlbumArtInfo" HorizontalAlignment="Left" Margin="137,130,0,0" TextWrapping="Wrap" Text="UNKNOWN" VerticalAlignment="Top" Grid.Column="2"/>
-        <Image x:Name="imgAlbumArt" HorizontalAlignment="Left" Height="216" Margin="392,10,0,0" VerticalAlignment="Top" Width="229" Grid.Column="2" Grid.ColumnSpan="3"/>
+        <Image x:Name="imgAlbumArt" HorizontalAlignment="Left" Height="150" Margin="392,10,0,0" VerticalAlignment="Top" Width="150" Grid.Column="2" Grid.ColumnSpan="3"/>
         <DataGrid x:Name="dgvPlayList" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Height="552" Width="209"  AllowDrop="True" Drop="dgvPlayList_Drop" DragOver="dgvPlayList_DragOver" DragLeave="dgvPlayList_DragLeave" Background="#FFE2E2E2" SelectionMode="Single" CanUserReorderColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Title" Header="Title" Binding="{Binding Path=Title}"/>

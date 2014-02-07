@@ -30,13 +30,6 @@ C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon
 C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.csprojResolveAssemblyReference.cache
 C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe
 C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\AmazonSOAP\obj\x86\Debug\AmazonSOAP.pdb
-C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe.config
-C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe
-C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\AmazonSOAP.pdb
-C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.dll
-C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.pdb
-C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.csprojResolveAssemblyReference.cache
-C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe
 C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.pdb
 C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe.config
 C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe
@@ -46,3 +39,10 @@ C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\bin\Debug\Am
 C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.csprojResolveAssemblyReference.cache
 C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe
 C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe.config
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\AmazonSOAP.exe
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\AmazonSOAP.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\AmazonSOAP\obj\x86\Debug\AmazonSOAP.exe

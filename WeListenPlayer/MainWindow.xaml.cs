@@ -20,6 +20,7 @@ using WeListenPlayer.ButtonHandler;
 using WeListenPlayer.FormHandler;
 using WeListenPlayer.TagLibHandler;
 
+
 namespace WeListenPlayer
 {
     /// <summary>
@@ -719,7 +720,7 @@ namespace WeListenPlayer
         {
             string keyword = tbAmazonSearch.Text.ToString();
             AmazonAccesser handler = new AmazonAccesser();
-            handler.InitiateSearchRequest(keyword);
+            //handler.InitiateSearchRequest(keyword);
         }
 
         ////////////////////////////////////////////////////

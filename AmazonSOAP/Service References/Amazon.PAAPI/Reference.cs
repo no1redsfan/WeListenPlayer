@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Threading.Tasks;
+
 namespace Amazon.PAAPI {
     
     
@@ -9799,8 +9801,9 @@ namespace Amazon.PAAPI {
         Amazon.PAAPI.ItemSearchResponse1 Amazon.PAAPI.AWSECommerceServicePortType.ItemSearch(Amazon.PAAPI.ItemSearchRequest1 request) {
             return base.Channel.ItemSearch(request);
         }
-        
-        public Amazon.PAAPI.ItemSearchResponse ItemSearch(Amazon.PAAPI.ItemSearch ItemSearch1) {
+
+        public Amazon.PAAPI.ItemSearchResponse ItemSearch(Amazon.PAAPI.ItemSearch ItemSearch1)
+        {
             Amazon.PAAPI.ItemSearchRequest1 inValue = new Amazon.PAAPI.ItemSearchRequest1();
             inValue.ItemSearch = ItemSearch1;
             Amazon.PAAPI.ItemSearchResponse1 retVal = ((Amazon.PAAPI.AWSECommerceServicePortType)(this)).ItemSearch(inValue);

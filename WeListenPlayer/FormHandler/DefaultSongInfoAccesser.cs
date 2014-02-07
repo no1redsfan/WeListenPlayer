@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WeListenPlayer.AmazonHandler;
 using WeListenPlayer.APIClasses;
 
 namespace WeListenPlayer.FormHandler
@@ -53,8 +54,8 @@ namespace WeListenPlayer.FormHandler
 
 
             // Call Asynchronous data gathering from LastFM API (XML Parser)
-            AlbumArtAccesser i = new AlbumArtAccesser();
-            i.setAlbumArt(Title, Artist);
+            AmazonAccesser i = new AmazonAccesser();
+            i.InitiateSearchRequest(Artist, Album, Title);
         }
     }
 }

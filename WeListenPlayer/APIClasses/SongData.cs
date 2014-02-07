@@ -14,5 +14,10 @@ namespace WeListenPlayer.APIClasses
         public uint Year { set; get; }
         public string Genre { set; get; }
         public string Path { set; get; }
+        public string amazonASIN { set; get; }
+        public string amazonPrice { set; get; }
+        public string amazonLength { set; get; }
+        public string amazonArt { set; get; }
+
     }
 }
