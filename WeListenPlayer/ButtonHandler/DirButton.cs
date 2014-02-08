@@ -5,11 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WeListenPlayer.ButtonHandler
 {
     class DirButton
     {
+        // MainWindow newMain; // Global Declaration
+
+        //// Run directory processing on a new thread
+        //public async Task<string> getDirectory(MainWindow mainWindow)
+        //{
+        //    newMain = mainWindow;
+
+
+        //}
 
         ///////////////////////////////////////////////////////
         // Select Directory Button Handler
@@ -39,12 +49,9 @@ namespace WeListenPlayer.ButtonHandler
             dlg.Multiselect = false;
             dlg.ShowPlacesList = true;
 
-
             if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                Thread.Sleep(1);
-                var folder = dlg.FileName;
-                Thread.Sleep(1);
+                string folder = dlg.FileName;
 
                 mainWindow.tbMusicDir.Text = folder;
 

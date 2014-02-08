@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Threading;
+using WeListenPlayer.AmazonHandler;
 using WeListenPlayer.APIClasses;
 
 namespace WeListenPlayer.FormHandler
 {
     class DefaultSongInfoAccesser
     {
-
         ///////////////////////////////////////////////////////
         // Row Selection Handler
         // - Assigns text variables on row select in DataGrid (Currently set as first row)
@@ -51,10 +55,11 @@ namespace WeListenPlayer.FormHandler
             mainWindow.tbGenreInfo.Text = Genre;
             mainWindow.tbFilePathInfo.Text = Path;
 
-
             // Call Asynchronous data gathering from LastFM API (XML Parser)
-            AlbumArtAccesser i = new AlbumArtAccesser();
-            i.setAlbumArt(Title, Artist);
+            AmazonAccesser handler = new AmazonAccesser();
+            handler.setMain(mainWindow); // Declare MainWindow and pass as parameter
+            handler.getAmazonItems(Artist, Album, Title, "");
+
         }
     }
 }

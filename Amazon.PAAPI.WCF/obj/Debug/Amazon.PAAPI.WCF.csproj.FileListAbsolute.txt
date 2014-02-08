@@ -1,0 +1,14 @@
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\Amazon.PAAPI.WCF\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\Amazon.PAAPI.WCF\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\Amazon.PAAPI.WCF\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\Amazon.PAAPI.WCF\obj\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\don\Documents\Visual Studio 2010\Projects\amazonTest\Amazon.PAAPI.WCF\obj\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\obj\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\obj\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\shanem.MAGTEK\Downloads\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\obj\Debug\Amazon.PAAPI.WCF.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\bin\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\bin\Debug\Amazon.PAAPI.WCF.pdb
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\obj\Debug\Amazon.PAAPI.WCF.dll
+C:\Users\Rozzly\Desktop\amazonProductAdvertisingAPI-SOAP-WCF-2\amazonTest\Amazon.PAAPI.WCF\obj\Debug\Amazon.PAAPI.WCF.pdb
