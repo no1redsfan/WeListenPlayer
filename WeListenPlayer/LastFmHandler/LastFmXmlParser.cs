@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using WeListenPlayer.APIClasses;
 using WeListenPlayer.XmlHandler;
 
 namespace WeListenPlayer.LastFmHandler
@@ -16,38 +17,35 @@ namespace WeListenPlayer.LastFmHandler
         // - Uses       string Url = await new LastFmXmlParser().GetTrackInfo({string:trackName}, {string:artist});
         // - Output     Returns {string:art} (URL to album artwork for SongData object)
         ///////////////////////////////////////////////////////
-        public async Task<String> GetTrackInfo(string trackName, string artist)
+        public async Task<SongData> GetTrackInfo()
         {
+            // Declare new SongData Object
+            SongData pulledSong = new SongData();
 
             // Define new MainWindow object (for reference)
             var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
-            string art = null;
-            string tempArt = null;
+            string baseURL = "http://welistenmusic.com/api/locations/"; // Base default url
+            string location = "1"; // Playlist location (1 default)
 
-            if (String.IsNullOrEmpty(trackName) || String.IsNullOrEmpty(artist))
+            // Set request URL based on above variables (location will change in future)
+            string requestUrl = baseURL + location;
+
+            string serviceResponse = await new XmlAccesser().GetServiceResponse(requestUrl);
+
+            var xmlResponse = XElement.Parse(serviceResponse);
+
+            // Parse through the returned Xml for the name and match value for each similar artist.
+            foreach (var PlayListSong in xmlResponse.Descendants("ArrayOfPlayListSong"))
             {
-                throw new Exception("Could not get track info. Track and/or artist fields Empty/null.");
-            }
-            else
-            {
-                string requestUrl = new LastFmDataAccesser().getBaseUrl();
-                requestUrl += "&method=track.getInfo&artist=" + System.Web.HttpUtility.UrlEncode(artist.Trim()) + "&track=" + System.Web.HttpUtility.UrlEncode(trackName.Trim());
-
-                string serviceResponse = await new XmlAccesser().GetServiceResponse(requestUrl);
-
-                var xmlResponse = XElement.Parse(serviceResponse);
-
-                // Parse through the returned Xml for the name and match value for each similar artist.
-                var getInfo = from trackInfo in xmlResponse.Descendants("track")
+                var getInfo = from trackInfo in xmlResponse.Descendants("PlayListSong")
 
                               select new
                               {
-                                  trackName = (string)trackInfo.Elements("name").FirstOrDefault() ?? "Unknown",
-                                  trackArtist = (string)trackInfo.Elements("album").Elements("artist").FirstOrDefault() ?? "Unknown",
-                                  trackAlbum = (string)trackInfo.Elements("album").Elements("title").FirstOrDefault() ?? "Unknown",
-                                  albumURL = (string)trackInfo.Elements("album").Elements("image").FirstOrDefault() ?? "Unknown"
-
+                                  trackName = (string)trackInfo.Elements("Title").FirstOrDefault() ?? "Unknown",
+                                  trackArtist = (string)trackInfo.Elements("Artist").FirstOrDefault() ?? "Unknown",
+                                  //trackAlbum = (string)trackInfo.Elements("Album").FirstOrDefault() ?? "Unknown",
+                                  trackPath = (string)trackInfo.Elements("FilePath").FirstOrDefault() ?? "Unknown"
                               };
 
                 if (getInfo.Count() > 0)
@@ -56,21 +54,19 @@ namespace WeListenPlayer.LastFmHandler
                     {
                         try
                         {
-                            tempArt = trackInfo.albumURL;
-                            art = tempArt.Replace("/64s/", "/300x300/");
+                            pulledSong.Title = trackInfo.trackName;
+                            pulledSong.Artist = trackInfo.trackArtist;
+                            pulledSong.Path = trackInfo.trackPath;
 
-                            mainWindow.tbAlbumArtInfo.Text = "";
                         }
                         catch
                         {
-                            mainWindow.tbAlbumArtInfo.Text = "Album Art Unavailable";
-                            art = "http://icons.iconseeker.com/png/fullsize/3d-cartoon-icons-pack-iii/adobe-help-center.png";
+                            return pulledSong;
                         }
                     }
                 }
 
-                return art;
-            }
+            } return pulledSong;
         }
     }
 }

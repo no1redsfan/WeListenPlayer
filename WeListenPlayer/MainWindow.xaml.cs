@@ -38,6 +38,13 @@ namespace WeListenPlayer
         {
 
             InitializeComponent();
+            AmazonAccesser initializer = new AmazonAccesser();
+            initializer.setMain(this); // Declare MainWindow and pass as parameter
+            initializer.getAmazonItems("test", "test", "test", "");
+
+            AlbumArtAccesser test = new AlbumArtAccesser();
+            test.setAlbumArt();
+
 
             //create timer to track song position
             timer = new DispatcherTimer();
@@ -49,8 +56,6 @@ namespace WeListenPlayer
             //Load WeListen API
             client.BaseAddress = new Uri("http://welistenmusic.com/api/location/{locationid}");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            this.TestRequestList.ItemsSource = _requests;
         }
 
         //Declare Variables
@@ -166,39 +171,6 @@ namespace WeListenPlayer
         //Playlist Control Methods//
         ////////////////////////////
 
-        //Method for Adding songs to playList
-        private void OnAddSongClick(object sender, RoutedEventArgs e)
-        {
-
-            /////////////////////////////////////////////////
-            //Modify this method to accomidate Roberts change
-            /////////////////////////////////////////////////
-
-            //Create arrayLists for new files to add
-            //These variables are string array lists to store song locations.
-            ArrayList newFiles = new ArrayList();
-            ArrayList newPaths = new ArrayList();
-
-            //Open file dialog to select tracks and add them to the play list
-            OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "MP3 File (*.mp3)|*.mp3;";
-            open.DefaultExt = ".mp3";
-            open.Multiselect = true;
-
-            //Show open
-            Nullable<bool> result = open.ShowDialog();
-
-            //Process open file dialog box result
-            if (result == true)
-            {
-                //add files to arrays
-                newFiles.AddRange(open.SafeFileNames); //Saves only the names
-                newPaths.AddRange(open.FileNames); //Saves the full paths
-            }
-            //Call addSong Method
-            AddSongsToPlaylist(newFiles, newPaths);
-        }
-
         //method for starting to receive the requests
         private void OnRecieveRequestClick(object sender, RoutedEventArgs e)
         {
@@ -304,69 +276,12 @@ namespace WeListenPlayer
             {
                 // TODO: call for requests from database
                 testCount++;
-                testLabel.Text = "test count" + testCount.ToString();
 
                 // Wait to repeat again.
                 if (interval > TimeSpan.Zero)
                     await Task.Delay(interval, token);
             }
         }
-
-
-        //query the WeListen API for a list of requests
-        private async void GetRequests(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                btnGetProducts.IsEnabled = false;
-
-                var response = await client.GetAsync("http://welistenmusic.com/api/locations/1");
-                response.EnsureSuccessStatusCode(); // Throw on error code.
-                if (response.IsSuccessStatusCode)
-                {
-                    //JObject requests = JObject.Parse(response.Content.ReadAsAsync<IEnumerable<SongData>>().ToString());
-
-                   // var requests = response.Content.ReadAsAsync<IEnumerable<SongData>>().Result;
-                    //_requests.CopyFrom(requests);
-
-                    //WebClient webClient = new WebClient();
-                    //dynamic result = JsonValue.Parse(webClient.DownloadString("https://api.foursquare.com/v2/users/self?oauth_token=XXXXXXX"));
-                    //Console.WriteLine(result.response.user.firstName);
-
-                    var json = new WebClient().DownloadString("http://welistenmusic.com/api/locations/1");
-                    XmlDocument doc = (XmlDocument)JsonConvert.DeserializeXmlNode(json);
-
-                  
-
-
-                    //dynamic result = json.Parse
-                    Console.WriteLine(doc);
-
-                    //foreach (var r in _requests)
-                    //{
-                    //    TestRequestList.Items.Add(r.RequestTitle);
-                    //}
-                    TestRequestList.ItemsSource = _requests;
-                }
-
-
-
-            }
-            catch (Newtonsoft.Json.JsonException jEx)
-            {
-                // This exception indicates a problem deserializing the request body.
-                MessageBox.Show(jEx.Message);
-            }
-            catch (HttpRequestException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                btnGetProducts.IsEnabled = true;
-            }
-        }
-
 
         ////////////////////////////////////////
         //methods for background audio control//
@@ -587,15 +502,46 @@ namespace WeListenPlayer
         }
 
 
-
-
         ////////////////////////////
         // ROBERT - MEDIA MANAGER //
         ////////////////////////////
 
         //////////////////////////////////////////////////////
         // WORKING - KEEP IN MAIN
-        // Browse Button Handler
+        // Browse File Button Handler
+        // - Requests browser explorer, sets item path
+        ///////////////////////////////////////////////////////
+        private void OnAddSongClick(object sender, RoutedEventArgs e)
+        {
+
+            //Create arrayLists for new files to add
+            //These variables are string array lists to store song locations.
+            ArrayList newFiles = new ArrayList();
+            ArrayList newPaths = new ArrayList();
+
+            //Open file dialog to select tracks and add them to the play list
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "MP3 File (*.mp3)|*.mp3;";
+            open.DefaultExt = ".mp3";
+            open.Multiselect = true;
+
+            //Show open
+            Nullable<bool> result = open.ShowDialog();
+
+            //Process open file dialog box result
+            if (result == true)
+            {
+                //add files to arrays
+                newFiles.AddRange(open.SafeFileNames); //Saves only the names
+                newPaths.AddRange(open.FileNames); //Saves the full paths
+            }
+            //Call addSong Method
+            AddSongsToPlaylist(newFiles, newPaths);
+        }
+
+        //////////////////////////////////////////////////////
+        // WORKING - KEEP IN MAIN
+        // Browse Directory Button Handler
         // - Requests browser explorer, sets folder path
         ///////////////////////////////////////////////////////
         private void OnBtnImport_Click(object sender, RoutedEventArgs e)
@@ -715,14 +661,6 @@ namespace WeListenPlayer
         // - Imports .mp3 files and populates DataGrid
         ///////////////////////////////////////////////////////
 
-        // AMAZON TEST BUTTON
-        private void btnSearchAmazon_Click(object sender, RoutedEventArgs e)
-        {
-            string keyword = tbAmazonSearch.Text.ToString();
-            AmazonAccesser handler = new AmazonAccesser();
-            //handler.InitiateSearchRequest(keyword);
-        }
-
         ////////////////////////////////////////////////////
         //Methods for handling logging in and out of the Web
         ////////////////////////////////////////////////////
@@ -762,7 +700,7 @@ namespace WeListenPlayer
             }
             finally
             {
-                btnGetProducts.IsEnabled = true;
+
             }
         }
     }

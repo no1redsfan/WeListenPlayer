@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WeListenPlayer.APIClasses;
 using WeListenPlayer.LastFmHandler;
 
 namespace WeListenPlayer.FormHandler
@@ -18,7 +19,7 @@ namespace WeListenPlayer.FormHandler
         //              i.setAlbumArt(Title, Artist);
         // - Output     Sets url to MainWindow
         ///////////////////////////////////////////////////////
-        public async void setAlbumArt(string trackName, string artist)
+        public async void setAlbumArt()
         {
             try
             {
@@ -26,9 +27,9 @@ namespace WeListenPlayer.FormHandler
                 var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
                 // Pull album art from determined Url
-                string Url = await new LastFmXmlParser().GetTrackInfo(trackName, artist);
+                SongData pulledSong = await new LastFmXmlParser().GetTrackInfo();
 
-                mainWindow.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(Url));
+                //mainWindow.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(Url));
             }
             catch
             {
