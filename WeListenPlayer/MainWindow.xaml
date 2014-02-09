@@ -68,9 +68,11 @@
             <TabItem x:Name="tabDJitalDJ" Header="DJital DJ">
                 <Grid Background="#FFE5E5E5" Margin="0,2,0,-2"/>
             </TabItem>
-            <TabItem x:Name="tabInfo" Header="Music Info">
+            <TabItem x:Name="tabUpload" Header="Music Catalog">
+                <Button x:Name="btnUploadFolderToDB" Content="Add File to Catalog" IsCancel="True" Margin="284,266,215,336" Click="OnUploadFolderToDBClick"/>
             </TabItem>
             <TabItem x:Name="tabAbout" Header="About">
+                
             </TabItem>
             <TabItem x:Name="tabLogIn" Header="Log In">
                 <Grid Background="#FFE5E5E5" Margin="0,1,-15,-6">

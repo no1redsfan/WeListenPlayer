@@ -175,6 +175,7 @@ namespace WeListenPlayer
             var dueTime = TimeSpan.FromSeconds(10);
             var interval = TimeSpan.FromSeconds(10);
             CancellationToken stopReceiving;
+            var recieving = false;
             if (receiving == false)
             {
                 receiving = true;
@@ -267,12 +268,11 @@ namespace WeListenPlayer
                 await Task.Delay(dueTime, token);
 
             // Repeat this loop until cancelled.
-            //test count
-            int testCount = 0;
             while (!token.IsCancellationRequested)
             {
                 // TODO: call for requests from database
-                testCount++;
+                WeListenXmlParser k = new WeListenXmlParser();
+                k.GetTrackInfo();
 
                 // Wait to repeat again.
                 if (interval > TimeSpan.Zero)
@@ -425,7 +425,8 @@ namespace WeListenPlayer
 
                 //populate string with the song in the first position of the path arrayList
                 
-                string path = playItem.Path;
+                string path = playItem.Path.Replace("\\\\", "\\");//Add error handling
+
 
                 //For WasapiOut
                 var device = (MMDevice)cboDevices.SelectedItem;
@@ -550,6 +551,21 @@ namespace WeListenPlayer
             {
                 DirectoryHandler k = new DirectoryHandler();
                 k.processDirectory(path, false);
+            }
+            else
+            {
+                MessageBox.Show("There was a problem getting the folder path.");
+            }
+        }
+
+        //button click for adding music files to the dB
+        private void OnUploadFolderToDBClick(object sender, RoutedEventArgs e)
+        {
+            string path = new DirButton().selectDirectory();
+            if (path != null)
+            {
+                DirectoryHandler k = new DirectoryHandler();
+                k.processDirectory(path, true);
             }
             else
             {
