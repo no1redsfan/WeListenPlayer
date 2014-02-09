@@ -99,6 +99,21 @@ namespace WeListenPlayer.AmazonHandler
                 // Get album artwork
                 string imageURL = item.LargeImage.URL;
 
+                // Assign tb values
+                try
+                {
+                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonArtistInfo.Text = item.ItemAttributes.Creator[0].Value));
+                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonAlbumInfo.Text = item.RelatedItems[0].RelatedItem[0].Item.ItemAttributes.Title));
+                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonTitleInfo.Text = item.ItemAttributes.Title));
+                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonYearInfo.Text = item.ItemAttributes.ReleaseDate));
+                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonAsinInfo.Text = item.ASIN));
+                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonPriceInfo.Text = item.Offers.Offer[0].OfferListing[0].Price.FormattedPrice));
+                }
+                catch
+                {
+                    // Could not set label values
+                }
+
                 // Declare MainWindow to dispatch arguements, Invoke imgAlbumArt source change
                 newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(imageURL))));
             }

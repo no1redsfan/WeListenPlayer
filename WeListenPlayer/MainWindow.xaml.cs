@@ -40,8 +40,8 @@ namespace WeListenPlayer
             initializer.setMain(this); // Declare MainWindow and pass as parameter
             initializer.getAmazonItems("test", "test", "test", "");
 
-            WeListenXmlParser k = new WeListenXmlParser();
-            k.GetTrackInfo();
+           // WeListenXmlParser k = new WeListenXmlParser();
+           // k.GetTrackInfo();
 
             //create timer to track song position
             timer = new DispatcherTimer();

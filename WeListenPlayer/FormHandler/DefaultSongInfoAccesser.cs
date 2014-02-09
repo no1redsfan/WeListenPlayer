@@ -48,12 +48,12 @@ namespace WeListenPlayer.FormHandler
             Path = item.Path;
 
             // Assign Text values to labels for song selected in dataGridView1
-            mainWindow.tbTitleInfo.Text = Title;
-            mainWindow.tbArtistInfo.Text = Artist;
-            mainWindow.tbAlbumInfo.Text = Album;
-            mainWindow.tbYearInfo.Text = Year;
-            mainWindow.tbGenreInfo.Text = Genre;
-            mainWindow.tbFilePathInfo.Text = Path;
+            mainWindow.tbLocalTitleInfo.Text = Title;
+            mainWindow.tbLocalArtistInfo.Text = Artist;
+            mainWindow.tbLocalAlbumInfo.Text = Album;
+            mainWindow.tbLocalYearInfo.Text = Year;
+            mainWindow.tbLocalGenreInfo.Text = Genre;
+            mainWindow.tbLocalFilePathInfo.Text = Path;
 
             // Call Asynchronous data gathering from LastFM API (XML Parser)
             AmazonAccesser handler = new AmazonAccesser();
