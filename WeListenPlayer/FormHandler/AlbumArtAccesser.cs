@@ -21,20 +21,20 @@ namespace WeListenPlayer.FormHandler
         ///////////////////////////////////////////////////////
         public async void setAlbumArt()
         {
-            try
-            {
-                // Define new MainWindow object (for reference)
-                var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
+            //try
+            //{
+            //    // Define new MainWindow object (for reference)
+            //    var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
-                // Pull album art from determined Url
-                SongData pulledSong = await new LastFmXmlParser().GetTrackInfo();
+            //    // Pull album art from determined Url
+            //    SongData pulledSong = await new LastFmXmlParser().GetTrackInfo();
 
-                //mainWindow.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(Url));
-            }
-            catch
-            {
-                //MessageBox.Show("Error setting album image!");
-            }
+            //    //mainWindow.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(Url));
+            //}
+            //catch
+            //{
+            //    //MessageBox.Show("Error setting album image!");
+            //}
         }
 
     }

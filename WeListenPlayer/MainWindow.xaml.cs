@@ -18,6 +18,7 @@ using WeListenPlayer.AmazonHandler;
 using WeListenPlayer.APIClasses;
 using WeListenPlayer.ButtonHandler;
 using WeListenPlayer.FormHandler;
+using WeListenPlayer.LastFmHandler;
 using WeListenPlayer.TagLibHandler;
 
 
@@ -45,6 +46,8 @@ namespace WeListenPlayer
             AlbumArtAccesser test = new AlbumArtAccesser();
             test.setAlbumArt();
 
+            WeListenXmlParser k = new WeListenXmlParser();
+            k.GetTrackInfo();
 
             //create timer to track song position
             timer = new DispatcherTimer();
