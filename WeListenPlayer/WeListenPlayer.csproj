@@ -115,25 +115,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmazonHandler\AmazonAccesser.cs" />
-    <Compile Include="AmazonHandler\AmazonData.cs" />
-    <Compile Include="AmazonHandler\AmazonDataAccesser.cs" />
-    <Compile Include="AmazonHandler\AmazonUserCredentials.cs" />
-    <Compile Include="AmazonHandler\AmazonUserCredentials.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>AmazonUserCredentials.settings</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ButtonHandler\DirButton.cs" />
-    <Compile Include="FormHandler\AlbumArtAccesser.cs" />
     <Compile Include="FormHandler\DataGridHandler.cs" />
     <Compile Include="FormHandler\DefaultSongInfoAccesser.cs" />
     <Compile Include="FormHandler\DirectoryHandler.cs" />
     <Compile Include="WeListenApiHandler\WeListenXmlParser.cs" />
     <Compile Include="TagLibHandler\TagLibDataAccesser.cs" />
-    <Compile Include="XmlHandler\XmlAccesser.cs" />
+    <Compile Include="WeListenApiHandler\XmlAccesser.cs" />
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -168,10 +159,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="AmazonHandler\AmazonUserCredentials.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>AmazonUserCredentials.Designer.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

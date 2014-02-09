@@ -1,10 +1,8 @@
 ﻿using Microsoft.Win32;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
-using Newtonsoft.Json;
 using System;
 using System.Collections;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
@@ -13,7 +11,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using System.Xml;
 using WeListenPlayer.AmazonHandler;
 using WeListenPlayer.APIClasses;
 using WeListenPlayer.ButtonHandler;
@@ -42,9 +39,6 @@ namespace WeListenPlayer
             AmazonAccesser initializer = new AmazonAccesser();
             initializer.setMain(this); // Declare MainWindow and pass as parameter
             initializer.getAmazonItems("test", "test", "test", "");
-
-            AlbumArtAccesser test = new AlbumArtAccesser();
-            test.setAlbumArt();
 
             WeListenXmlParser k = new WeListenXmlParser();
             k.GetTrackInfo();

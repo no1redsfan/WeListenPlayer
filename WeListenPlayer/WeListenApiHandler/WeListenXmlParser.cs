@@ -1,14 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Windows.Data;
 using System.Xml.Linq;
 using WeListenPlayer.APIClasses;
-using WeListenPlayer.XmlHandler;
-using System.Collections.Generic;
+using WeListenPlayer.WeListenApiHandler;
 
 namespace WeListenPlayer.LastFmHandler
 {
