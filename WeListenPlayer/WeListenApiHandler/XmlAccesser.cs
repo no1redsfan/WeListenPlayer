@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeListenPlayer.XmlHandler
+namespace WeListenPlayer.WeListenApiHandler
 {
     class XmlAccesser
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,11 +38,24 @@ namespace WeListenPlayer.FormHandler
                     DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
                     i.RetrieveSongInfo();
 
+                    //establish an audio file reader to get the song durration.
+                    
+                    ////
+                    // Add method call to upload to database
+                    ////
+
+                    var userID = 1;//this will be changed when the login for the dj is established
+
+                    var Artist = newSong.Artist;
+                    var Album = newSong.Album;
+                    var Title = newSong.Title;
+                    
 
                     ////
                     // Add method call to upload to database
                     ////
 
+                    //Call the amazon classes to confirm info is populated correctly
 
                 }
                 else
