@@ -35,20 +35,20 @@
         <TabControl x:Name="TabConPLayers" HorizontalAlignment="Left" Height="660" Margin="239,27,0,0" VerticalAlignment="Top" Width="648" Grid.ColumnSpan="3">
 
             <TabItem x:Name="tabJukeBox" Header="JukeBox">
-                <Grid Background="#FFE5E5E5" Margin="0,-2,-15,-3">
-                    <Button x:Name="btnPlay" HorizontalAlignment="Left" Margin="90,602,0,0" VerticalAlignment="Top" Width="25" Click="OnPlayClick">
-                        <Path Fill="black" Margin="3" Width="15" Height="15" Data="M 0,0 L 1,1 L 0,2 Z" Stretch="Fill" StrokeLineJoin="Round"/>
+                <Grid Background="#FFE5E5E5" Margin="0,-2,0,0">
+                    <Button x:Name="btnPlay" HorizontalAlignment="Left" Margin="90,602,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="OnPlayClick">
+                        <Path Fill="black" Width="12" Height="15" Data="M 0,0 L 1,1 L 0,2 Z" Stretch="Fill" StrokeLineJoin="Round"/>
                     </Button>
-                    <Button x:Name="btnStop" HorizontalAlignment="Left" Margin="48,602,0,0" VerticalAlignment="Top" Width="25" Click="OnStopClicked">
-                        <Rectangle Fill="black" Width="15" Height="15" Margin="3" RadiusX="2" RadiusY="2"/>
+                    <Button x:Name="btnStop" HorizontalAlignment="Left" Margin="48,602,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="OnStopClicked">
+                        <Rectangle Fill="black" Width="15" Height="15" RadiusX="2" RadiusY="2"/>
                     </Button>
-                    <Button x:Name="btnPause" HorizontalAlignment="Left" Margin="135,602,0,0" VerticalAlignment="Top" Width="25" Click="OnPauseClicked" RenderTransformOrigin="0.597,1.098">
-                        <Path Fill="Black" Width="15" Height="15" Margin="3" Data="M 0,0 h 1 v 1 h -1 Z M 2,0 h 1 v 1 h -1 Z" Stretch="Fill" StrokeLineJoin="Round"/>
+                    <Button x:Name="btnPause" HorizontalAlignment="Left" Margin="135,602,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="OnPauseClicked" RenderTransformOrigin="0.597,1.098">
+                        <Path Fill="Black" Width="12" Height="15" Data="M 0,0 h 1 v 1 h -1 Z M 2,0 h 1 v 1 h -1 Z" Stretch="Fill" StrokeLineJoin="Round"/>
                     </Button>
-                    <Button x:Name="btnSkipFwd" HorizontalAlignment="Left" Margin="183,602,0,0" VerticalAlignment="Top" Width="25" Click="OnForwardClick" >
-                        <Path Fill="Black" Width="15" Height="15" Margin="3" Data="M -1,0 V1 L-.5,.5 M 0,0 V1 L.5,.5  Z" Stretch="Fill" StrokeLineJoin="Round"/>
+                    <Button x:Name="btnSkipFwd" HorizontalAlignment="Left" Margin="183,602,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="OnForwardClick" >
+                        <Path Fill="Black" Width="15" Height="15" Data="M -1,0 V1 L-.5,.5 M 0,0 V1 L.5,.5  Z" Stretch="Fill" StrokeLineJoin="Round"/>
                     </Button>
-                    <Button x:Name="btnSkipBck" HorizontalAlignment="Left" Margin="7,603,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.673,0.631"  Click="OnBackClick">
+                    <Button x:Name="btnSkipBck" HorizontalAlignment="Left" Margin="7,603,0,0" VerticalAlignment="Top" Height="25" Width="25" RenderTransformOrigin="0.673,0.631"  Click="OnBackClick">
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -57,7 +57,7 @@
                                 <TranslateTransform X="-8.764" Y="-6.393"/>
                             </TransformGroup>
                         </Button.RenderTransform>
-                        <Path Fill="Black" Width="15" Height="15" Margin="3" Data="M -1,0 V1 L-.5,.5 M 0,0 V1 L.5,.5  Z" Stretch="Fill" StrokeLineJoin="Round"/>
+                        <Path Fill="Black" Width="18" Height="15" Data="M -1,0 V1 L-.5,.5 M 0,0 V1 L.5,.5  Z" Stretch="Fill" StrokeLineJoin="Round"/>
                     </Button>
                     <Slider x:Name="sldrVolume" Orientation="Horizontal"  Maximum="1.0" Value="1.0" HorizontalAlignment="Left" Margin="358,598,0,0" VerticalAlignment="Top" Height="31" ValueChanged="OnSldrVolumeChanged" Width="240" RenderTransformOrigin="0.666,0.867"/>
                     <TextBlock x:Name="txtDurration" HorizontalAlignment="Left" Margin="10,554,0,0" TextWrapping="Wrap" Text="0:0:0" VerticalAlignment="Top" RenderTransformOrigin="8.64,0.375"/>
@@ -72,7 +72,7 @@
                 <Button x:Name="btnUploadFolderToDB" Content="Add File to Catalog" IsCancel="True" Margin="284,266,215,336" Click="OnUploadFolderToDBClick"/>
             </TabItem>
             <TabItem x:Name="tabAbout" Header="About">
-                
+
             </TabItem>
             <TabItem x:Name="tabLogIn" Header="Log In">
                 <Grid Background="#FFE5E5E5" Margin="0,1,-15,-6">
