@@ -263,6 +263,10 @@ namespace WeListenPlayer
         //call the get request query on intervals
         private async void DoPeriodicRequestCall(TimeSpan dueTime, TimeSpan interval, CancellationToken token)
         {
+            // Declare new object
+            WeListenXmlParser k = new WeListenXmlParser();
+            await k.GetTrackInfo();
+
             // Initial wait time before we begin the periodic loop.
             if (dueTime > TimeSpan.Zero)
                 await Task.Delay(dueTime, token);
@@ -271,8 +275,8 @@ namespace WeListenPlayer
             while (!token.IsCancellationRequested)
             {
                 // TODO: call for requests from database
-                WeListenXmlParser k = new WeListenXmlParser();
-                k.GetTrackInfo();
+                
+                await k.GetTrackInfo();
 
                 // Wait to repeat again.
                 if (interval > TimeSpan.Zero)
@@ -438,22 +442,37 @@ namespace WeListenPlayer
 
                 wasapiOut.PlaybackStopped += OnPlaybackStopped;
 
-                reader = new AudioFileReader(path);
+                try
+                {
+                    reader = new AudioFileReader(path);
 
-                txtDurration.Text = String.Format("{0:00}:{1:00}", (int)reader.TotalTime.TotalMinutes, reader.TotalTime.Seconds);
-                txtPosition.Text = reader.CurrentTime.ToString();
-                sldrPosition.Maximum = reader.TotalTime.TotalSeconds;
-                sldrPosition.Value = 0;
-                timer.Start();
+                    txtDurration.Text = String.Format("{0:00}:{1:00}", (int)reader.TotalTime.TotalMinutes, reader.TotalTime.Seconds);
+                    txtPosition.Text = reader.CurrentTime.ToString();
+                    sldrPosition.Maximum = reader.TotalTime.TotalSeconds;
+                    sldrPosition.Value = 0;
+                    timer.Start();
 
-                reader.Volume = (float)sldrVolume.Value;
+                    reader.Volume = (float)sldrVolume.Value;
 
-                //for wasapiOut
-                wasapiOut.Init(reader);
-                wasapiOut.Play();
+                    //for wasapiOut
+                    wasapiOut.Init(reader);
+                    wasapiOut.Play();
 
-                //enable controls
-                EnableControls();
+                    //enable controls
+                    EnableControls();
+                }
+                catch
+                {
+                    // If path is invalid (on current pc), Set row background as RED (as a warning)
+                    var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items[0]) as DataGridRow;
+                    row.Background = Brushes.Red;
+
+                    // Simulate pause
+                    //Thread.Sleep(5000);
+
+                    //Remove song from datagrid (because path is invalid on current pc)
+                    //removeSongFromPlayList(0);
+                }
             }
             else
             {

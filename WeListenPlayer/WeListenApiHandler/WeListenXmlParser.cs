@@ -59,6 +59,10 @@ namespace WeListenPlayer.LastFmHandler
                 DataGridHandler j = new DataGridHandler();
                 j.populateDataGrid(s);
 
+                // Get the info for each songData s in playlist
+                DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
+                i.RetrieveSongInfo();
+
                 RequestQueued que = new RequestQueued();
                 que.LocationId = s.PlaylistId;
                 que.queued = s.Queued;

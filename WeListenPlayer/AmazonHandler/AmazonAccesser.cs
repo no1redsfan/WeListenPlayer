@@ -90,8 +90,23 @@ namespace WeListenPlayer.AmazonHandler
                     item = response.Items[1].Item[1];
                 }
 
-                // Get first (most related) item from search results
-                //var item = response.Items[0].Item[0];
+                // if no response to search
+                if (item == null)
+                {
+                    try
+                    {
+                        // Try new search and remove the album
+                        this.album = "UNKNOWN";
+                        
+                        // Re-iterate over the search method
+                        getData();
+                    }
+                    catch
+                    {
+                        // Removing the album produced no results
+                        // Continue forward...
+                    }
+                }
 
                 // Declare new songData object
                 // OBJECT HERE (TEST)

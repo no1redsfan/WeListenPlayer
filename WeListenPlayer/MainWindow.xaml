@@ -93,7 +93,7 @@
         <TextBlock x:Name="tbAlbumArt" HorizontalAlignment="Left" Margin="314.671,453,0,0" TextWrapping="Wrap" Text="Album Art:" VerticalAlignment="Top" Grid.Column="2"/>
         <TextBlock x:Name="tbAlbumArtInfo" HorizontalAlignment="Left" Margin="376.671,453,0,0" TextWrapping="Wrap" Text="UNKNOWN" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2"/>
         <Image x:Name="imgAlbumArt" Height="500" Margin="103.671,190,8.097,0" Width="500" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="3"/>
-        <DataGrid x:Name="dgvPlayList" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Height="552" Width="209"  AllowDrop="True" Drop="dgvPlayList_Drop" DragOver="dgvPlayList_DragOver" DragLeave="dgvPlayList_DragLeave" Background="#FFE2E2E2" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeRows="False" IsReadOnly="True">
+        <DataGrid x:Name="dgvPlayList" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Height="552" Width="209"  AllowDrop="True" Drop="dgvPlayList_Drop" DragOver="dgvPlayList_DragOver" DragLeave="dgvPlayList_DragLeave" Background="#FFE2E2E2" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeRows="False" IsReadOnly="True" CanUserSortColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Title" Header="Title" Binding="{Binding Path=Title}" Width="3*"/>
                 <DataGridTextColumn x:Name="Artist" Header="Artist" Binding="{Binding Path=Artist}" Width="2*"/>
