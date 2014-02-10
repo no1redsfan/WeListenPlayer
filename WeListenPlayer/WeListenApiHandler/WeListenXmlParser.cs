@@ -18,18 +18,14 @@ namespace WeListenPlayer.LastFmHandler
 
         ///////////////////////////////////////////////////////
         // Request XML URL Handler
-        // - Pulls XML page data for parsing
+        // - Pulls XML page data and parses, returns objects
         //
-        // - Uses       string Url = await new LastFmXmlParser().GetTrackInfo({string:trackName}, {string:artist});
-        // - Output     Returns {string:art} (URL to album artwork for SongData object)
+        // - Uses       WeListenXmlParser k = new WeListenXmlParser();
+        //              k.GetTrackInfo();
+        // - Output     Returns object list of all songs pulled from API
         ///////////////////////////////////////////////////////
         public async Task<List<SongData>> GetTrackInfo()
         {
-            // Declare new SongData Object
-            SongData pulledSong = new SongData();
-
-            // Define new MainWindow object (for reference)
-            var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
             string baseURL = "http://welistenmusic.com/api/locations/"; // Base default url
             string location = "1"; // Playlist location (1 default)
@@ -37,8 +33,6 @@ namespace WeListenPlayer.LastFmHandler
             string weListenApiKey = "fPOIWBN465IOA4567VUHEPOF8G6I5banspoighao";
 
             string sendSongUrl = requestUrl + "&" + weListenApiKey;
-
-            //WebRequest webRequest = WebRequest.Create(requestUrl);
 
             string serviceResponse = await new XmlAccesser().GetServiceResponse(requestUrl);
 
