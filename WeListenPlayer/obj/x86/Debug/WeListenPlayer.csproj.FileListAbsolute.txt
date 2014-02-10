@@ -91,3 +91,6 @@ C:\Users\Chris Korczyk\Desktop\WeListenRepository\WeListenPlayer\obj\x86\Debug\W
 C:\Users\Chris Korczyk\Desktop\WeListenRepository\WeListenPlayer\bin\x86\Debug\WeListenPlayer.exe.config
 C:\Users\Chris Korczyk\Desktop\WeListenRepository\WeListenPlayer\bin\x86\Debug\WeListenPlayer.exe
 C:\Users\Chris Korczyk\Desktop\WeListenRepository\WeListenPlayer\bin\x86\Debug\WeListenPlayer.pdb
+C:\Users\mcdonoje.AD\Documents\WeListenPlayer\WeListenPlayer\bin\x86\Debug\WeListenPlayer.exe.config
+C:\Users\mcdonoje.AD\Documents\WeListenPlayer\WeListenPlayer\obj\x86\Debug\WeListenPlayer.exe
+C:\Users\mcdonoje.AD\Documents\WeListenPlayer\WeListenPlayer\obj\x86\Debug\WeListenPlayer.pdb
