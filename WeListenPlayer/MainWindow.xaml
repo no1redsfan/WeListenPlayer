@@ -1,14 +1,15 @@
 ﻿<Window x:Class="WeListenPlayer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-        Title="MainWindow" Height="748.695" Width="1413.325" Closed="Window_Closed">
+        Title="MainWindow" Height="748.695" Width="1413.325" Closed="Window_Closed" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
     <Grid Margin="0,0,2,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="538*"/>
-            <ColumnDefinition Width="279*"/>
-            <ColumnDefinition Width="415*"/>
-            <ColumnDefinition Width="112*"/>
-            <ColumnDefinition Width="104*"/>
+            <ColumnDefinition Width="521*"/>
+            <ColumnDefinition Width="270*"/>
+            <ColumnDefinition Width="402*"/>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="101*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="btnMoveDown" HorizontalAlignment="Left" Margin="209,372,0,0" VerticalAlignment="Top" Width="25" Click="OnMoveDownClick">
             <Path Fill="Red" Margin="3" Width="15" Height="15" Data="M0,0 L2,0 L1,1 Z" Stretch="Fill" StrokeLineJoin="Round"/>
@@ -90,9 +91,9 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <TextBlock x:Name="tbAlbumArt" HorizontalAlignment="Left" Margin="314.671,453,0,0" TextWrapping="Wrap" Text="Album Art:" VerticalAlignment="Top" Grid.Column="2"/>
-        <TextBlock x:Name="tbAlbumArtInfo" HorizontalAlignment="Left" Margin="376.671,453,0,0" TextWrapping="Wrap" Text="UNKNOWN" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="2"/>
-        <Image x:Name="imgAlbumArt" Height="500" Margin="103.671,190,8.097,0" Width="500" VerticalAlignment="Top" Grid.Column="2" Grid.ColumnSpan="3"/>
+        <TextBlock x:Name="tbAlbumArt" HorizontalAlignment="Left" Margin="456,334,0,0" TextWrapping="Wrap" Text="Album Art:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbAlbumArtInfo" HorizontalAlignment="Left" Margin="10,334,0,0" TextWrapping="Wrap" Text="UNKNOWN" VerticalAlignment="Top" Grid.Column="1"/>
+        <Image x:Name="imgAlbumArt" Height="250" Margin="406,251,137,0" Width="250" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <DataGrid x:Name="dgvPlayList" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Height="552" Width="209"  AllowDrop="True" Drop="dgvPlayList_Drop" DragOver="dgvPlayList_DragOver" DragLeave="dgvPlayList_DragLeave" Background="#FFE2E2E2" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeRows="False" IsReadOnly="True" CanUserSortColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="Title" Header="Title" Binding="{Binding Path=Title}" Width="3*"/>
@@ -105,7 +106,7 @@
         </DataGrid>
         <Button x:Name="btnImport" Content="Add Folder" HorizontalAlignment="Left" Margin="0,627,0,0" VerticalAlignment="Top" Width="209" Click="OnBtnImport_Click"/>
         <TextBox x:Name="tbMusicDir" HorizontalAlignment="Left" Height="23" Margin="0,604,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209" IsEnabled="False"/>
-        <TabControl Grid.Column="2" HorizontalAlignment="Left" Height="150" Margin="103.671,32,0,0" VerticalAlignment="Top" Width="500" Grid.ColumnSpan="3">
+        <TabControl HorizontalAlignment="Left" Height="150" Margin="314,96,0,0" VerticalAlignment="Top" Width="500" Grid.ColumnSpan="3">
             <TabItem Header="Local File Info">
                 <Grid Background="#FFE5E5E5" Margin="0,0,2,0">
                     <TextBlock x:Name="tbTitle_Copy" HorizontalAlignment="Left" Margin="6,12,0,0" TextWrapping="Wrap" Text="Title:" VerticalAlignment="Top"/>

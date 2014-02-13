@@ -94,3 +94,7 @@ C:\Users\Chris Korczyk\Desktop\WeListenRepository\WeListenPlayer\bin\x86\Debug\W
 C:\Users\mcdonoje.AD\Documents\WeListenPlayer\WeListenPlayer\bin\x86\Debug\WeListenPlayer.exe.config
 C:\Users\mcdonoje.AD\Documents\WeListenPlayer\WeListenPlayer\obj\x86\Debug\WeListenPlayer.exe
 C:\Users\mcdonoje.AD\Documents\WeListenPlayer\WeListenPlayer\obj\x86\Debug\WeListenPlayer.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\Microsoft.Threading.Tasks.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\Microsoft.Threading.Tasks.xml
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.xml

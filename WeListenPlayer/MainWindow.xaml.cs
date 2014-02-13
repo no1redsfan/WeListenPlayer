@@ -276,7 +276,7 @@ namespace WeListenPlayer
             {
                 // TODO: call for requests from database
                 
-                await k.GetTrackInfo();
+                //await k.GetTrackInfo();
 
                 // Wait to repeat again.
                 if (interval > TimeSpan.Zero)
