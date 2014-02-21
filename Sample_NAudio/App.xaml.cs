@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Sample_NAudio
+namespace WeListenPlayer.NAudioHandler
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -54,10 +54,10 @@ C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\A
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio_Content.g.cs
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio_MarkupCompile.cache
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio.g.resources
-C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio.Properties.Resources.resources
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\WeListenPlayerNAudio.csproj.GenerateResource.Cache
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\VisualizationLib.dll
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\VisualizationLib.pdb
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\VisualizationLib.xml
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\MainWindow2.baml
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\MainWindow2.g.cs
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\WeListenPlayer.NAudioHandler.Properties.Resources.resources

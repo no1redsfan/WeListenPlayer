@@ -10,7 +10,7 @@ using System.Windows.Threading;
 using NAudio.Wave;
 using VisualizationLib;
 
-namespace Sample_NAudio
+namespace WeListenPlayer.NAudioHandler
 {
     class NAudioEngine : INotifyPropertyChanged, ISpectrumPlayer, IWaveformPlayer, IDisposable
     {

@@ -5,11 +5,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Sample_NAudio")]
+[assembly: AssemblyTitle("WeListenPlayer.NAudio")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Sample_NAudio")]
+[assembly: AssemblyProduct("WeListenPlayer.NAudio")]
 [assembly: AssemblyCopyright("Copyright © Jacob Johnston 2011 - 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

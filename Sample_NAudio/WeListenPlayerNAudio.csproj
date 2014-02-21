@@ -8,7 +8,7 @@
     <ProjectGuid>{FB33403B-8CD4-490A-B740-6D5A5D932318}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sample_NAudio</RootNamespace>
+    <RootNamespace>WeListenPlayer.NAudioHandler</RootNamespace>
     <AssemblyName>Sample_NAudio</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>

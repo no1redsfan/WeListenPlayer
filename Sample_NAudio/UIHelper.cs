@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Sample_NAudio
+namespace WeListenPlayer.NAudioHandler
 {
     public static class UIHelper
     {

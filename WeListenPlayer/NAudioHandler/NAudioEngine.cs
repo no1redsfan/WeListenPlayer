@@ -9,9 +9,9 @@ using System.ComponentModel;
 using System.Windows.Threading;
 using NAudio.Wave;
 using VisualizationLib;
-using WeListenPlayer;
 
-namespace Sample_NAudio
+
+namespace WeListenPlayer.NAudioHandler
 {
     class NAudioEngine : INotifyPropertyChanged, ISpectrumPlayer, IWaveformPlayer, IDisposable
     {

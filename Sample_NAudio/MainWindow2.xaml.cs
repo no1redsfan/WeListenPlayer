@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 using VisualizationLib;
 using System.Windows.Data;
 
-namespace Sample_NAudio
+namespace WeListenPlayer.NAudioHandler
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

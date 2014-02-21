@@ -127,9 +127,9 @@
     <Compile Include="FormHandler\DataGridHandler.cs" />
     <Compile Include="FormHandler\DefaultSongInfoAccesser.cs" />
     <Compile Include="FormHandler\DirectoryHandler.cs" />
-    <Compile Include="NAudio\NAudioEngine.cs" />
-    <Compile Include="NAudio\SampleAggregator.cs" />
-    <Compile Include="NAudio\UIHelper.cs" />
+    <Compile Include="NAudioHandler\NAudioEngine.cs" />
+    <Compile Include="NAudioHandler\SampleAggregator.cs" />
+    <Compile Include="NAudioHandler\UIHelper.cs" />
     <Compile Include="WeListenApiHandler\WeListenXmlParser.cs" />
     <Compile Include="TagLibHandler\TagLibDataAccesser.cs" />
     <Compile Include="WeListenApiHandler\XmlAccesser.cs" />
@@ -148,6 +148,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Themes\ExpressionDark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ExpressionLight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
