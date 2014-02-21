@@ -1,0 +1,63 @@
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio.exe
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio.pdb
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\license.txt
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\NAudio.dll
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\taglib-sharp.dll
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\Sample_NAudio.exe
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\Sample_NAudio.pdb
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\WPFSoundVisualizationLib.dll
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\WPFSoundVisualizationLib.pdb
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\WPFSoundVisualizationLib.xml
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\WeListenPlayerNAudio.csprojResolveAssemblyReference.cache
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\ExpressionDark.baml
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\ExpressionLight.baml
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\MainWindow.baml
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\MainWindow.g.cs
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\App.g.cs
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio_Content.g.cs
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio_MarkupCompile.cache
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio.g.resources
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio.Properties.Resources.resources
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\WeListenPlayerNAudio.csproj.GenerateResource.Cache
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio.exe
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio.pdb
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\license.txt
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\NAudio.dll
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\taglib-sharp.dll
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\Sample_NAudio.exe
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\Sample_NAudio.pdb
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\WPFSoundVisualizationLib.dll
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\WPFSoundVisualizationLib.pdb
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\bin\Debug\WPFSoundVisualizationLib.xml
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\WeListenPlayerNAudio.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\ExpressionDark.baml
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\ExpressionLight.baml
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\MainWindow.baml
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\App.g.cs
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio_Content.g.cs
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio_MarkupCompile.cache
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio.g.resources
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\Sample_NAudio.Properties.Resources.resources
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\Sample_NAudio\obj\x86\Debug\WeListenPlayerNAudio.csproj.GenerateResource.Cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio.exe
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\license.txt
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\NAudio.dll
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\taglib-sharp.dll
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\Sample_NAudio.exe
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\Sample_NAudio.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\WeListenPlayerNAudio.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\ExpressionDark.baml
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\ExpressionLight.baml
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\App.g.cs
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio_Content.g.cs
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio_MarkupCompile.cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio.g.resources
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\Sample_NAudio.Properties.Resources.resources
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\WeListenPlayerNAudio.csproj.GenerateResource.Cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\VisualizationLib.dll
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\VisualizationLib.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\bin\Debug\VisualizationLib.xml
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\MainWindow2.baml
+C:\Users\Rozzly\Desktop\WeListen Player Repository\Sample_NAudio\obj\x86\Debug\MainWindow2.g.cs

@@ -9,14 +9,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
+using VisualizationLib;
 using WeListenPlayer.AmazonHandler;
 using WeListenPlayer.APIClasses;
 using WeListenPlayer.ButtonHandler;
 using WeListenPlayer.FormHandler;
 using WeListenPlayer.LastFmHandler;
 using WeListenPlayer.TagLibHandler;
+
 
 
 namespace WeListenPlayer
@@ -53,6 +56,25 @@ namespace WeListenPlayer
             //Load WeListen API
             client.BaseAddress = new Uri("http://welistenmusic.com/api/location/{locationid}");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            ///////
+            // NAUDIO INIT
+            ///////////////////////////
+            ///////////////////////////
+
+            NAudioEngine soundEngine = NAudioEngine.Instance;
+            soundEngine.PropertyChanged += NAudioEngine_PropertyChanged;
+
+            UIHelper.Bind(soundEngine, "CanStop", StopButton, Button.IsEnabledProperty);
+            UIHelper.Bind(soundEngine, "CanPlay", PlayButton, Button.IsEnabledProperty);
+            UIHelper.Bind(soundEngine, "CanPause", PauseButton, Button.IsEnabledProperty);
+            UIHelper.Bind(soundEngine, "SelectionBegin", repeatStartTimeEdit, TimeEditor.ValueProperty, BindingMode.TwoWay);
+            UIHelper.Bind(soundEngine, "SelectionEnd", repeatStopTimeEdit, TimeEditor.ValueProperty, BindingMode.TwoWay);
+
+            spectrumAnalyzer.RegisterSoundPlayer(soundEngine);
+            waveformTimeline.RegisterSoundPlayer(soundEngine);
+
+            LoadExpressionDarkTheme();
         }
 
         //Declare Variables
@@ -276,7 +298,7 @@ namespace WeListenPlayer
             {
                 // TODO: call for requests from database
                 
-                await k.GetTrackInfo();
+                //await k.GetTrackInfo();
 
                 // Wait to repeat again.
                 if (interval > TimeSpan.Zero)

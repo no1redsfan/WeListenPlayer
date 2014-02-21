@@ -1,0 +1,42 @@
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\bin\Debug\license.txt
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\bin\Debug\WPFSoundVisualizationLib.XML
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\bin\Debug\WPFSoundVisualizationLib.dll
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\bin\Debug\WPFSoundVisualizationLib.pdb
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib_MarkupCompile.cache
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib_MarkupCompile.lref
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\Themes\Generic.baml
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.g.resources
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.Properties.Resources.resources
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.csproj.GenerateResource.Cache
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.dll
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.pdb
+D:\ProgrammingTests\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\bin\Debug\license.txt
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\bin\Debug\WPFSoundVisualizationLib.XML
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\bin\Debug\WPFSoundVisualizationLib.dll
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\bin\Debug\WPFSoundVisualizationLib.pdb
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib_MarkupCompile.cache
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib_MarkupCompile.lref
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\Themes\Generic.baml
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.g.resources
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.Properties.Resources.resources
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.csproj.GenerateResource.Cache
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.dll
+C:\Users\Rozzly\Desktop\wpfsvl_NAudioTest\WPFSoundVisualizationLib\Main\Source\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\license.txt
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.csprojResolveAssemblyReference.cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\Themes\Generic.baml
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\WPFSoundVisualizationLib.csproj.GenerateResource.Cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.xml
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.dll
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.lref
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.g.resources
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.Properties.Resources.resources
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.dll
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.pdb
