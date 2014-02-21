@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amazon.PAAPI.WCF", "Amazon.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonSOAP", "AmazonSOAP\AmazonSOAP.csproj", "{986D8407-0E81-4992-8387-7EE9DCEC5CFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualizationLib", "WPFSoundVisualizationLibrary\VisualizationLib.csproj", "{90F96222-1C39-4A19-ABE8-1B00FB330985}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,16 @@ Global
 		{986D8407-0E81-4992-8387-7EE9DCEC5CFF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{986D8407-0E81-4992-8387-7EE9DCEC5CFF}.Release|x86.ActiveCfg = Release|x86
 		{986D8407-0E81-4992-8387-7EE9DCEC5CFF}.Release|x86.Build.0 = Release|x86
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{90F96222-1C39-4A19-ABE8-1B00FB330985}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
