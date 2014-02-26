@@ -106,9 +106,6 @@
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
-    <Reference Include="VisualizationLib">
-      <HintPath>bin\Debug\VisualizationLib.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -196,8 +193,14 @@
       <Project>{986d8407-0e81-4992-8387-7ee9dcec5cff}</Project>
       <Name>AmazonSOAP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WPFSoundVisualizationLibrary\VisualizationLib.csproj">
+      <Project>{90f96222-1c39-4a19-abe8-1b00fb330985}</Project>
+      <Name>VisualizationLib</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\WeListenLogo2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

@@ -27,9 +27,6 @@ namespace WeListenPlayer.FormHandler
             // Define new MainWindow object (for reference)
             var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
-            // Show loading label..
-            mainWindow.tbAlbumArtInfo.Text = "Loading Album Art...";
-
             var Title = "Unknown";
             var Artist = "Unknown";
             var Album = "Unknown";

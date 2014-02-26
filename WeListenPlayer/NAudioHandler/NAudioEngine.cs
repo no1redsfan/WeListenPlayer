@@ -4,9 +4,12 @@
 // All other rights reserved.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Threading;
+using NAudio.CoreAudioApi;
 using NAudio.Wave;
 using VisualizationLib;
 
@@ -20,16 +23,26 @@ namespace WeListenPlayer.NAudioHandler
         private readonly DispatcherTimer positionTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
         private readonly BackgroundWorker waveformGenerateWorker = new BackgroundWorker();
         private readonly int fftDataSize = (int)FFTDataSize.FFT2048;
+
+        //bool variablees
         private bool disposed;
         private bool canPlay;
         private bool canPause;
         private bool canStop;
         private bool isPlaying;
         private bool inChannelTimerUpdate;
+        private bool inChannelSet;
+        private bool inRepeatSet;
+
         private double channelLength;
         private double channelPosition;
-        private bool inChannelSet;
+
+        //wasapiOut Conversion
+        private WasapiOut wasapiOutDevice;
+        private AudioFileReader wReader;
+
         private WaveOut waveOutDevice;
+        private Mp3FileReader reader;
         private WaveStream activeStream;
         private WaveChannel32 inputStream;
         private SampleAggregator sampleAggregator;
@@ -40,7 +53,8 @@ namespace WeListenPlayer.NAudioHandler
         private TagLib.File fileTag;
         private TimeSpan repeatStart;
         private TimeSpan repeatStop;
-        private bool inRepeatSet;
+
+        private MainWindow mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
         #endregion
 
         #region Constants
@@ -61,6 +75,13 @@ namespace WeListenPlayer.NAudioHandler
         #endregion
 
         #region Constructor
+
+        public int selectedSoundCard { get; set; }
+        public float volumeValue { get; set; }
+        public bool continuousPlay { get; set; }
+        public MMDevice currentDevice { get; set; }
+
+        
         private NAudioEngine()
         {
             positionTimer.Interval = TimeSpan.FromMilliseconds(50);
@@ -240,9 +261,12 @@ namespace WeListenPlayer.NAudioHandler
 
         private void waveformGenerateWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            //wasapiOut conversion
+            wasapiOutDevice.PlaybackStopped += OnPlaybackStopped;
+            //waveOutDevice.PlaybackStopped += OnPlaybackStopped;
             WaveformGenerationParams waveformParams = e.Argument as WaveformGenerationParams;
-            Mp3FileReader waveformMp3Stream = new Mp3FileReader(waveformParams.Path);
-            WaveChannel32 waveformInputStream = new WaveChannel32(waveformMp3Stream);            
+            reader = new Mp3FileReader(waveformParams.Path);
+            WaveChannel32 waveformInputStream = new WaveChannel32(reader);            
             waveformInputStream.Sample += waveStream_Sample;
             
             int frameLength = fftDataSize;
@@ -309,18 +333,63 @@ namespace WeListenPlayer.NAudioHandler
             waveformInputStream.Close();
             waveformInputStream.Dispose();
             waveformInputStream = null;
-            waveformMp3Stream.Close();
-            waveformMp3Stream.Dispose();
-            waveformMp3Stream = null;
+            if (reader != null)
+            {
+                reader.Close();
+                reader.Dispose();
+                reader = null;
+            }
+        }
+
+        private void OnPlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            //positionTimer.Stop();
+            
+            //sldrPosition.Value = 0;
+            //txtPosition.Text = "0:0";
+
+            StopAndCloseStream();
+
+                mainWindow.SongStopped(0);
+
+                if (continuousPlay == true)
+                {
+                    Play(); 
+                }
+            
+
+            if (e.Exception != null)
+            {
+                MessageBox.Show(e.Exception.Message);
+            }
+            //var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
+
+            //StopAndCloseStream();
+            //mainWindow.SongStopped(0);
         }
         #endregion
 
         #region Private Utility Methods
+
+        private void currentSelectedDevice()
+        {
+            ArrayList devicesAvailable = new ArrayList();
+            var deviceEnumeratior = new MMDeviceEnumerator();
+            var devices = deviceEnumeratior.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
+            foreach (var deviceAvailable in devices)
+            {
+                devicesAvailable.Add(deviceAvailable);
+            }
+
+            currentDevice =(MMDevice) devicesAvailable[selectedSoundCard];
+        }
+
         private void StopAndCloseStream()
         {
-            if (waveOutDevice != null)
+            //wasapiOutConvert
+            if (wasapiOutDevice != null)
             {
-                waveOutDevice.Stop();
+                wasapiOutDevice.Stop();
             }
             if (activeStream != null)
             {
@@ -329,20 +398,28 @@ namespace WeListenPlayer.NAudioHandler
                 ActiveStream.Close();
                 ActiveStream = null;
             }
-            if (waveOutDevice != null)
+            if (wasapiOutDevice != null)
             {
-                waveOutDevice.Dispose();
-                waveOutDevice = null;
+                wasapiOutDevice.Dispose();
+
+                wasapiOutDevice = null;
             }
+            if (reader != null)
+            {
+                reader.Dispose();
+                reader = null;
+            }
+            
         }        
         #endregion
 
         #region Public Methods
         public void Stop()
         {
-            if (waveOutDevice != null)
+            if (wasapiOutDevice != null)
             {
-                waveOutDevice.Stop();
+                StopAndCloseStream();
+                
             }
             IsPlaying = false;
             CanStop = false;
@@ -354,7 +431,7 @@ namespace WeListenPlayer.NAudioHandler
         {
             if (IsPlaying && CanPause)
             {
-                waveOutDevice.Pause();
+                wasapiOutDevice.Pause();
                 IsPlaying = false;
                 CanPlay = true;
                 CanPause = false;
@@ -365,12 +442,17 @@ namespace WeListenPlayer.NAudioHandler
         {
             if (CanPlay)
             {
-                waveOutDevice.Play();
+                wasapiOutDevice.Play();
                 IsPlaying = true;
                 CanPause = true;
                 CanPlay = false;
                 CanStop = true;
             }
+        }
+
+        public void Volume(float sldrValue)
+        {
+            currentDevice.AudioEndpointVolume.MasterVolumeLevelScalar = (float) sldrValue;
         }
 
         public void OpenFile(string path)
@@ -390,15 +472,21 @@ namespace WeListenPlayer.NAudioHandler
             {
                 try
                 {
-                    waveOutDevice = new WaveOut()
+                    if (currentDevice == null)
                     {
-                        DesiredLatency = 100
-                    };
+                        currentSelectedDevice();
+                    }
+                    AudioClientShareMode shareMode = AudioClientShareMode.Shared;
+                    int latency = 100;
+                    bool useEventSync = false;
+                    wasapiOutDevice = new WasapiOut(currentDevice, shareMode, useEventSync, latency);
+                    currentDevice.AudioEndpointVolume.MasterVolumeLevelScalar = (float)volumeValue;
+                    
                     ActiveStream = new Mp3FileReader(path);
                     inputStream = new WaveChannel32(ActiveStream);
                     sampleAggregator = new SampleAggregator(fftDataSize);
                     inputStream.Sample += inputStream_Sample;
-                    waveOutDevice.Init(inputStream);
+                    wasapiOutDevice.Init(inputStream);
                     ChannelLength = inputStream.TotalTime.TotalSeconds;
                     FileTag = TagLib.File.Create(path);
                     GenerateWaveformData(path);
@@ -411,6 +499,7 @@ namespace WeListenPlayer.NAudioHandler
                 }
             }
         }
+
         #endregion
 
         #region Public Properties
@@ -511,6 +600,8 @@ namespace WeListenPlayer.NAudioHandler
         {
             inChannelTimerUpdate = true;
             ChannelPosition = ((double)ActiveStream.Position / (double)ActiveStream.Length) * ActiveStream.TotalTime.TotalSeconds;
+            if (ChannelPosition == ChannelLength)
+                wasapiOutDevice.Stop();
             inChannelTimerUpdate = false;
         }
         #endregion

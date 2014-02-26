@@ -46,15 +46,6 @@ namespace WeListenPlayer
             AmazonAccesser initializer = new AmazonAccesser();
             initializer.setMain(this); // Declare MainWindow and pass as parameter
             initializer.getAmazonItems("test", "test", "test", "");
-
-           // WeListenXmlParser k = new WeListenXmlParser();
-           // k.GetTrackInfo();
-
-            //create timer to track song position
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Tick += OnTimerTick;
-            EnableControls();
             PopulateCboDevices();
 
             //Load WeListen API
@@ -72,20 +63,20 @@ namespace WeListenPlayer
             UIHelper.Bind(soundEngine, "CanStop", StopButton, Button.IsEnabledProperty);
             UIHelper.Bind(soundEngine, "CanPlay", PlayButton, Button.IsEnabledProperty);
             UIHelper.Bind(soundEngine, "CanPause", PauseButton, Button.IsEnabledProperty);
-            UIHelper.Bind(soundEngine, "SelectionBegin", repeatStartTimeEdit, TimeEditor.ValueProperty, BindingMode.TwoWay);
-            UIHelper.Bind(soundEngine, "SelectionEnd", repeatStopTimeEdit, TimeEditor.ValueProperty, BindingMode.TwoWay);
+            UIHelper.Bind(soundEngine, "CanStop", btnSkipBck, Button.IsEnabledProperty);
+            UIHelper.Bind(soundEngine, "CanStop", btnSkipFwd, Button.IsEnabledProperty);
+            //UIHelper.Bind(soundEngine, "SelectionBegin", repeatStartTimeEdit, TimeEditor.ValueProperty, BindingMode.TwoWay);
+            //UIHelper.Bind(soundEngine, "SelectionEnd", repeatStopTimeEdit, TimeEditor.ValueProperty, BindingMode.TwoWay);
 
             spectrumAnalyzer.RegisterSoundPlayer(soundEngine);
             waveformTimeline.RegisterSoundPlayer(soundEngine);
+            
+            NAudioEngine.Instance.volumeValue = (float)sldrVolume.Value;
 
             LoadExpressionDarkTheme();
         }
 
         //Declare Variables
-        //for wasapiOut
-        private WasapiOut wasapiOut;
-        private AudioFileReader reader;
-        private DispatcherTimer timer;
         private bool receiving = false;
 
         //variable for login status
@@ -99,55 +90,7 @@ namespace WeListenPlayer
         //Audio play control methods//
         //////////////////////////////
 
-        //Method for when the play button is clicked
-        private void OnPlayClick(object sender, RoutedEventArgs e)
-        {
-            //Check to see if the buffer is loaded.
-            if (wasapiOut != null)
-            {
-                //If buffer is loaded
-                //Check to see if playback is paused.
-                if (wasapiOut.PlaybackState == PlaybackState.Paused)
-                {
-                    //Mark continuous play
-                    chkContinuousPlay.IsChecked = true;
-                    //Play the song from current position
-                    wasapiOut.Play();
-                    //enable the appropriate controls
-                    EnableControls();
-                }
-            }
-            else
-            {
-                //Check continuous
-                chkContinuousPlay.IsChecked = true;
-                PlaySelectedSong();
-            }
-        }
-
-        //Method for when the stop button is clicked
-        private void OnStopClicked(object sender, RoutedEventArgs e)
-        {
-            //if stop button is pushed, uncheck continuous 
-            chkContinuousPlay.IsChecked = false;
-            wasapiOut.Stop();
-        }
-
-        //Method for when the pause button is clicked
-        private void OnPauseClicked(object sender, RoutedEventArgs e)
-        {
-            wasapiOut.Pause();
-            EnableControls();
-        }
-
-        //Method for back button
-        private void OnBackClick(object sender, RoutedEventArgs e)
-        {
-            // call stop and then call play.
-            chkContinuousPlay.IsChecked = false;
-            wasapiOut.Stop();
-            PlaySelectedSong();
-        }
+        //Method for back button  -  Stop button becomes the back button.
 
         //Method for forward button
         private void OnForwardClick(object sender, RoutedEventArgs e)
@@ -155,7 +98,8 @@ namespace WeListenPlayer
             //If list is not empty, stop and delete the playing song and start the next.
             if (!dgvPlayList.Items.IsEmpty)
             {
-                wasapiOut.Stop();
+                NAudioEngine.Instance.continuousPlay = true;
+                NAudioEngine.Instance.Stop();
             }
             else
             {
@@ -163,28 +107,13 @@ namespace WeListenPlayer
             }
         }
 
-        //Method for position slider drag complete
-        private void SldrPositionOnDragCompleted(object sender, EventArgs e)
-        {
-            //If the buffer is not null allow the position to be moved
-            if (wasapiOut != null)
-            {
-                reader.CurrentTime = TimeSpan.FromSeconds(sldrPosition.Value + 2.5);
-            }
-        }
 
         //Method for volume slider change
         private void OnSldrVolumeChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //for wasapiOut
-            if (wasapiOut != null)
+            if (NAudioEngine.Instance.IsPlaying)
             {
-                //simple way of controling volume - Glitchy
-                //var device = (MMDevice)cboDevices.SelectedItem;
-                //device.AudioEndpointVolume.MasterVolumeLevelScalar = (float)sldrVolume.Value;
-                //wasapiOut.Volume = sldrVolume.Value
-
-                reader.Volume = (float)sldrVolume.Value;
+                NAudioEngine.Instance.Volume((float) sldrVolume.Value);  
             }
         }
 
@@ -222,9 +151,8 @@ namespace WeListenPlayer
         private void OnMoveUpClick(object sender, RoutedEventArgs e)
         {
             var movement = -1;
-            if (wasapiOut != null)
+            if (NAudioEngine.Instance.IsPlaying)
             {
-
                 //If its playing or paused you can not move the item into the playing position of the list.
                 if (dgvPlayList.SelectedIndex > 1 && dgvPlayList.SelectedIndex != -1)
                 {
@@ -248,7 +176,7 @@ namespace WeListenPlayer
         {
             var movement = 2;
             //If its playing or paused you can not move the item in the play position of the list.
-            if (wasapiOut != null)
+            if (NAudioEngine.Instance.IsPlaying)
             {
                 if (dgvPlayList.SelectedIndex > 0 && dgvPlayList.SelectedIndex != dgvPlayList.Items.Count -1)
                 {
@@ -266,7 +194,7 @@ namespace WeListenPlayer
         {
             var index = dgvPlayList.SelectedIndex;
             //If song is playing or paused you can not remove the item in the play position of the list.
-            if (wasapiOut != null)
+            if (NAudioEngine.Instance.IsPlaying)
             {
                 if (dgvPlayList.SelectedIndex > 0 && dgvPlayList.SelectedIndex != dgvPlayList.Items.Count)
                 {
@@ -328,124 +256,29 @@ namespace WeListenPlayer
                 {
                     DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
                     i.RetrieveSongInfo();
+
+                    queueNextSong();
                 }
             }
         }
-
-        //Method for when stop is called
-        void OnPlaybackStopped(object sender, StoppedEventArgs e)
-        {
-            timer.Stop();
-            sldrPosition.Value = 0;
-            txtPosition.Text = "0:0";
-
-            DisposeStream();
-
-            EnableControls();
-            if (chkContinuousPlay.IsChecked == true)
-            {
-                //If continuous is checked play next song.
-                removeSongFromPlayList(0);
-                PlaySelectedSong();
-                dgvPlayList.SelectedIndex = 0;
-            }
-
-            if (e.Exception != null)
-            {
-                MessageBox.Show(e.Exception.Message);
-            }
-        }
-
-        //Method for enabling and disabling controls
-        private void EnableControls()
-        {
-            if (wasapiOut == null)
-            {
-                btnSkipFwd.IsEnabled = false;
-                btnSkipBck.IsEnabled = false;
-                btnPlay.IsEnabled = true;
-                btnPause.IsEnabled = false;
-                btnStop.IsEnabled = false;
-                sldrPosition.IsEnabled = false;
-            }
-            else
-            {
-                if (wasapiOut.PlaybackState == PlaybackState.Playing)
-                {
-                    btnSkipBck.IsEnabled = true;
-                    btnSkipFwd.IsEnabled = true;
-                    btnPlay.IsEnabled = false;
-                    btnPause.IsEnabled = true;
-                    btnStop.IsEnabled = true;
-                    sldrPosition.IsEnabled = true;
-                }
-                else if (wasapiOut.PlaybackState == PlaybackState.Paused)
-                {
-                    btnSkipBck.IsEnabled = true;
-                    btnSkipFwd.IsEnabled = true;
-                    btnPlay.IsEnabled = true;
-                    btnPause.IsEnabled = false;
-                    btnStop.IsEnabled = true;
-                    sldrPosition.IsEnabled = true;
-                }
-            }
-
-
-            //note that volume is always enabled
-        }
-
-        //Method for each tick of the timer
-        void OnTimerTick(object sender, EventArgs e)
-        {
-            if (wasapiOut != null)
-            {
-                TimeSpan currentTime = (wasapiOut.PlaybackState == PlaybackState.Stopped) ? TimeSpan.Zero : reader.CurrentTime;
-                sldrPosition.Value = reader.CurrentTime.TotalSeconds;
-                //sldrPosition.Value = Math.Min(sldrPosition.Maximum, (int)(100 * currentTime.TotalSeconds / reader.TotalTime.TotalSeconds));
-                txtPosition.Text = String.Format("{0:00}:{1:00}", (int)currentTime.TotalMinutes, currentTime.Seconds);
-            }
-            else
-            {
-                sldrPosition.Value = 0;
-            }
-        }
-
         //Method for populating Devices combo box
         private void PopulateCboDevices()
         {
-            //for wasapiOut
-            var deviceEnumerator = new MMDeviceEnumerator();
-            var devices = deviceEnumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
-            deviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+            var deviceEnumeratior = new MMDeviceEnumerator();
+            var devices = deviceEnumeratior.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
             foreach (var device in devices)
             {
-                cboDevices.Items.Add(device);
+                cboDevices.Items.Add(devices);
             }
             //Select default automatically
             cboDevices.SelectedIndex = 0;
-        }
-
-        // Clear the output - Remove playing song
-        private void DisposeStream()
-        {
-            if (wasapiOut != null)
-            {
-                if (wasapiOut.PlaybackState == NAudio.Wave.PlaybackState.Playing) wasapiOut.Stop();
-                wasapiOut.Dispose();
-                wasapiOut = null;
-            }
-            if (wasapiOut != null)
-            {
-                reader.Dispose();
-                reader = null;
-            }
         }
 
         //Method to start playing the selected song
         private void PlaySelectedSong()
         {
 
-            if (!dgvPlayList.Items.IsEmpty)//if (!lbxPlayList.Items.IsEmpty)
+            if (!dgvPlayList.Items.IsEmpty)
             {
                 //Select the top song in the playlist data grid
                 SongData playItem = (SongData)dgvPlayList.Items[0];
@@ -457,62 +290,18 @@ namespace WeListenPlayer
                 
                 string path = playItem.Path.Replace("\\\\", "\\");//Add error handling
 
-
-                //For WasapiOut
-                var device = (MMDevice)cboDevices.SelectedItem;
-                AudioClientShareMode shareMode = AudioClientShareMode.Shared;
-                int latency = 20;
-                bool useEventSync = false;
-                wasapiOut = new WasapiOut(device, shareMode, useEventSync, latency);
-                device.AudioEndpointVolume.MasterVolumeLevelScalar = (float)sldrVolume.Value;
-
-                wasapiOut.PlaybackStopped += OnPlaybackStopped;
-
-                try
-                {
-                    reader = new AudioFileReader(path);
-
-                    txtDurration.Text = String.Format("{0:00}:{1:00}", (int)reader.TotalTime.TotalMinutes, reader.TotalTime.Seconds);
-                    txtPosition.Text = reader.CurrentTime.ToString();
-                    sldrPosition.Maximum = reader.TotalTime.TotalSeconds;
-                    sldrPosition.Value = 0;
-                    timer.Start();
-
-                    reader.Volume = (float)sldrVolume.Value;
-
-                    //for wasapiOut
-                    wasapiOut.Init(reader);
-                    wasapiOut.Play();
-
-                    //enable controls
-                    EnableControls();
-                }
-                catch
-                {
                     // If path is invalid (on current pc), Set row background as RED (as a warning)
                     var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items[0]) as DataGridRow;
                     row.Background = Brushes.Red;
-
-                    // Simulate pause
-                    //Thread.Sleep(5000);
-
-                    //Remove song from datagrid (because path is invalid on current pc)
-                    //removeSongFromPlayList(0);
                 }
-            }
-            else
-            {
-                EnableControls();
-                //Method to call random song needs to be called
-            }
         }
 
 
         //Method to remove songs from playlist
         private void removeSongFromPlayList(int index)
         {
-            // remove the played song from playlist data grid
-            dgvPlayList.Items.RemoveAt(index);
+                // remove the played song from playlist data grid
+                dgvPlayList.Items.RemoveAt(index); 
         }
 
         //method to move items in playlist and arrayLists
@@ -541,46 +330,13 @@ namespace WeListenPlayer
         // Dispose if the window is closed
         private void Window_Closed(object sender, EventArgs e)
         {
-            DisposeStream();
+            NAudioEngine.Instance.Stop();
         }
 
 
         ////////////////////////////
         // ROBERT - MEDIA MANAGER //
         ////////////////////////////
-
-        //////////////////////////////////////////////////////
-        // WORKING - KEEP IN MAIN
-        // Browse File Button Handler
-        // - Requests browser explorer, sets item path
-        ///////////////////////////////////////////////////////
-        private void OnAddSongClick(object sender, RoutedEventArgs e)
-        {
-
-            //Create arrayLists for new files to add
-            //These variables are string array lists to store song locations.
-            ArrayList newFiles = new ArrayList();
-            ArrayList newPaths = new ArrayList();
-
-            //Open file dialog to select tracks and add them to the play list
-            OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "MP3 File (*.mp3)|*.mp3;";
-            open.DefaultExt = ".mp3";
-            open.Multiselect = true;
-
-            //Show open
-            Nullable<bool> result = open.ShowDialog();
-
-            //Process open file dialog box result
-            if (result == true)
-            {
-                //add files to arrays
-                newFiles.AddRange(open.SafeFileNames); //Saves only the names
-                newPaths.AddRange(open.FileNames); //Saves the full paths
-            }
-            //Call addSong Method
-            AddSongsToPlaylist(newFiles, newPaths);
-        }
 
         //////////////////////////////////////////////////////
         // WORKING - KEEP IN MAIN
@@ -810,6 +566,9 @@ namespace WeListenPlayer
                                 albumArtworkMemStream.Close();
                             }
                         }
+                        //////////////////////////////////////////////////////////////////////////////
+                        // add an else if statement here to pull the album image from the Amazon API
+                        //////////////////////////////////////////////////////////////////////////////
                         else
                         {
                             albumArtPanel.AlbumArtImage = null;
@@ -834,7 +593,23 @@ namespace WeListenPlayer
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             if (NAudioEngine.Instance.CanPlay)
+            {
+                //Mark continuous play
+                NAudioEngine.Instance.continuousPlay = true;
                 NAudioEngine.Instance.Play();
+            }
+            else
+            {
+
+                if (dgvPlayList.Items.Count != 0)
+                {
+                    //Mark continuous play
+                    NAudioEngine.Instance.continuousPlay = true;
+                    queueNextSong();
+                    NAudioEngine.Instance.Play();
+                    //PlaySelectedSong(); 
+                }
+            }
         }
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
@@ -846,6 +621,8 @@ namespace WeListenPlayer
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             if (NAudioEngine.Instance.CanStop)
+                NAudioEngine.Instance.continuousPlay = false;
+                clockDisplay.Time = TimeSpan.FromSeconds(0);
                 NAudioEngine.Instance.Stop();
         }
 
@@ -923,14 +700,63 @@ namespace WeListenPlayer
             LoadExpressionLightTheme();
         }
 
+        //////////////////////////////////////////////////////
+        // WORKING - KEEP IN MAIN
+        // Browse File Button Handler
+        // - Requests browser explorer, sets item path
+        ///////////////////////////////////////////////////////
+        private void OnAddSongClick(object sender, RoutedEventArgs e)
+        {
+
+            //Create arrayLists for new files to add
+            //These variables are string array lists to store song locations.
+            ArrayList newFiles = new ArrayList();
+            ArrayList newPaths = new ArrayList();
+
+            //Open file dialog to select tracks and add them to the play list
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "MP3 File (*.mp3)|*.mp3;";
+            open.DefaultExt = ".mp3";
+            open.Multiselect = true;
+
+            //Show open
+            Nullable<bool> result = open.ShowDialog();
+
+            //Process open file dialog box result
+            if (result == true)
+            {
+                //add files to arrays
+                newFiles.AddRange(open.SafeFileNames); //Saves only the names
+                newPaths.AddRange(open.FileNames); //Saves the full paths
+            }
+            //Call addSong Method
+            AddSongsToPlaylist(newFiles, newPaths);
+        }
         private void OpenFile()
         {
+            //Create arrayLists for new files to add
+            //These variables are string array lists to store song locations.
+            ArrayList newFiles = new ArrayList();
+            ArrayList newPaths = new ArrayList();
+
             Microsoft.Win32.OpenFileDialog openDialog = new Microsoft.Win32.OpenFileDialog();
             openDialog.Filter = "(*.mp3)|*.mp3";
+            openDialog.DefaultExt = ".mp3";
+            openDialog.Multiselect = true;
+
             if (openDialog.ShowDialog() == true)
             {
-                NAudioEngine.Instance.OpenFile(openDialog.FileName);
-                FileText.Text = openDialog.FileName;
+                //add files to arrays
+                newFiles.AddRange(openDialog.SafeFileNames); //Saves only the names
+                newPaths.AddRange(openDialog.FileNames); //Saves the full paths
+
+                //Call addSong Method
+                AddSongsToPlaylist(newFiles, newPaths);
+                if (!NAudioEngine.Instance.IsPlaying)
+                    queueNextSong();
+                //NAudioEngine.Instance.OpenFile(openDialog.FileName);
+                //FileText.Text = openDialog.FileName; 
+                
             }
         }
 
@@ -947,6 +773,39 @@ namespace WeListenPlayer
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             NAudioEngine.Instance.Dispose();
+        }
+
+        public void SongStopped(int index)
+        {
+                //If continuous is checked play next song.
+            if (NAudioEngine.Instance.continuousPlay == true)
+                
+                removeSongFromPlayList(index);
+                //PlaySelectedSong();
+                dgvPlayList.SelectedIndex = 0;
+                queueNextSong();
+            
+        }
+
+        public void queueNextSong()
+        {
+            if (!dgvPlayList.Items.IsEmpty)
+            {
+                SongData playItem = (SongData) dgvPlayList.Items[0];
+                string path = playItem.Path.Replace("\\\\", "\\");
+                NAudioEngine.Instance.OpenFile(path);
+                FileText.Text = path;
+            }
+            else
+            {
+                MessageBox.Show("Come on Guys! you need to add code to call a random song if nothing is queued!!");
+                //add method for random song from catalog.
+            }
+        }
+
+        private void cboDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NAudioEngine.Instance.selectedSoundCard =cboDevices.SelectedIndex;
         }
     }
 }

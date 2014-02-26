@@ -130,13 +130,13 @@ namespace WeListenPlayer.AmazonHandler
                 }
 
                 // Declare MainWindow to dispatch arguements, Invoke imgAlbumArt source change
-                newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(imageURL))));
+                //newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(imageURL))));
             }
             catch
             {
                 //Assign default album art
                 string art = "http://icons.iconseeker.com/png/fullsize/3d-cartoon-icons-pack-iii/adobe-help-center.png";
-                newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(art))));
+                //newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(art))));
             }
         }
     }
