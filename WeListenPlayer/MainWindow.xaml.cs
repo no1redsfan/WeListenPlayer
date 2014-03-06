@@ -43,7 +43,7 @@ namespace WeListenPlayer
         {
 
             InitializeComponent();
-            AmazonAccesser initializer = new AmazonAccesser();
+            var initializer = new AmazonAccesser();
             initializer.setMain(this); // Declare MainWindow and pass as parameter
             initializer.getAmazonItems("test", "test", "test", "");
             PopulateCboDevices();
@@ -65,8 +65,6 @@ namespace WeListenPlayer
             UIHelper.Bind(soundEngine, "CanPause", PauseButton, Button.IsEnabledProperty);
             UIHelper.Bind(soundEngine, "CanStop", btnSkipBck, Button.IsEnabledProperty);
             UIHelper.Bind(soundEngine, "CanStop", btnSkipFwd, Button.IsEnabledProperty);
-            //UIHelper.Bind(soundEngine, "SelectionBegin", repeatStartTimeEdit, TimeEditor.ValueProperty, BindingMode.TwoWay);
-            //UIHelper.Bind(soundEngine, "SelectionEnd", repeatStopTimeEdit, TimeEditor.ValueProperty, BindingMode.TwoWay);
 
             spectrumAnalyzer.RegisterSoundPlayer(soundEngine);
             waveformTimeline.RegisterSoundPlayer(soundEngine);
@@ -78,6 +76,7 @@ namespace WeListenPlayer
 
         //Declare Variables
         private bool receiving = false;
+        private bool random;
 
         //variable for login status
         private bool loggedIn = false;
@@ -95,16 +94,8 @@ namespace WeListenPlayer
         //Method for forward button
         private void OnForwardClick(object sender, RoutedEventArgs e)
         {
-            //If list is not empty, stop and delete the playing song and start the next.
-            if (!dgvPlayList.Items.IsEmpty)
-            {
                 NAudioEngine.Instance.continuousPlay = true;
                 NAudioEngine.Instance.Stop();
-            }
-            else
-            {
-                //A new method needs to be called to grab a random song.
-            }
         }
 
 
@@ -150,7 +141,7 @@ namespace WeListenPlayer
         //Method for moving items up in playlist
         private void OnMoveUpClick(object sender, RoutedEventArgs e)
         {
-            var movement = -1;
+            const int movement = -1;
             if (NAudioEngine.Instance.IsPlaying)
             {
                 //If its playing or paused you can not move the item into the playing position of the list.
@@ -174,7 +165,7 @@ namespace WeListenPlayer
         //Method for moving items down in playlist
         private void OnMoveDownClick(object sender, RoutedEventArgs e)
         {
-            var movement = 2;
+            const int movement = 2;
             //If its playing or paused you can not move the item in the play position of the list.
             if (NAudioEngine.Instance.IsPlaying)
             {
@@ -198,13 +189,13 @@ namespace WeListenPlayer
             {
                 if (dgvPlayList.SelectedIndex > 0 && dgvPlayList.SelectedIndex != dgvPlayList.Items.Count)
                 {
-                    removeSongFromPlayList(index);
+                    RemoveSongFromPlayList(index);
                     dgvPlayList.SelectedIndex = index;
                 }
             }
             else if (dgvPlayList.SelectedIndex != -1 && dgvPlayList.SelectedIndex != dgvPlayList.Items.Count)
             {
-                removeSongFromPlayList(index);
+                RemoveSongFromPlayList(index);
                 dgvPlayList.SelectedIndex = index;
             }
         }
@@ -218,8 +209,8 @@ namespace WeListenPlayer
         private async void DoPeriodicRequestCall(TimeSpan dueTime, TimeSpan interval, CancellationToken token)
         {
             // Declare new object
-            WeListenXmlParser k = new WeListenXmlParser();
-            await k.GetTrackInfo();
+            var k = new WeListenXmlParser();
+            await k.GetTrackInfo(random);
 
             // Initial wait time before we begin the periodic loop.
             if (dueTime > TimeSpan.Zero)
@@ -247,17 +238,17 @@ namespace WeListenPlayer
         {
             foreach (string path in newPaths)
             {
-                SongData newSong = new TagLibDataAccesser().getSongTags(path);
+                var newSong = new TagLibDataAccesser().getSongTags(path);
 
-                DataGridHandler j = new DataGridHandler();
+                var j = new DataGridHandler();
                 j.populateDataGrid(newSong);
                
                 if (dgvPlayList.Items.Count == 1)
                 {
-                    DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
+                    var i = new DefaultSongInfoAccesser();
                     i.RetrieveSongInfo();
 
-                    queueNextSong();
+                    QueueNextSong();
                 }
             }
         }
@@ -281,9 +272,9 @@ namespace WeListenPlayer
             if (!dgvPlayList.Items.IsEmpty)
             {
                 //Select the top song in the playlist data grid
-                SongData playItem = (SongData)dgvPlayList.Items[0];
+                var playItem = (SongData)dgvPlayList.Items[0];
 
-                DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
+                var i = new DefaultSongInfoAccesser();
                 i.RetrieveSongInfo();
 
                 //populate string with the song in the first position of the path arrayList
@@ -298,7 +289,7 @@ namespace WeListenPlayer
 
 
         //Method to remove songs from playlist
-        private void removeSongFromPlayList(int index)
+        private void RemoveSongFromPlayList(int index)
         {
                 // remove the played song from playlist data grid
                 dgvPlayList.Items.RemoveAt(index); 
@@ -321,7 +312,7 @@ namespace WeListenPlayer
                     }
 
                     //remove the song from the original position
-                    removeSongFromPlayList(selectedIndex);
+                    RemoveSongFromPlayList(selectedIndex);
 
                     //Change the selected index to the new position
                     dgvPlayList.SelectedItem = itemToMove;
@@ -350,7 +341,7 @@ namespace WeListenPlayer
 
             if (path != null)
             {
-                DirectoryHandler k = new DirectoryHandler();
+                var k = new DirectoryHandler();
                 k.processDirectory(path, false);
             }
             else
@@ -360,12 +351,12 @@ namespace WeListenPlayer
         }
 
         //button click for adding music files to the dB
-        private void OnUploadFolderToDBClick(object sender, RoutedEventArgs e)
+        private void OnUploadFolderToDbClick(object sender, RoutedEventArgs e)
         {
             string path = new DirButton().selectDirectory();
             if (path != null)
             {
-                DirectoryHandler k = new DirectoryHandler();
+                var k = new DirectoryHandler();
                 k.processDirectory(path, true);
             }
             else
@@ -418,66 +409,14 @@ namespace WeListenPlayer
                 {
                     SongData newSong = new TagLibDataAccesser().getSongTags(path);
 
-                    DataGridHandler j = new DataGridHandler();
+                    var j = new DataGridHandler();
                     j.populateDataGrid(newSong);
                 }
 
-                DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
+                var i = new DefaultSongInfoAccesser();
                 i.RetrieveSongInfo();
             }
         }
-
-        ///////////////////////////////////////////////////////
-        // MOVED - SPLIT
-        // Base URL Handler
-        // - Set baseUrl for LastFM.API reference (XML page base URL)
-        ///////////////////////////////////////////////////////
-
-        ///////////////////////////////////////////////////////
-        // MOVED - SPLIT
-        // Row Selection Handler
-        // - Assigns text variables on row select in DataGrid
-        ///////////////////////////////////////////////////////
-
-        ///////////////////////////////////////////////////////
-        // MOVED - SPLIT
-        // Tag Handler
-        // - Grabs tags from file and returns as SongData ojbect
-        ///////////////////////////////////////////////////////
-        
-        ///////////////////////////////////////////////////////
-        // MOVED - SPLIT
-        // DataGrid Population Handler
-        // - Adds SongData object to DataGrid
-        ///////////////////////////////////////////////////////
-
-        ///////////////////////////////////////////////////////
-        // MOVED - SPLIT
-        // LastFM API XML Parser
-        // - (Currently) Returns Album art as URL strings
-        ///////////////////////////////////////////////////////
-        
-        ///////////////////////////////////////////////////////
-        // MOVED - SPLIT
-        // Request XML URL Handler
-        // - Pulls XML page data for parsing
-        ///////////////////////////////////////////////////////
-
-        ///////////////////////////////////////////////////////
-        // MOVED - SPLIT
-        // Album Art Handler
-        // - Requests art URL and displays via. image area
-        ///////////////////////////////////////////////////////
-
-        //////////////////////////////////////////////////////
-        // MOVED - SPLIT
-        // Browse folder handler
-        // - Imports .mp3 files and populates DataGrid
-        ///////////////////////////////////////////////////////
-
-        ////////////////////////////////////////////////////
-        //Methods for handling logging in and out of the Web
-        ////////////////////////////////////////////////////
 
         //Method for login button submit click
         private void OnSubmitClick(object sender, RoutedEventArgs e)
@@ -537,20 +476,20 @@ namespace WeListenPlayer
         #region NAudio Engine Events
         private void NAudioEngine_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            NAudioEngine engine = NAudioEngine.Instance;
+            var engine = NAudioEngine.Instance;
             switch (e.PropertyName)
             {
                 case "FileTag":
                     if (engine.FileTag != null)
                     {
-                        TagLib.Tag tag = engine.FileTag.Tag;
+                        var tag = engine.FileTag.Tag;
                         if (tag.Pictures.Length > 0)
                         {
-                            using (MemoryStream albumArtworkMemStream = new MemoryStream(tag.Pictures[0].Data.Data))
+                            using (var albumArtworkMemStream = new MemoryStream(tag.Pictures[0].Data.Data))
                             {
                                 try
                                 {
-                                    BitmapImage albumImage = new BitmapImage();
+                                    var albumImage = new BitmapImage();
                                     albumImage.BeginInit();
                                     albumImage.CacheOption = BitmapCacheOption.OnLoad;
                                     albumImage.StreamSource = albumArtworkMemStream;
@@ -600,15 +539,12 @@ namespace WeListenPlayer
             }
             else
             {
-
-                if (dgvPlayList.Items.Count != 0)
-                {
-                    //Mark continuous play
-                    NAudioEngine.Instance.continuousPlay = true;
-                    queueNextSong();
-                    NAudioEngine.Instance.Play();
-                    //PlaySelectedSong(); 
-                }
+                if (dgvPlayList.Items.Count == 0) return;
+                //Mark continuous play
+                NAudioEngine.Instance.continuousPlay = true;
+                    
+                QueueNextSong();
+                NAudioEngine.Instance.Play();
             }
         }
 
@@ -653,7 +589,7 @@ namespace WeListenPlayer
             ExpressionLightMenuItem.IsEnabled = true;
 
             Resources.MergedDictionaries.Clear();
-            ResourceDictionary themeResources = Application.LoadComponent(new Uri("DarkBlue.xaml", UriKind.Relative)) as ResourceDictionary;
+            var themeResources = Application.LoadComponent(new Uri("DarkBlue.xaml", UriKind.Relative)) as ResourceDictionary;
             Resources.MergedDictionaries.Add(themeResources);
         }
 
@@ -667,7 +603,7 @@ namespace WeListenPlayer
             ExpressionLightMenuItem.IsEnabled = true;
 
             Resources.MergedDictionaries.Clear();
-            ResourceDictionary themeResources = Application.LoadComponent(new Uri("Themes/ExpressionDark.xaml", UriKind.Relative)) as ResourceDictionary;
+            var themeResources = Application.LoadComponent(new Uri("Themes/ExpressionDark.xaml", UriKind.Relative)) as ResourceDictionary;
             Resources.MergedDictionaries.Add(themeResources);
         }
 
@@ -681,7 +617,7 @@ namespace WeListenPlayer
             ExpressionLightMenuItem.IsEnabled = false;
 
             Resources.MergedDictionaries.Clear();
-            ResourceDictionary themeResources = Application.LoadComponent(new Uri("Themes/ExpressionLight.xaml", UriKind.Relative)) as ResourceDictionary;
+            var themeResources = Application.LoadComponent(new Uri("Themes/ExpressionLight.xaml", UriKind.Relative)) as ResourceDictionary;
             Resources.MergedDictionaries.Add(themeResources);
         }
 
@@ -710,14 +646,11 @@ namespace WeListenPlayer
 
             //Create arrayLists for new files to add
             //These variables are string array lists to store song locations.
-            ArrayList newFiles = new ArrayList();
-            ArrayList newPaths = new ArrayList();
+            var newFiles = new ArrayList();
+            var newPaths = new ArrayList();
 
             //Open file dialog to select tracks and add them to the play list
-            OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "MP3 File (*.mp3)|*.mp3;";
-            open.DefaultExt = ".mp3";
-            open.Multiselect = true;
+            var open = new OpenFileDialog {Filter = "MP3 File (*.mp3)|*.mp3;", DefaultExt = ".mp3", Multiselect = true};
 
             //Show open
             Nullable<bool> result = open.ShowDialog();
@@ -736,13 +669,15 @@ namespace WeListenPlayer
         {
             //Create arrayLists for new files to add
             //These variables are string array lists to store song locations.
-            ArrayList newFiles = new ArrayList();
-            ArrayList newPaths = new ArrayList();
+            var newFiles = new ArrayList();
+            var newPaths = new ArrayList();
 
-            Microsoft.Win32.OpenFileDialog openDialog = new Microsoft.Win32.OpenFileDialog();
-            openDialog.Filter = "(*.mp3)|*.mp3";
-            openDialog.DefaultExt = ".mp3";
-            openDialog.Multiselect = true;
+            var openDialog = new OpenFileDialog
+            {
+                Filter = "(*.mp3)|*.mp3",
+                DefaultExt = ".mp3",
+                Multiselect = true
+            };
 
             if (openDialog.ShowDialog() == true)
             {
@@ -753,9 +688,7 @@ namespace WeListenPlayer
                 //Call addSong Method
                 AddSongsToPlaylist(newFiles, newPaths);
                 if (!NAudioEngine.Instance.IsPlaying)
-                    queueNextSong();
-                //NAudioEngine.Instance.OpenFile(openDialog.FileName);
-                //FileText.Text = openDialog.FileName; 
+                    QueueNextSong();
                 
             }
         }
@@ -778,29 +711,35 @@ namespace WeListenPlayer
         public void SongStopped(int index)
         {
                 //If continuous is checked play next song.
-            if (NAudioEngine.Instance.continuousPlay == true)
+            if (NAudioEngine.Instance.continuousPlay)
                 
-                removeSongFromPlayList(index);
-                //PlaySelectedSong();
+                RemoveSongFromPlayList(index);
                 dgvPlayList.SelectedIndex = 0;
-                queueNextSong();
+                QueueNextSong();
             
         }
 
-        public void queueNextSong()
+        public async void QueueNextSong()
         {
-            if (!dgvPlayList.Items.IsEmpty)
+            var k = new WeListenXmlParser();
+            if (dgvPlayList.Items.IsEmpty)
             {
-                SongData playItem = (SongData) dgvPlayList.Items[0];
-                string path = playItem.Path.Replace("\\\\", "\\");
-                NAudioEngine.Instance.OpenFile(path);
-                FileText.Text = path;
+                random = false;
+                await k.GetTrackInfo(random);
             }
-            else
+            if (dgvPlayList.Items.IsEmpty)
             {
-                MessageBox.Show("Come on Guys! you need to add code to call a random song if nothing is queued!!");
-                //add method for random song from catalog.
+                random = true;
+                
+                await k.GetTrackInfo(random);
             }
+ 
+
+            var playItem = (SongData)dgvPlayList.Items[0];
+            var path = playItem.Path.Replace("\\\\", "\\");
+            NAudioEngine.Instance.OpenFile(path);
+            FileText.Text = path;
+            random = false;
         }
 
         private void cboDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)

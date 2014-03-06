@@ -46,7 +46,7 @@ namespace WeListenPlayer.FormHandler
             else
             {
                 mainWindow.dgvPlayList.Items.Add(songDataObject);
-                mainWindow.queueNextSong();
+                mainWindow.QueueNextSong();
             }
         }
     }

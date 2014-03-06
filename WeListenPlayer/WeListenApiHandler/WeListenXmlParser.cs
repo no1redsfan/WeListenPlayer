@@ -24,10 +24,19 @@ namespace WeListenPlayer.LastFmHandler
         //              k.GetTrackInfo();
         // - Output     Returns object list of all songs pulled from API
         ///////////////////////////////////////////////////////
-        public async Task<List<SongData>> GetTrackInfo()
+        public async Task<List<SongData>> GetTrackInfo(bool randomSong)
         {
 
-            string baseURL = "http://welistenmusic.com/api/locations/"; // Base default url
+            string baseURL;
+            if (randomSong)
+            {
+                baseURL = "http://welistenmusic.com/api/randomsong/"; // call for a random song
+            }
+            else
+            {
+                baseURL = "http://welistenmusic.com/api/locations/"; // Base default url
+            }
+
             string location = "1"; // Playlist location (1 default)
             string requestUrl = baseURL + location;
             string weListenApiKey = "fPOIWBN465IOA4567VUHEPOF8G6I5banspoighao";

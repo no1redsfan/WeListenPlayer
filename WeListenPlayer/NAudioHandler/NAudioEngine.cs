@@ -442,11 +442,18 @@ namespace WeListenPlayer.NAudioHandler
         {
             if (CanPlay)
             {
-                wasapiOutDevice.Play();
-                IsPlaying = true;
-                CanPause = true;
-                CanPlay = false;
-                CanStop = true;
+                try
+                {
+                    wasapiOutDevice.Play();
+                    IsPlaying = true;
+                    CanPause = true;
+                    CanPlay = false;
+                    CanStop = true;
+                }
+                catch (Exception e)
+                {
+                    //do nothing.
+                }
             }
         }
 
