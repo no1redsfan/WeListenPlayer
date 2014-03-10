@@ -478,10 +478,10 @@ namespace WeListenPlayer
                     // Get full request
                     SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
 
-                    // Set amazonSong Path
+                    // Set and adjust file paths for DB storage
                     amazonSong.FilePath = path;
 
-                    var response = client.PostAsJsonAsync("api/values", amazonSong).Result;
+                    var response = client.PostAsJsonAsync("api/song", amazonSong).Result;
 
                     if (response.IsSuccessStatusCode)
                     {
