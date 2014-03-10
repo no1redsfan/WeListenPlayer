@@ -8,19 +8,30 @@ namespace WeListenPlayer.APIClasses
 {
     public class SongData
     {
-        public string Title { set; get; }
-        public string Artist { set; get; }
         public string Album { set; get; }
-        public uint Year { set; get; }
+        public string Artist { set; get; }
+        public string Artwork { set; get; }
+        public string ASIN { set; get; }
         public string Genre { set; get; }
-        public string Path { set; get; }
+        public int Duration { set; get; }
+        public int LocationID { set; get; }
+        public string FilePath { set; get; }
         public int PlaylistId { set; get; }
         public bool Played { set; get; }
+        public string Price { set; get; }
         public bool Queued { set; get; }
-        public string amazonASIN { set; get; }
-        public string amazonPrice { set; get; }
-        public string amazonLength { set; get; }
-        public string amazonArt { set; get; }
+        public string Title { set; get; }
+        public int UserID { set; get; }
+        public int Year { set; get; }
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     }
 }

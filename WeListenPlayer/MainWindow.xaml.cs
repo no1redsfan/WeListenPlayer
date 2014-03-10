@@ -1,8 +1,8 @@
 ﻿using Microsoft.Win32;
 using NAudio.CoreAudioApi;
-using NAudio.Wave;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
@@ -11,11 +11,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
-using VisualizationLib;
 using WeListenPlayer.AmazonHandler;
 using WeListenPlayer.APIClasses;
 using WeListenPlayer.ButtonHandler;
@@ -33,6 +30,13 @@ namespace WeListenPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private SongData newSong = new SongData();
+        private DirectoryHandler dirHandler = new DirectoryHandler();
+        private FileHandler fileHandler = new FileHandler();
+        private TagLibDataAccesser tagAccesser = new TagLibDataAccesser();
+        private AmazonAccesser amazonAccesser = new AmazonAccesser();
+        private WeListenXmlParser xmlParser = new WeListenXmlParser();
+        private DuplicateCheck dupCheck = new DuplicateCheck();
 
         //HttpClient for WeListen API
         HttpClient client = new HttpClient();
@@ -44,8 +48,8 @@ namespace WeListenPlayer
 
             InitializeComponent();
             var initializer = new AmazonAccesser();
-            initializer.setMain(this); // Declare MainWindow and pass as parameter
-            initializer.getAmazonItems("test", "test", "test", "");
+            //initializer.setMain(this); // Declare MainWindow and pass as parameter
+            // initializer.getAmazonItems("test", "test", "test", "");
             PopulateCboDevices();
 
             //Load WeListen API
@@ -114,29 +118,7 @@ namespace WeListenPlayer
         //Playlist Control Methods//
         ////////////////////////////
 
-        //method for starting to receive the requests
-        private void OnRecieveRequestClick(object sender, RoutedEventArgs e)
-        {
-            
-            var dueTime = TimeSpan.FromSeconds(10);
-            var interval = TimeSpan.FromSeconds(10);
-            CancellationToken stopReceiving;
-            var recieving = false;
-            if (receiving == false)
-            {
-                receiving = true;
-                DoPeriodicRequestCall(dueTime, interval, stopReceiving);
-            }
-            else
-            {
-                stopReceiving.IsCancellationRequested.Equals(true);
-                receiving = false;
-                DoPeriodicRequestCall(dueTime, interval, stopReceiving);
-            }
-
-            // TODO: Add a CancellationTokenSource and supply the token here instead of None. 
-           
-        }
+        
 
         //Method for moving items up in playlist
         private void OnMoveUpClick(object sender, RoutedEventArgs e)
@@ -209,8 +191,7 @@ namespace WeListenPlayer
         private async void DoPeriodicRequestCall(TimeSpan dueTime, TimeSpan interval, CancellationToken token)
         {
             // Declare new object
-            var k = new WeListenXmlParser();
-            await k.GetTrackInfo(random);
+            // await xmlParser.GetTrackInfo(random);
 
             // Initial wait time before we begin the periodic loop.
             if (dueTime > TimeSpan.Zero)
@@ -220,9 +201,21 @@ namespace WeListenPlayer
             while (!token.IsCancellationRequested)
             {
                 // TODO: call for requests from database
-                
-                //await k.GetTrackInfo();
 
+                try
+                {
+                    var addList = await xmlParser.GetTrackInfo(false);
+                    
+                    foreach (SongData song in addList)
+                    {
+                        dgvPlayList.Items.Add(song);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("No songs in request que!");
+                }
+                
                 // Wait to repeat again.
                 if (interval > TimeSpan.Zero)
                     await Task.Delay(interval, token);
@@ -233,25 +226,7 @@ namespace WeListenPlayer
         //methods for background audio control//
         ////////////////////////////////////////
 
-        //method for adding song to playlist
-        private void AddSongsToPlaylist(ArrayList newFiles, ArrayList newPaths)
-        {
-            foreach (string path in newPaths)
-            {
-                var newSong = new TagLibDataAccesser().getSongTags(path);
-
-                var j = new DataGridHandler();
-                j.populateDataGrid(newSong);
-               
-                if (dgvPlayList.Items.Count == 1)
-                {
-                    var i = new DefaultSongInfoAccesser();
-                    i.RetrieveSongInfo();
-
-                    QueueNextSong();
-                }
-            }
-        }
+        
         //Method for populating Devices combo box
         private void PopulateCboDevices()
         {
@@ -265,34 +240,12 @@ namespace WeListenPlayer
             cboDevices.SelectedIndex = 0;
         }
 
-        //Method to start playing the selected song
-        private void PlaySelectedSong()
-        {
-
-            if (!dgvPlayList.Items.IsEmpty)
-            {
-                //Select the top song in the playlist data grid
-                var playItem = (SongData)dgvPlayList.Items[0];
-
-                var i = new DefaultSongInfoAccesser();
-                i.RetrieveSongInfo();
-
-                //populate string with the song in the first position of the path arrayList
-                
-                string path = playItem.Path.Replace("\\\\", "\\");//Add error handling
-
-                    // If path is invalid (on current pc), Set row background as RED (as a warning)
-                    var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items[0]) as DataGridRow;
-                    row.Background = Brushes.Red;
-                }
-        }
-
-
         //Method to remove songs from playlist
         private void RemoveSongFromPlayList(int index)
         {
-                // remove the played song from playlist data grid
-                dgvPlayList.Items.RemoveAt(index); 
+            // remove the played song from playlist data grid
+            dgvPlayList.Items.RemoveAt(index);
+            QueueNextSong();
         }
 
         //method to move items in playlist and arrayLists
@@ -325,6 +278,17 @@ namespace WeListenPlayer
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
         ////////////////////////////
         // ROBERT - MEDIA MANAGER //
         ////////////////////////////
@@ -334,34 +298,200 @@ namespace WeListenPlayer
         // Browse Directory Button Handler
         // - Requests browser explorer, sets folder path
         ///////////////////////////////////////////////////////
-        private void OnBtnImport_Click(object sender, RoutedEventArgs e)
+
+        private async void fileSelector (object sender, RoutedEventArgs e)
         {
+            // Return from file dialog
+            var files = await fileHandler.fileDiag();
 
-            string path = new DirButton().selectDirectory();
+            // Get songs in playlist
+            var playlistSongs = getPlaylistSongs();
 
-            if (path != null)
+            if (files != null)
             {
-                var k = new DirectoryHandler();
-                k.processDirectory(path, false);
+                // Get amazon data on each SongData obj in files
+                foreach (SongData song in files)
+                {
+                    // Assign path to variable
+                    var path = song.FilePath;
+
+                    // Get full request
+                    SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
+
+                    // Set amazonSong Path
+                    amazonSong.FilePath = path;
+
+                    // Check for duplicate values
+                    bool isDup = dupCheck.checkDup(playlistSongs, amazonSong);
+
+                    if (!isDup)
+                    {
+                        // Add AmazonSong to playlist
+                        dgvPlayList.Items.Add(amazonSong);
+                    }
+                }
+                QueueNextSong();
             }
             else
+            {
+                MessageBox.Show("There was a problem getting the selected files.");
+            }
+        }
+
+        private async void dirSelector(object sender, RoutedEventArgs e)
+        {
+            // Set targetDirectory string
+            string targetDiredctory = new DirButton().selectDirectory();
+
+            try
+            {
+                // Return from directory dialog
+                var files = await dirHandler.dirDiag(targetDiredctory);
+
+                // Get songs in playlist
+                var playlistSongs = getPlaylistSongs();
+
+                if (files != null)
+                {
+                    foreach (SongData song in files)
+                    {
+                        // Assign path to variable
+                        var path = song.FilePath;
+
+                        // Get full request
+                        SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
+
+                        // Set amazonSong Path
+                        amazonSong.FilePath = path;
+
+                        // Check for duplicate values
+                        bool isDup = dupCheck.checkDup(playlistSongs, amazonSong);
+
+                        if (!isDup)
+                        {
+                            // Add AmazonSong to playlist
+                            dgvPlayList.Items.Add(amazonSong);
+                        }
+                    }
+                    QueueNextSong();
+                }
+                else
+                {
+                    MessageBox.Show("There was a problem getting the folder path.");
+                }
+            }
+            catch
             {
                 MessageBox.Show("There was a problem getting the folder path.");
             }
         }
 
-        //button click for adding music files to the dB
-        private void OnUploadFolderToDbClick(object sender, RoutedEventArgs e)
+        public List<SongData> getPlaylistSongs()
         {
-            string path = new DirButton().selectDirectory();
-            if (path != null)
+            var playlist = new List<SongData>();
+            var songCount = dgvPlayList.Items.Count;
+
+            if (songCount != 0)
             {
-                var k = new DirectoryHandler();
-                k.processDirectory(path, true);
+                foreach(SongData song in dgvPlayList.Items)
+                {
+                    playlist.Add(song);
+                }
+                return playlist;
+            }
+            return null;
+        }
+
+        public void QueueNextSong()
+        {
+            var playlist = getPlaylistSongs();
+
+            //var k = new WeListenXmlParser();
+            if (dgvPlayList.Items.IsEmpty)
+            {
+                random = false;
+            }
+            if (dgvPlayList.Items.IsEmpty)
+            {
+                random = true;
+            }
+
+            var playItem = (SongData)dgvPlayList.Items[0];
+            var path = playItem.FilePath.Replace("\\\\", "\\");
+
+            //// If path is invalid (on current pc), Set row background as RED (as a warning)
+            //var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items[0]) as DataGridRow;
+            //row.Background = Brushes.Red;
+
+            NAudioEngine.Instance.OpenFile(path);
+            FileText.Text = path;
+            random = false;
+
+            setLabels(playlist[0]);
+        }
+
+        //method for starting to receive the requests
+        private void OnRecieveRequestClick(object sender, RoutedEventArgs e)
+        {
+
+            var dueTime = TimeSpan.FromSeconds(10);
+            var interval = TimeSpan.FromSeconds(10);
+            CancellationToken stopReceiving;
+            var receiving = false;
+            if (receiving == false)
+            {
+                receiving = true;
+                DoPeriodicRequestCall(dueTime, interval, stopReceiving);
             }
             else
             {
-                MessageBox.Show("There was a problem getting the folder path.");
+                stopReceiving.IsCancellationRequested.Equals(true);
+                receiving = false;
+                DoPeriodicRequestCall(dueTime, interval, stopReceiving);
+            }
+
+            // TODO: Add a CancellationTokenSource and supply the token here instead of None. 
+
+        }
+
+        //button click for adding music files to the dB
+        private async void OnUploadFolderToDbClick(object sender, RoutedEventArgs e)
+        {
+            // Add method call to upload to database
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://welistenmusic.com/");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Set targetDirectory string
+            string targetDiredctory = new DirButton().selectDirectory();
+
+            // Return from directory dialog
+            var files = await dirHandler.dirDiag(targetDiredctory);
+
+            if (files != null)
+            {
+                foreach (SongData song in files)
+                {
+                    // Assign path to variable
+                    var path = song.FilePath;
+
+                    // Get full request
+                    SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
+
+                    // Set amazonSong Path
+                    amazonSong.FilePath = path;
+
+                    var response = client.PostAsJsonAsync("api/values", amazonSong).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("Song Added");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                    }
+                }
             }
         }
 
@@ -400,21 +530,50 @@ namespace WeListenPlayer
         // File Drop handler for DataGrid
         // - Process through each file dropped into DataGrid
         ///////////////////////////////////////////////////////
-        private void dgvPlayList_Drop(object sender, DragEventArgs e)
+        private async void dgvPlayList_Drop(object sender, DragEventArgs e)
         {
+            // Reset background color
+            dgvPlayList.Background = new SolidColorBrush(Color.FromRgb(226, 226, 226));
+
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
+                //These variables are string array lists to store song locations.
+                var songList = new List<SongData>();
+
                 var files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 foreach (var path in files)
                 {
-                    SongData newSong = new TagLibDataAccesser().getSongTags(path);
-
-                    var j = new DataGridHandler();
-                    j.populateDataGrid(newSong);
+                    newSong = new TagLibDataAccesser().getSongTags(path);
+                    songList.Add(newSong);
                 }
 
-                var i = new DefaultSongInfoAccesser();
-                i.RetrieveSongInfo();
+                if (songList != null)
+                {
+                    foreach (SongData song in songList)
+                    {
+                        // Assign path to variable
+                        var path = song.FilePath;
+
+                        // Get full request
+                        SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
+
+                        // Set amazonSong Path
+                        amazonSong.FilePath = path;
+
+                        // Add song to master List
+                        //songList.Add(amazonSong);
+
+                        // Check for duplicate values
+                        bool isDup = dupCheck.checkDup(songList, amazonSong);
+
+                        if (!isDup)
+                        {
+                            // Add AmazonSong to playlist
+                            dgvPlayList.Items.Add(amazonSong);
+                        }
+                    }
+                }
+                QueueNextSong();
             }
         }
 
@@ -474,7 +633,7 @@ namespace WeListenPlayer
 
 
         #region NAudio Engine Events
-        private void NAudioEngine_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private async void NAudioEngine_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var engine = NAudioEngine.Instance;
             switch (e.PropertyName)
@@ -483,6 +642,7 @@ namespace WeListenPlayer
                     if (engine.FileTag != null)
                     {
                         var tag = engine.FileTag.Tag;
+                        var foundArt = true;
                         if (tag.Pictures.Length > 0)
                         {
                             using (var albumArtworkMemStream = new MemoryStream(tag.Pictures[0].Data.Data))
@@ -496,11 +656,25 @@ namespace WeListenPlayer
                                     albumImage.EndInit();
                                     albumArtPanel.AlbumArtImage = albumImage;
                                 }
-                                catch (NotSupportedException)
+                                catch
                                 {
-                                    albumArtPanel.AlbumArtImage = null;
-                                    // System.NotSupportedException:
-                                    // No imaging component suitable to complete this operation was found.
+                                    foundArt = false;
+                                }
+
+                                if (foundArt == false)
+                                {
+                                    var playItem = (SongData)dgvPlayList.Items[0];
+
+                                    try
+                                    {
+                                        albumArtPanel.AlbumArtImage = BitmapFrame.Create(new Uri(playItem.Artwork));
+                                    }
+                                    catch
+                                    {
+                                        albumArtPanel.AlbumArtImage = null;
+                                        // System.NotSupportedException:
+                                        // No imaging component suitable to complete this operation was found.
+                                    }
                                 }
                                 albumArtworkMemStream.Close();
                             }
@@ -522,10 +696,21 @@ namespace WeListenPlayer
                     clockDisplay.Time = TimeSpan.FromSeconds(engine.ChannelPosition);
                     break;
                 default:
-                    // Do Nothing
-                    break;
-            }
+                    
+                    var playItem2 = (SongData)dgvPlayList.Items[0];
 
+                    try
+                    {
+                        albumArtPanel.AlbumArtImage = BitmapFrame.Create(new Uri(playItem2.Artwork));
+                    }
+                    catch
+                    {
+                        albumArtPanel.AlbumArtImage = null;
+                        // System.NotSupportedException:
+                        // No imaging component suitable to complete this operation was found.
+                    }
+                break;
+            }
         }
         #endregion
 
@@ -535,6 +720,7 @@ namespace WeListenPlayer
             {
                 //Mark continuous play
                 NAudioEngine.Instance.continuousPlay = true;
+                NAudioEngine.Instance.Volume((float)sldrVolume.Value);
                 NAudioEngine.Instance.Play();
             }
             else
@@ -641,30 +827,7 @@ namespace WeListenPlayer
         // Browse File Button Handler
         // - Requests browser explorer, sets item path
         ///////////////////////////////////////////////////////
-        private void OnAddSongClick(object sender, RoutedEventArgs e)
-        {
 
-            //Create arrayLists for new files to add
-            //These variables are string array lists to store song locations.
-            var newFiles = new ArrayList();
-            var newPaths = new ArrayList();
-
-            //Open file dialog to select tracks and add them to the play list
-            var open = new OpenFileDialog {Filter = "MP3 File (*.mp3)|*.mp3;", DefaultExt = ".mp3", Multiselect = true};
-
-            //Show open
-            Nullable<bool> result = open.ShowDialog();
-
-            //Process open file dialog box result
-            if (result == true)
-            {
-                //add files to arrays
-                newFiles.AddRange(open.SafeFileNames); //Saves only the names
-                newPaths.AddRange(open.FileNames); //Saves the full paths
-            }
-            //Call addSong Method
-            AddSongsToPlaylist(newFiles, newPaths);
-        }
         private void OpenFile()
         {
             //Create arrayLists for new files to add
@@ -686,7 +849,7 @@ namespace WeListenPlayer
                 newPaths.AddRange(openDialog.FileNames); //Saves the full paths
 
                 //Call addSong Method
-                AddSongsToPlaylist(newFiles, newPaths);
+                //AddSongsToPlaylist(newFiles, newPaths);
                 if (!NAudioEngine.Instance.IsPlaying)
                     QueueNextSong();
                 
@@ -716,35 +879,30 @@ namespace WeListenPlayer
                 RemoveSongFromPlayList(index);
                 dgvPlayList.SelectedIndex = 0;
                 QueueNextSong();
-            
-        }
-
-        public async void QueueNextSong()
-        {
-            var k = new WeListenXmlParser();
-            if (dgvPlayList.Items.IsEmpty)
-            {
-                random = false;
-                await k.GetTrackInfo(random);
-            }
-            if (dgvPlayList.Items.IsEmpty)
-            {
-                random = true;
-                
-                await k.GetTrackInfo(random);
-            }
- 
-
-            var playItem = (SongData)dgvPlayList.Items[0];
-            var path = playItem.Path.Replace("\\\\", "\\");
-            NAudioEngine.Instance.OpenFile(path);
-            FileText.Text = path;
-            random = false;
         }
 
         private void cboDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             NAudioEngine.Instance.selectedSoundCard =cboDevices.SelectedIndex;
+        }
+
+        private void setLabels(SongData localObj)
+        {
+            // Assign Local labels
+            tbLocalTitleInfo.Text = localObj.Title;
+            tbLocalArtistInfo.Text = localObj.Artist;
+            tbLocalAlbumInfo.Text = localObj.Album;
+            tbLocalYearInfo.Text = localObj.Year.ToString();
+            tbLocalGenreInfo.Text = localObj.Genre;
+            tbLocalFilePathInfo.Text = localObj.FilePath;
+
+            // Assign Amazon labels
+            tbAmazonArtistInfo.Text = localObj.Artist;
+            tbAmazonAlbumInfo.Text = localObj.Album;
+            tbAmazonTitleInfo.Text = localObj.Title;
+            tbAmazonYearInfo.Text = localObj.Year.ToString();
+            tbAmazonAsinInfo.Text = localObj.ASIN;
+            tbAmazonPriceInfo.Text = localObj.Price;
         }
     }
 }

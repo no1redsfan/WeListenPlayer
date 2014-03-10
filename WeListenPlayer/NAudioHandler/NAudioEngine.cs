@@ -450,7 +450,7 @@ namespace WeListenPlayer.NAudioHandler
                     CanPlay = false;
                     CanStop = true;
                 }
-                catch (Exception e)
+                catch
                 {
                     //do nothing.
                 }
@@ -464,45 +464,41 @@ namespace WeListenPlayer.NAudioHandler
 
         public void OpenFile(string path)
         {
-            Stop();
-
-            if (ActiveStream != null)
+            if (ActiveStream == null)
             {
                 SelectionBegin = TimeSpan.Zero;
                 SelectionEnd = TimeSpan.Zero;
                 ChannelPosition = 0;
-            }
-            
-            StopAndCloseStream();            
 
-            if (System.IO.File.Exists(path))
-            {
-                try
+                if (System.IO.File.Exists(path))
                 {
-                    if (currentDevice == null)
+                    try
                     {
-                        currentSelectedDevice();
+                        if (currentDevice == null)
+                        {
+                            currentSelectedDevice();
+                        }
+                        AudioClientShareMode shareMode = AudioClientShareMode.Shared;
+                        int latency = 100;
+                        bool useEventSync = false;
+                        wasapiOutDevice = new WasapiOut(currentDevice, shareMode, useEventSync, latency);
+                        currentDevice.AudioEndpointVolume.MasterVolumeLevelScalar = (float)volumeValue;
+
+                        ActiveStream = new Mp3FileReader(path);
+                        inputStream = new WaveChannel32(ActiveStream);
+                        sampleAggregator = new SampleAggregator(fftDataSize);
+                        inputStream.Sample += inputStream_Sample;
+                        wasapiOutDevice.Init(inputStream);
+                        ChannelLength = inputStream.TotalTime.TotalSeconds;
+                        FileTag = TagLib.File.Create(path);
+                        GenerateWaveformData(path);
+                        CanPlay = true;
                     }
-                    AudioClientShareMode shareMode = AudioClientShareMode.Shared;
-                    int latency = 100;
-                    bool useEventSync = false;
-                    wasapiOutDevice = new WasapiOut(currentDevice, shareMode, useEventSync, latency);
-                    currentDevice.AudioEndpointVolume.MasterVolumeLevelScalar = (float)volumeValue;
-                    
-                    ActiveStream = new Mp3FileReader(path);
-                    inputStream = new WaveChannel32(ActiveStream);
-                    sampleAggregator = new SampleAggregator(fftDataSize);
-                    inputStream.Sample += inputStream_Sample;
-                    wasapiOutDevice.Init(inputStream);
-                    ChannelLength = inputStream.TotalTime.TotalSeconds;
-                    FileTag = TagLib.File.Create(path);
-                    GenerateWaveformData(path);
-                    CanPlay = true;
-                }
-                catch
-                {
-                    ActiveStream = null;
-                    CanPlay = false;
+                    catch
+                    {
+                        ActiveStream = null;
+                        CanPlay = false;
+                    }
                 }
             }
         }

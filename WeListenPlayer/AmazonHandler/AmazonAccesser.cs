@@ -1,33 +1,88 @@
 ﻿using Amazon.PAAPI;
 using System;
 using System.Configuration;
+using System.ServiceModel;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeListenPlayer.APIClasses;
 
 namespace WeListenPlayer.AmazonHandler
 {
     class AmazonAccesser
     {
-        public string artist {get; set;}
-        public string album { get; set; }
-        public string title { get; set; }
-        public string fullRequest { get; set; }
+        //public string artist {get; set;}
+        //public string album { get; set; }
+        //public string title { get; set; }
+        //public string fullRequest { get; set; }
 
-        MainWindow newMain; // Global Declaration
+        //MainWindow newMain; // Global Declaration
 
-        // Capture MainWindow Instance and assign to Global Declaration
-        public void setMain(MainWindow mainWindow)
-        {
-            newMain = mainWindow;
-        }
+        //// Capture MainWindow Instance and assign to Global Declaration
+        //public void setMain(MainWindow mainWindow)
+        //{
+        //    newMain = mainWindow;
+        //}
 
         // Collect variables and pass to a New Thread
-        public void getAmazonItems(string tempArtist, string tempAlbum, string tempTitle, string fullRequest)
+        //public async void getAmazonItems(string tempArtist, string tempAlbum, string tempTitle, string fullRequest)
+        //{
+        //    this.artist = tempArtist;
+        //    this.album = tempAlbum;
+        //    this.title = tempTitle;
+
+        //    // Remove anything in parenthesis/brackets and all special characters
+        //    string regEx = @"(?<=\()(.*?)(?=\))|(?<=\[)(.*?)(?=\])|(?<=\{)(.*?)(?=\})|[^\w ]";
+
+        //    // Handle passed parameters
+        //    if (artist != "UNKNOWN")
+        //    {
+        //        artist = Regex.Replace(artist, regEx, "");
+        //        fullRequest += artist;
+        //    }
+
+        //    if (this.album != "UNKNOWN" && this.album != this.artist)
+        //    {
+        //        album = Regex.Replace(album, regEx, "");
+        //        fullRequest += " " + album;
+        //    }
+
+        //    if (this.title != "UNKNOWN" && this.title != this.album)
+        //    {
+        //        title = Regex.Replace(title, regEx, "");
+        //        fullRequest += " " + title;
+        //    }
+
+        //    this.fullRequest = fullRequest;
+
+        //    //Thread thread = new Thread(new ThreadStart(getData));
+        //    //thread.IsBackground = true;
+        //    //thread.Start();
+
+        //    SongData tempSong = new SongData();
+
+        //    await getData(tempSong, this.fullRequest);
+        //}
+
+
+
+
+
+        public async Task<SongData> getAmazonInfo(SongData song)
         {
-            this.artist = tempArtist;
-            this.album = tempAlbum;
-            this.title = tempTitle;
+            var fullRequest = parseInfo(song);
+            var newSong = await getData(song, fullRequest);
+
+            return newSong;
+        }
+
+        public string parseInfo(SongData song)
+        {
+            var fullRequest = "";
+            var artist = song.Artist;
+            var album = song.Album;
+            var title = song.Title;
 
             // Remove anything in parenthesis/brackets and all special characters
             string regEx = @"(?<=\()(.*?)(?=\))|(?<=\[)(.*?)(?=\])|(?<=\{)(.*?)(?=\})|[^\w ]";
@@ -39,27 +94,22 @@ namespace WeListenPlayer.AmazonHandler
                 fullRequest += artist;
             }
 
-            if (this.album != "UNKNOWN" && this.album != this.artist)
+            if (album != "UNKNOWN" && album != artist)
             {
                 album = Regex.Replace(album, regEx, "");
                 fullRequest += " " + album;
             }
 
-            if (this.title != "UNKNOWN" && this.title != this.album)
+            if (title != "UNKNOWN" && title != album)
             {
                 title = Regex.Replace(title, regEx, "");
                 fullRequest += " " + title;
             }
 
-            this.fullRequest = fullRequest;
-
-            Thread thread = new Thread(new ThreadStart(getData));
-            thread.IsBackground = true;
-            thread.Start();
+            return fullRequest;
         }
 
-        // NEW THREAD, GET ALBUM ART
-        public void getData()
+        public async Task<SongData> getData(SongData newSong, string fullRequest)
         {
             try
             {
@@ -72,7 +122,7 @@ namespace WeListenPlayer.AmazonHandler
                 request.RelationshipType = new string[] { "Tracks" };
                 request.ResponseGroup = new string[] { "ItemAttributes", "Images", "Offers", "RelatedItems" };
 
-                request.Keywords = this.fullRequest;
+                request.Keywords = fullRequest;
 
                 ItemSearch itemSearch = new ItemSearch();
                 itemSearch.Request = new ItemSearchRequest[] { request };
@@ -96,10 +146,10 @@ namespace WeListenPlayer.AmazonHandler
                     try
                     {
                         // Try new search and remove the album
-                        this.album = "UNKNOWN";
+                        newSong.Album = "UNKNOWN";
                         
                         // Re-iterate over the search method
-                        getData();
+                        await getData(newSong, fullRequest);
                     }
                     catch
                     {
@@ -108,35 +158,27 @@ namespace WeListenPlayer.AmazonHandler
                     }
                 }
 
-                // Declare new songData object
-                // OBJECT HERE (TEST)
+                // Get year from full Release Date var
+                var formatYear = DateTime.Parse(item.ItemAttributes.ReleaseDate).Year;
 
-                // Get album artwork
-                string imageURL = item.LargeImage.URL;
+                newSong.UserID = 1;
+                newSong.LocationID = 1;
+                newSong.Album = item.RelatedItems[0].RelatedItem[0].Item.ItemAttributes.Title;
+                newSong.Artist = item.ItemAttributes.Creator[0].Value;
+                newSong.Title = item.ItemAttributes.Title;
+                newSong.Year = (int)formatYear;
+                newSong.Genre = item.ItemAttributes.Genre;
+                newSong.FilePath = "";
+                newSong.Duration = (int)item.ItemAttributes.RunningTime.Value;
+                newSong.Price = item.Offers.Offer[0].OfferListing[0].Price.FormattedPrice;
+                newSong.ASIN = item.ASIN;
+                newSong.Artwork = item.LargeImage.URL;
 
-                // Assign tb values
-                try
-                {
-                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonArtistInfo.Text = item.ItemAttributes.Creator[0].Value));
-                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonAlbumInfo.Text = item.RelatedItems[0].RelatedItem[0].Item.ItemAttributes.Title));
-                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonTitleInfo.Text = item.ItemAttributes.Title));
-                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonYearInfo.Text = item.ItemAttributes.ReleaseDate));
-                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonAsinInfo.Text = item.ASIN));
-                    newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.tbAmazonPriceInfo.Text = item.Offers.Offer[0].OfferListing[0].Price.FormattedPrice));
-                }
-                catch
-                {
-                    // Could not set label values
-                }
-
-                // Declare MainWindow to dispatch arguements, Invoke imgAlbumArt source change
-                //newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(imageURL))));
+                return newSong;
             }
             catch
             {
-                //Assign default album art
-                string art = "http://icons.iconseeker.com/png/fullsize/3d-cartoon-icons-pack-iii/adobe-help-center.png";
-                //newMain.Dispatcher.BeginInvoke((MethodInvoker)(() => newMain.imgAlbumArt.Source = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(art))));
+                return newSong;
             }
         }
     }
