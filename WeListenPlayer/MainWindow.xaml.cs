@@ -20,6 +20,7 @@ using WeListenPlayer.FormHandler;
 using WeListenPlayer.LastFmHandler;
 using WeListenPlayer.NAudioHandler;
 using WeListenPlayer.TagLibHandler;
+using WeListenPlayer.WeListenApiHandler;
 
 
 
@@ -36,6 +37,7 @@ namespace WeListenPlayer
         private TagLibDataAccesser tagAccesser = new TagLibDataAccesser();
         private AmazonAccesser amazonAccesser = new AmazonAccesser();
         private WeListenXmlParser xmlParser = new WeListenXmlParser();
+        private UserXmlParser userParser = new UserXmlParser();
         private DuplicateCheck dupCheck = new DuplicateCheck();
 
         //HttpClient for WeListen API
@@ -47,7 +49,7 @@ namespace WeListenPlayer
         {
 
             InitializeComponent();
-            var initializer = new AmazonAccesser();
+            //var initializer = new AmazonAccesser();
             //initializer.setMain(this); // Declare MainWindow and pass as parameter
             // initializer.getAmazonItems("test", "test", "test", "");
             PopulateCboDevices();
@@ -532,8 +534,8 @@ namespace WeListenPlayer
         ///////////////////////////////////////////////////////
         private async void dgvPlayList_Drop(object sender, DragEventArgs e)
         {
-            // Reset background color
-            dgvPlayList.Background = new SolidColorBrush(Color.FromRgb(226, 226, 226));
+            // Get songs in playlist
+            var playlistSongs = getPlaylistSongs();
 
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -564,7 +566,7 @@ namespace WeListenPlayer
                         //songList.Add(amazonSong);
 
                         // Check for duplicate values
-                        bool isDup = dupCheck.checkDup(songList, amazonSong);
+                        bool isDup = dupCheck.checkDup(playlistSongs, amazonSong);
 
                         if (!isDup)
                         {
@@ -903,6 +905,60 @@ namespace WeListenPlayer
             tbAmazonYearInfo.Text = localObj.Year.ToString();
             tbAmazonAsinInfo.Text = localObj.ASIN;
             tbAmazonPriceInfo.Text = localObj.Price;
+        }
+
+        private async void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            var loggedIn = false;
+            User returnedUser;
+
+            var usr = tbUserName.Text;
+            var pas = pwbPassword.Password.ToString();
+
+            try
+            {
+                returnedUser = await userParser.GetUserInfo(usr, pas);
+            }
+            catch
+            {
+                returnedUser = null;
+            }
+
+            if (returnedUser != null)
+            {
+                MessageBox.Show("Username Confirmed! Logging in...");
+                loggedIn = true;
+            }
+            else
+            {
+                MessageBox.Show("Username and/or Password Invalid!");
+                loggedIn = false;
+            }
+
+
+            //// Add method call to upload to database
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri("http://welistenmusic.com/");
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //var user = new User();
+            //user.Username = tbUserName.Text;
+            //user.Password = pwbPassword.SecurePassword.ToString();
+
+            //if (user != null)
+            //{
+            //    var response = client.PostAsJsonAsync("api/user", user).Result;
+
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        MessageBox.Show("Success! Logging in...");
+            //        // Put login success code here
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Error, Incorrect Username / Password Combo");
+            //    }
+            //}
         }
     }
 }

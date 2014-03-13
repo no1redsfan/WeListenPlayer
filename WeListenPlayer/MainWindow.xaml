@@ -60,15 +60,84 @@
                     <Button x:Name="btnStartReceiving" Grid.Column="0" Grid.Row="0" Content="Receive Requests" 
                         HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" 
                         Click="OnRecieveRequestClick" Height="22"/>
-                    <DataGrid x:Name="dgvPlayList" BorderThickness="3" BorderBrush="Black" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="0,0,0,0" 
-            		AllowDrop="True" Drop="dgvPlayList_Drop" DragOver="dgvPlayList_DragOver" DragLeave="dgvPlayList_DragLeave" 
-            		Background="#FFE2E2E2" SelectionMode="Single" CanUserReorderColumns="False" 
-            		CanUserResizeRows="False" IsReadOnly="True" CanUserSortColumns="False" >
+
+                    <DataGrid 
+            	        x:Name="dgvPlayList"
+            	        Grid.Column="0" 
+            	        Padding="0, 0, 0, 0"
+            	        RowHeaderWidth="0"
+            	        GridLinesVisibility="None"
+                        
+            	        BorderBrush="Black"
+            	        BorderThickness="0"
+            	        AlternatingRowBackground="#FF313131" 
+            	        AlternationCount="1" 
+            	        RowBackground="#FF373737" 
+            	        Background="#FF373737" 
+            	        Foreground="White" 
+                        
+            	        Drop="dgvPlayList_Drop" 
+            	        DragOver="dgvPlayList_DragOver" 
+            	        DragLeave="dgvPlayList_DragLeave" 
+            		    
+            	        AllowDrop="True"
+            	        SelectionMode="Single" 
+            	        CanUserReorderColumns="False" 
+            	        CanUserResizeRows="False" 
+            	        IsReadOnly="True" 
+            	        CanUserSortColumns="False" 
+            	        AreRowDetailsFrozen="True" 
+            	        FontFamily="Verdana" 
+            	        FontSize="10" Margin="0,0,0,3" Panel.ZIndex="10" Grid.Row="1" Grid.RowSpan="1">
+
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFFFFF"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#000000"/>
+
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                <Setter Property="Padding" Value="3,2,0,2" />
+                            </Style>
+
+                            <Style TargetType="{x:Type DataGridColumnHeader}" x:Name="Header">
+                                <Setter Property="Padding" Value="3,2,0,2" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="FontSize" Value="12" />
+                                <Setter Property="Foreground" Value="#FF140E1E" />
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Offset="0.01" Color="#C7C7C7" />
+                                            <GradientStop Offset="0.02" Color="#AAAAAA" />
+                                            <GradientStop Offset="0.98" Color="#636363" />
+                                            <GradientStop Offset="0.99" Color="#2E2E2E" />
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="BorderBrush" Value="#6F6E6C" />
+                                <Setter Property="BorderThickness" Value="0 0 1 0" />
+                            </Style>
+
+                        </DataGrid.Resources>
+
+                        <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="White" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="Title" Header="Title" Binding="{Binding Title}" Width="3*"/>
-                            <DataGridTextColumn x:Name="Artist" Header="Artist" Binding="{Binding Artist}" Width="2*"/>
+                            <DataGridTextColumn x:Name="Title" Header="Title" Binding="{Binding Title}" Width="3*" />
+                            <DataGridTextColumn x:Name="Artist" Header="Artist" Binding="{Binding Artist}" Width="2*" />
                         </DataGrid.Columns>
                     </DataGrid>
+
                     <Button x:Name="btnAddSongs" Grid.Column="0" Grid.Row="2"  Content="Add Songs" HorizontalAlignment="Center" 
                         Margin="0,2,0,0" VerticalAlignment="Top" Width="100" Click="fileSelector" Height="22" />
                     <Button x:Name="btnImport" Grid.Column="0" Grid.Row="2" Content="Add Folder" HorizontalAlignment="Center" 
@@ -189,7 +258,7 @@
                             <TextBox x:Name="tbUserName" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Height="17" Margin="10,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                             <TextBlock x:Name="txtPassword" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top"/>
                             <PasswordBox x:Name="pwbPassword" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Width="120" Height="17"/>
-                            <Button x:Name="btnSubmit" Grid.Column="1" Grid.Row="2" Content="Log In" HorizontalAlignment="Right" Margin="0,2,2,0" VerticalAlignment="Center" Width="75"/>
+                            <Button x:Name="btnSubmit" Grid.Column="1" Grid.Row="2" Content="Log In" HorizontalAlignment="Right" Margin="0,2,2,0" VerticalAlignment="Center" Width="75" Click="btnSubmit_Click"/>
 
                         </Grid>
                     </TabItem>

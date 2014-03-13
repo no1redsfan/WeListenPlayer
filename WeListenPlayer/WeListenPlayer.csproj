@@ -117,6 +117,7 @@
     <Compile Include="AmazonHandler\AmazonAccesser.cs" />
     <Compile Include="APIClasses\asyncWorker.cs" />
     <Compile Include="APIClasses\RequestQueued.cs" />
+    <Compile Include="APIClasses\User.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -127,6 +128,7 @@
     <Compile Include="NAudioHandler\NAudioEngine.cs" />
     <Compile Include="NAudioHandler\SampleAggregator.cs" />
     <Compile Include="NAudioHandler\UIHelper.cs" />
+    <Compile Include="WeListenApiHandler\UserXmlParser.cs" />
     <Compile Include="WeListenApiHandler\WeListenXmlParser.cs" />
     <Compile Include="TagLibHandler\TagLibDataAccesser.cs" />
     <Compile Include="WeListenApiHandler\XmlAccesser.cs" />
