@@ -10,11 +10,14 @@ using Newtonsoft.Json;
 using WeListenPlayer.APIClasses;
 using WeListenPlayer.FormHandler;
 using WeListenPlayer.WeListenApiHandler;
+using WeListenPlayer.AmazonHandler;
 
 namespace WeListenPlayer.LastFmHandler
 {
     class WeListenXmlParser
     {
+        private AmazonAccesser amazonAccesser = new AmazonAccesser();
+        private DuplicateCheck dupCheck = new DuplicateCheck();
 
         ///////////////////////////////////////////////////////
         // Request XML URL Handler
@@ -26,6 +29,8 @@ namespace WeListenPlayer.LastFmHandler
         ///////////////////////////////////////////////////////
         public async Task<List<SongData>> GetTrackInfo(bool randomSong)
         {
+            // Create master / finalized list
+            var pullList = new List<SongData>();
 
             string baseURL;
             if (randomSong)
@@ -39,52 +44,60 @@ namespace WeListenPlayer.LastFmHandler
 
             string location = "1"; // Playlist location (1 default)
             string requestUrl = baseURL + location;
-            string weListenApiKey = "fPOIWBN465IOA4567VUHEPOF8G6I5banspoighao";
 
-            string sendSongUrl = requestUrl + "&" + weListenApiKey;
+            //string weListenApiKey = "fPOIWBN465IOA4567VUHEPOF8G6I5banspoighao";
+
+            //string sendSongUrl = requestUrl + "&" + weListenApiKey;
 
             string serviceResponse = await new XmlAccesser().GetServiceResponse(requestUrl);
 
-            var xDoc = XDocument.Parse(serviceResponse);
-
-            XNamespace ns = xDoc.Root.Name.Namespace;
-            
-            var playlist = (from list in xDoc.Descendants(ns + "PlayListSong")
-                        select new SongData
-                        {
-                            Title = (string)list.Element(ns + "Title"),
-                            Artist = (string)list.Element(ns + "Artist"),
-                            Album = (string)list.Element(ns + "Album"),
-                            Path = (string)list.Element(ns + "FilePath").Value.Replace("\\\\", "\\"),
-                            PlaylistId = (int)list.Element(ns + "LocationPlayistId"),
-                            Queued  = true
-                            
-                        }).ToList();
-
-            System.Console.WriteLine("Total songs in request que: " + playlist.Count);
-            foreach (var s in playlist)
+            if (serviceResponse != null)
             {
-                // Populate datagrid with each songData s in playlist
-                DataGridHandler j = new DataGridHandler();
-                j.populateDataGrid(s);
+                var xDoc = XDocument.Parse(serviceResponse);
 
-                // Get the info for each songData s in playlist
-                DefaultSongInfoAccesser i = new DefaultSongInfoAccesser();
-                i.RetrieveSongInfo();
+                XNamespace ns = xDoc.Root.Name.Namespace;
 
-                RequestQueued que = new RequestQueued();
-                que.LocationId = s.PlaylistId;
-                que.queued = s.Queued;
+                var playlist = (from list in xDoc.Descendants(ns + "PlayListSong")
+                                select new SongData
+                                {
+                                    Title = (string)list.Element(ns + "Title"),
+                                    Artist = (string)list.Element(ns + "Artist"),
+                                    Album = (string)list.Element(ns + "Album"),
+                                    FilePath = (string)list.Element(ns + "FilePath").Value.Replace("\\\\", "\\"),
+                                    PlaylistId = (int)list.Element(ns + "LocationPlayistId"),
+                                    // ADD ARTWORK HERE
+                                    Queued = true
 
-                var json = JsonConvert.SerializeObject(que);
+                                }).ToList();
+                if (playlist != null)
+                {
+                    foreach (SongData song in playlist)
+                    {
+                        // Check for duplicate values
+                        bool isDup = dupCheck.checkDup(playlist, song);
 
-                string sendToJimmy = sendSongUrl + "&" + que.LocationId + "&" + que.queued;
+                        if (!isDup)
+                        {
+                            // Add AmazonSong to playlist
+                            pullList.Add(song);
 
-                // Initialize new http request, pass sendToJimmy as URL
+                            // Add queued parameter
+                            RequestQueued que = new RequestQueued();
+                            que.LocationId = song.PlaylistId;
+                            que.queued = song.Queued;
 
+                            var json = JsonConvert.SerializeObject(que);
+
+                            //string sendToJimmy = sendSongUrl + "&" + que.LocationId + "&" + que.queued;
+
+                            // Initialize new http request, pass sendToJimmy as URL
+                        }
+                    }
+                    return pullList;
+                }
+                return null;
             }
-
-            return playlist;
+            return null;
         }
     }
 }

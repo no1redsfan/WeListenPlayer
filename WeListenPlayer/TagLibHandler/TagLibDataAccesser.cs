@@ -72,7 +72,7 @@ namespace WeListenPlayer.TagLibHandler
             // Year will default to 0 as a UINT if unknown
 
             // Assign data to new SongData object
-            var newSongObject = new SongData { Title = songTitle, Artist = artist, Album = albumTitle, Year = year, Genre = genre, Path = path};
+            var newSongObject = new SongData { Title = songTitle, Artist = artist, Album = albumTitle, Year = (int)year, Genre = genre, FilePath = path};
 
             return newSongObject;
         }
