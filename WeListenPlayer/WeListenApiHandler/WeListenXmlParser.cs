@@ -27,7 +27,7 @@ namespace WeListenPlayer.LastFmHandler
         //              k.GetTrackInfo();
         // - Output     Returns object list of all songs pulled from API
         ///////////////////////////////////////////////////////
-        public async Task<List<SongData>> GetTrackInfo(bool randomSong)
+        public async Task<List<SongData>> GetTrackInfo(List<SongData> playlistSongs, bool randomSong)
         {
             // Create master / finalized list
             var pullList = new List<SongData>();
@@ -74,7 +74,7 @@ namespace WeListenPlayer.LastFmHandler
                     foreach (SongData song in playlist)
                     {
                         // Check for duplicate values
-                        bool isDup = dupCheck.checkDup(playlist, song);
+                        bool isDup = dupCheck.checkDup(playlistSongs, song);
 
                         if (!isDup)
                         {

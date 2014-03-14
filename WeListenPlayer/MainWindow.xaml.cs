@@ -203,14 +203,16 @@ namespace WeListenPlayer
             while (!token.IsCancellationRequested)
             {
                 // TODO: call for requests from database
+                var playlistSongs = getPlaylistSongs();
 
                 try
                 {
-                    var addList = await xmlParser.GetTrackInfo(false);
+                    var addList = await xmlParser.GetTrackInfo(playlistSongs, false);
                     
                     foreach (SongData song in addList)
                     {
                         dgvPlayList.Items.Add(song);
+                        QueueNextSong();
                     }
                 }
                 catch
