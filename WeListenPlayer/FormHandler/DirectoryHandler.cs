@@ -25,16 +25,15 @@ namespace WeListenPlayer.FormHandler
         //              k.processDirectory(path, false);
         // - Output     Handles directory, [Upload to DB {if boolean true}, or add to DataGrid {if boolean false}]
         ///////////////////////////////////////////////////////
-        public async Task<List<SongData>> dirDiag(string targetDirectory)
+        public async Task<List<SongData>> dirDiag(string targetDirectory, List<SongData> songList)
         {
+
             // Recurse into subdirectories of this directory. 
             string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
             foreach (string subdirectory in subdirectoryEntries)
             {
-                await dirDiag(subdirectory);
+                await dirDiag(subdirectory, songList);
             }
-
-            var songList = new List<SongData>();
 
             // Process the list of files found in the directory. (Only grabs .mp3's)
             string[] fileEntries = Directory.GetFiles(targetDirectory, "*.mp3");

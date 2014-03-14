@@ -345,10 +345,13 @@ namespace WeListenPlayer
             // Set targetDirectory string
             string targetDiredctory = new DirButton().selectDirectory();
 
+            // Set master List
+            List<SongData> songList = new List<SongData>();
+
             try
             {
                 // Return from directory dialog
-                var files = await dirHandler.dirDiag(targetDiredctory);
+                var files = await dirHandler.dirDiag(targetDiredctory, songList);
 
                 // Get songs in playlist
                 var playlistSongs = getPlaylistSongs();
@@ -418,18 +421,23 @@ namespace WeListenPlayer
                 random = true;
             }
 
-            var playItem = (SongData)dgvPlayList.Items[0];
-            var path = playItem.FilePath.Replace("\\\\", "\\");
+            if (playlist != null)
+            {
+                var playItem = (SongData)dgvPlayList.Items[0];
+                var path = playItem.FilePath.Replace("\\\\", "\\");
 
-            //// If path is invalid (on current pc), Set row background as RED (as a warning)
-            //var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items[0]) as DataGridRow;
-            //row.Background = Brushes.Red;
+                //// If path is invalid (on current pc), Set row background as RED (as a warning)
+                //var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items[0]) as DataGridRow;
+                //row.Background = Brushes.Red;
 
-            NAudioEngine.Instance.OpenFile(path);
-            FileText.Text = path;
-            random = false;
+                //NAudioEngine.Instance.Volume((float)sldrVolume.Value);  
 
-            setLabels(playlist[0]);
+                NAudioEngine.Instance.OpenFile(path);
+                FileText.Text = path;
+                random = false;
+
+                setLabels(playlist[0]);
+            }
         }
 
         //method for starting to receive the requests
@@ -467,8 +475,11 @@ namespace WeListenPlayer
             // Set targetDirectory string
             string targetDiredctory = new DirButton().selectDirectory();
 
+            // Set master List
+            List<SongData> songList = new List<SongData>();
+
             // Return from directory dialog
-            var files = await dirHandler.dirDiag(targetDiredctory);
+            var files = await dirHandler.dirDiag(targetDiredctory, songList);
 
             if (files != null)
             {
@@ -699,10 +710,9 @@ namespace WeListenPlayer
                     break;
                 default:
                     
-                    var playItem2 = (SongData)dgvPlayList.Items[0];
-
                     try
                     {
+                        var playItem2 = (SongData)dgvPlayList.Items[0];
                         albumArtPanel.AlbumArtImage = BitmapFrame.Create(new Uri(playItem2.Artwork));
                     }
                     catch
@@ -934,31 +944,6 @@ namespace WeListenPlayer
                 MessageBox.Show("Username and/or Password Invalid!");
                 loggedIn = false;
             }
-
-
-            //// Add method call to upload to database
-            //HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri("http://welistenmusic.com/");
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            //var user = new User();
-            //user.Username = tbUserName.Text;
-            //user.Password = pwbPassword.SecurePassword.ToString();
-
-            //if (user != null)
-            //{
-            //    var response = client.PostAsJsonAsync("api/user", user).Result;
-
-            //    if (response.IsSuccessStatusCode)
-            //    {
-            //        MessageBox.Show("Success! Logging in...");
-            //        // Put login success code here
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Error, Incorrect Username / Password Combo");
-            //    }
-            //}
         }
     }
 }

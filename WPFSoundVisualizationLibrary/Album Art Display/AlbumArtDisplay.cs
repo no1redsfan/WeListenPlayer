@@ -107,7 +107,12 @@ namespace VisualizationLib
             }
             set
             {
-                SetValue(AlbumArtImageProperty, value);
+                try
+                {
+                    // If song is changed too quickly, album art locally will not update, throw to catch
+                    SetValue(AlbumArtImageProperty, value);
+                }
+                catch { }
             }
         }
         #endregion

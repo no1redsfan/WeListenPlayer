@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 using VisualizationLib;
+using System.Threading;
 
 
 namespace WeListenPlayer.NAudioHandler
@@ -289,8 +290,18 @@ namespace WeListenPlayer.NAudioHandler
             int readCount = 0;
             while (currentPointIndex * 2 < waveformParams.Points)
             {
-                waveformInputStream.Read(readBuffer, 0, readBuffer.Length);
-
+                try
+                {
+                    waveformInputStream.Read(readBuffer, 0, readBuffer.Length);
+                }
+                catch
+                {
+                    Stop();
+                    StopAndCloseStream();
+                    waveformGenerateWorker.CancelAsync();
+                    waveformGenerateWorker.Dispose();
+                    //break;
+                }
                 waveformData.Add(waveformAggregator.LeftMaxVolume);
                 waveformData.Add(waveformAggregator.RightMaxVolume);
 
@@ -350,12 +361,12 @@ namespace WeListenPlayer.NAudioHandler
 
             StopAndCloseStream();
 
-                mainWindow.SongStopped(0);
+            mainWindow.SongStopped(0);
 
-                if (continuousPlay == true)
-                {
-                    Play(); 
-                }
+            if (continuousPlay == true)
+            {
+                Play(); 
+            }
             
 
             if (e.Exception != null)
@@ -406,8 +417,16 @@ namespace WeListenPlayer.NAudioHandler
             }
             if (reader != null)
             {
-                reader.Dispose();
-                reader = null;
+                try
+                {
+                    // If user hits next before reader is defined, this will be caught
+                    reader.Dispose();
+                }
+                catch
+                {
+                    // when caught, restart method to reader time to update (Works fine)
+                    StopAndCloseStream();
+                }
             }
             
         }        
@@ -460,6 +479,7 @@ namespace WeListenPlayer.NAudioHandler
         public void Volume(float sldrValue)
         {
             currentDevice.AudioEndpointVolume.MasterVolumeLevelScalar = (float) sldrValue;
+            volumeValue = (float)sldrValue;
         }
 
         public void OpenFile(string path)
@@ -602,9 +622,18 @@ namespace WeListenPlayer.NAudioHandler
         void positionTimer_Tick(object sender, EventArgs e)
         {
             inChannelTimerUpdate = true;
-            ChannelPosition = ((double)ActiveStream.Position / (double)ActiveStream.Length) * ActiveStream.TotalTime.TotalSeconds;
-            if (ChannelPosition == ChannelLength)
+
+            try
+            {
+                ChannelPosition = ((double)ActiveStream.Position / (double)ActiveStream.Length) * ActiveStream.TotalTime.TotalSeconds;
+                if (ChannelPosition == ChannelLength)
+                    wasapiOutDevice.Stop();
+            }
+            catch
+            {
+                // Catch from ChannelPosition NullReference Error, Just Stop(). Jeeze.
                 wasapiOutDevice.Stop();
+            }
             inChannelTimerUpdate = false;
         }
         #endregion
