@@ -78,6 +78,7 @@ namespace WeListenPlayer
             NAudioEngine.Instance.volumeValue = (float)sldrVolume.Value;
 
             LoadExpressionDarkTheme();
+
         }
 
         //Declare Variables
@@ -234,14 +235,34 @@ namespace WeListenPlayer
         //Method for populating Devices combo box
         private void PopulateCboDevices()
         {
+            ////
+            // Add sound cards to main selection menu at top
+            ////
+
+            // Create arbitrary integer for numbering
+            var num = 0;
+
             var deviceEnumeratior = new MMDeviceEnumerator();
             var devices = deviceEnumeratior.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
             foreach (var device in devices)
             {
-                cboDevices.Items.Add(devices);
+
+                MenuItem soundCardSelect = new MenuItem();
+                MenuItem newMenuItem = (MenuItem)this.MainMenu.Items[2];
+                soundCardSelect.Header = device;
+                soundCardSelect.Click += cboDevices_SelectionChanged;
+                soundCardSelect.Tag = num;
+                soundCardSelect.IsCheckable = true;
+                soundCardSelect.Name = "SoundCard" + num;
+                newMenuItem.Items.Add(soundCardSelect);
+
+                // increase num value for .Tags
+                num++;
             }
-            //Select default automatically
-            cboDevices.SelectedIndex = 0;
+
+            // Select / Check & Disable first selected soundcard
+            ((MenuItem)SoundSelect.Items[0]).IsChecked = true;
+            ((MenuItem)SoundSelect.Items[0]).IsEnabled = false;
         }
 
         //Method to remove songs from playlist
@@ -895,9 +916,22 @@ namespace WeListenPlayer
                 QueueNextSong();
         }
 
-        private void cboDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cboDevices_SelectionChanged(object sender, System.EventArgs e)
         {
-            NAudioEngine.Instance.selectedSoundCard =cboDevices.SelectedIndex;
+            // Set selected item from menu
+            var selectedItem = ((MenuItem)sender);
+
+            // Reset checkmarks and enable all options
+            foreach (MenuItem item in SoundSelect.Items)
+            {
+                item.IsChecked = false;
+                item.IsEnabled = true;
+            }
+
+            // Assign selected Sound Card to selected menu item
+            NAudioEngine.Instance.selectedSoundCard = (int)selectedItem.Tag;
+            selectedItem.IsChecked = true;
+            selectedItem.IsEnabled = false;
         }
 
         private void setLabels(SongData localObj)
