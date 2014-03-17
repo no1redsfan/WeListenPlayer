@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using System.Windows.Threading;
+using Microsoft.Win32;
 using NAudio.CoreAudioApi;
 using System;
 using System.Collections;
@@ -63,6 +64,11 @@ namespace WeListenPlayer
             ///////////////////////////
             ///////////////////////////
 
+            //create timer to get requests.
+
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(10000);
+            timer.Tick += OnTimerTick;
             NAudioEngine soundEngine = NAudioEngine.Instance;
             soundEngine.PropertyChanged += NAudioEngine_PropertyChanged;
 
@@ -84,6 +90,7 @@ namespace WeListenPlayer
         //Declare Variables
         private bool receiving = false;
         private bool random;
+        private DispatcherTimer timer;
 
         //variable for login status
         private bool loggedIn = false;
@@ -121,7 +128,11 @@ namespace WeListenPlayer
         //Playlist Control Methods//
         ////////////////////////////
 
-        
+        //method for receiving requests on a timer.
+        private void OnTimerTick(object sender, EventArgs e)
+        {
+            DoPeriodicRequestCall();
+        }
 
         //Method for moving items up in playlist
         private void OnMoveUpClick(object sender, RoutedEventArgs e)
@@ -189,43 +200,31 @@ namespace WeListenPlayer
         /////////////////////////////////////////////
         //Methods for handling requests from the web
         /////////////////////////////////////////////
-        
+
         //call the get request query on intervals
-        private async void DoPeriodicRequestCall(TimeSpan dueTime, TimeSpan interval, CancellationToken token)
+        private async void DoPeriodicRequestCall()
         {
             // Declare new object
             // await xmlParser.GetTrackInfo(random);
 
-            // Initial wait time before we begin the periodic loop.
-            if (dueTime > TimeSpan.Zero)
-                await Task.Delay(dueTime, token);
+            // TODO: call for requests from database
+            var playlistSongs = getPlaylistSongs();
 
-            // Repeat this loop until cancelled.
-            while (!token.IsCancellationRequested)
+            try
             {
-                // TODO: call for requests from database
-                var playlistSongs = getPlaylistSongs();
+                var addList = await xmlParser.GetTrackInfo(playlistSongs, false);
 
-                try
+                foreach (SongData song in addList)
                 {
-                    var addList = await Task.Run(() => xmlParser.GetTrackInfo(playlistSongs, false));
-                    
-                    foreach (SongData song in addList)
-                    {
-                        dgvPlayList.Items.Add(song);
-                    }
-
+                    dgvPlayList.Items.Add(song);
                     QueueNextSong();
                 }
-                catch
-                {
-                    MessageBox.Show("No songs in request que!");
-                }
-                
-                // Wait to repeat again.
-                if (interval > TimeSpan.Zero)
-                    await Task.Delay(interval, token);
             }
+            catch
+            {
+                MessageBox.Show("No songs in request que!");
+            }
+
         }
 
         ////////////////////////////////////////
@@ -474,25 +473,19 @@ namespace WeListenPlayer
         //method for starting to receive the requests
         private void OnRecieveRequestClick(object sender, RoutedEventArgs e)
         {
-
-            var dueTime = TimeSpan.FromSeconds(10);
-            var interval = TimeSpan.FromSeconds(10);
-            CancellationToken stopReceiving;
-            var receiving = false;
-            if (receiving == false)
+            
+            if (!receiving)
             {
+                timer.Start();
                 receiving = true;
-                DoPeriodicRequestCall(dueTime, interval, stopReceiving);
+                btnStartReceiving.Content = "Stop Receiving Requests";
             }
-            else
+            else if (receiving)
             {
-                stopReceiving.IsCancellationRequested.Equals(true);
+                timer.Stop();
                 receiving = false;
-                DoPeriodicRequestCall(dueTime, interval, stopReceiving);
+                btnStartReceiving.Content = "Start Receiving Requests";
             }
-
-            // TODO: Add a CancellationTokenSource and supply the token here instead of None. 
-
         }
 
         private void btnRegisterLink_Click(object sender, RoutedEventArgs e)

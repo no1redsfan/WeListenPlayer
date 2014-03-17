@@ -59,7 +59,7 @@
                         <RowDefinition Height="86*"/>
                         <RowDefinition Height="8*"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="btnStartReceiving" Grid.Column="0" Grid.Row="0" Content="Receive Requests" 
+                    <Button x:Name="btnStartReceiving" Grid.Column="0" Grid.Row="0" Content="Start Receiving Requests" 
                         HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="165" 
                         Click="OnRecieveRequestClick" Height="22"/>
 
