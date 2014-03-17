@@ -208,13 +208,14 @@ namespace WeListenPlayer
 
                 try
                 {
-                    var addList = await xmlParser.GetTrackInfo(playlistSongs, false);
+                    var addList = await Task.Run(() => xmlParser.GetTrackInfo(playlistSongs, false));
                     
                     foreach (SongData song in addList)
                     {
                         dgvPlayList.Items.Add(song);
-                        QueueNextSong();
                     }
+
+                    QueueNextSong();
                 }
                 catch
                 {
@@ -340,8 +341,7 @@ namespace WeListenPlayer
                     // Assign path to variable
                     var path = song.FilePath;
 
-                    // Get full request
-                    SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
+                    SongData amazonSong = await Task.Run(() => amazonAccesser.getAmazonInfo(song));
 
                     // Set amazonSong Path
                     amazonSong.FilePath = path;
@@ -387,7 +387,7 @@ namespace WeListenPlayer
                         var path = song.FilePath;
 
                         // Get full request
-                        SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
+                        SongData amazonSong = await Task.Run(() => amazonAccesser.getAmazonInfo(song));
 
                         // Set amazonSong Path
                         amazonSong.FilePath = path;
@@ -432,6 +432,11 @@ namespace WeListenPlayer
 
         public void QueueNextSong()
         {
+            // Add method call to upload to database
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri("http://welistenmusic.com/");
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             var playlist = getPlaylistSongs();
 
             //var k = new WeListenXmlParser();
@@ -456,6 +461,9 @@ namespace WeListenPlayer
                 //NAudioEngine.Instance.Volume((float)sldrVolume.Value);  
 
                 NAudioEngine.Instance.OpenFile(path);
+                var playListId = playItem.PlaylistId;
+                //report a song as played to the DB
+                //var response = client.PostAsJsonAsync("api/locations", playListId).Result;
                 FileText.Text = path;
                 random = false;
 
@@ -485,6 +493,24 @@ namespace WeListenPlayer
 
             // TODO: Add a CancellationTokenSource and supply the token here instead of None. 
 
+        }
+
+        private void btnRegisterLink_Click(object sender, RoutedEventArgs e)
+        {
+            string target = "http://www.welistenmusic.com";
+            try
+            {
+                System.Diagnostics.Process.Start(target);
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    MessageBox.Show(noBrowser.Message);
+            }
+            catch (System.Exception other)
+            {
+                MessageBox.Show(other.Message);
+            }
         }
 
         //button click for adding music files to the dB

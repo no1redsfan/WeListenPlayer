@@ -261,7 +261,7 @@
                             <TextBlock x:Name="txtPassword" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top"/>
                             <PasswordBox x:Name="pwbPassword" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Width="120" Height="17"/>
                             <Button x:Name="btnSubmit" Grid.Column="1" Grid.Row="2" Content="Log In" HorizontalAlignment="Right" Margin="0,2,2,0" VerticalAlignment="Center" Width="75" Click="btnSubmit_Click"/>
-
+                            <Button x:Name="btnRegisterLink" Content="Register" Grid.Column="1" HorizontalAlignment="Left" Margin="231,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="btnRegisterLink_Click"/>
                         </Grid>
                     </TabItem>
                 </TabControl>

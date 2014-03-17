@@ -49,25 +49,29 @@ namespace WeListenPlayer.LastFmHandler
 
             //string sendSongUrl = requestUrl + "&" + weListenApiKey;
 
-            string serviceResponse = await new XmlAccesser().GetServiceResponse(requestUrl);
+            var serviceResponse = new XmlAccesser().GetServiceResponse(requestUrl, "text/html");
 
             if (serviceResponse != null)
             {
-                var xDoc = XDocument.Parse(serviceResponse);
+                var xDoc = XDocument.Parse(serviceResponse.Result);
 
                 XNamespace ns = xDoc.Root.Name.Namespace;
 
                 var playlist = (from list in xDoc.Descendants(ns + "PlayListSong")
                                 select new SongData
                                 {
+                                    ASIN = (string)list.Element(ns + "ASIN"),
+                                    Artwork = (string)list.Element(ns + "Artwork"),
+                                    Duration = (int)list.Element(ns + "Duration"),
+                                    Price = (string)list.Element(ns + "Price"),
                                     Title = (string)list.Element(ns + "Title"),
                                     Artist = (string)list.Element(ns + "Artist"),
                                     Album = (string)list.Element(ns + "Album"),
+                                    Year = (int)list.Element(ns + "Year"),
+                                    Genre = (string)list.Element(ns + "Genre"),
                                     FilePath = (string)list.Element(ns + "FilePath").Value.Replace("\\\\", "\\"),
                                     PlaylistId = (int)list.Element(ns + "LocationPlayistId"),
-                                    // ADD ARTWORK HERE
                                     Queued = true
-
                                 }).ToList();
                 if (playlist != null)
                 {

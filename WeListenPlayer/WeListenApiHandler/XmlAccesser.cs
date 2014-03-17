@@ -18,49 +18,38 @@ namespace WeListenPlayer.WeListenApiHandler
         // - Uses       string serviceResponse = await new XmlAccesser().GetServiceResponse({string:path})
         // - Output     Returns httpResponse, Raw XML page for parsing
         ///////////////////////////////////////////////////////
-        public Task<string> GetServiceResponse(string requestUrl)
+        public Task<string> GetServiceResponse(string requestUrl, string contentType)
         {
-            return Task.Run(() =>
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
+            request.Timeout = 60000;
+            request.ContentType = contentType;
+            request.Method = WebRequestMethods.Http.Get;
+            request.Proxy = null;
+
+            try
             {
-                string httpResponse = "";
+                Task<WebResponse> task = Task.Factory.FromAsync(
+                request.BeginGetResponse,
+                asyncResult => request.EndGetResponse(asyncResult),
+                (object)null);
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
-                request.Timeout = 60000;
-                HttpWebResponse response = null;
-                StreamReader reader = null;
+                return task.ContinueWith(s => ReadStreamFromResponse(s.Result));
+            }
+            catch
+            {
+                return null;
+            }   
+        }
 
-                try
-                {
-                    try
-                    {
-                        response = (HttpWebResponse)request.GetResponse();
-                    }
-                    catch (WebException ex)
-                    {
-                        response = (HttpWebResponse)ex.Response;
-                    }
-
-                    reader = new StreamReader(response.GetResponseStream());
-                    httpResponse = reader.ReadToEnd();
-                }
-                catch
-                {
-                    //MessageBox.Show("Script has stopped unexpectedly!");
-                }
-                finally
-                {
-                    if (reader != null)
-                    {
-                        reader.Close();
-                    }
-                    if (response != null)
-                    {
-                        response.Close();
-                    }
-                }
-
-                return httpResponse;
-            });
+        private static string ReadStreamFromResponse(WebResponse response)
+        {
+            using (Stream responseStream = response.GetResponseStream())
+            using (StreamReader sr = new StreamReader(responseStream))
+            {
+                //Need to return this response 
+                string strContent = sr.ReadToEnd();
+                return strContent;
+            }
         }
     }
 }

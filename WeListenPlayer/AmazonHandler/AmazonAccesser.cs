@@ -12,63 +12,6 @@ namespace WeListenPlayer.AmazonHandler
 {
     class AmazonAccesser
     {
-        //public string artist {get; set;}
-        //public string album { get; set; }
-        //public string title { get; set; }
-        //public string fullRequest { get; set; }
-
-        //MainWindow newMain; // Global Declaration
-
-        //// Capture MainWindow Instance and assign to Global Declaration
-        //public void setMain(MainWindow mainWindow)
-        //{
-        //    newMain = mainWindow;
-        //}
-
-        // Collect variables and pass to a New Thread
-        //public async void getAmazonItems(string tempArtist, string tempAlbum, string tempTitle, string fullRequest)
-        //{
-        //    this.artist = tempArtist;
-        //    this.album = tempAlbum;
-        //    this.title = tempTitle;
-
-        //    // Remove anything in parenthesis/brackets and all special characters
-        //    string regEx = @"(?<=\()(.*?)(?=\))|(?<=\[)(.*?)(?=\])|(?<=\{)(.*?)(?=\})|[^\w ]";
-
-        //    // Handle passed parameters
-        //    if (artist != "UNKNOWN")
-        //    {
-        //        artist = Regex.Replace(artist, regEx, "");
-        //        fullRequest += artist;
-        //    }
-
-        //    if (this.album != "UNKNOWN" && this.album != this.artist)
-        //    {
-        //        album = Regex.Replace(album, regEx, "");
-        //        fullRequest += " " + album;
-        //    }
-
-        //    if (this.title != "UNKNOWN" && this.title != this.album)
-        //    {
-        //        title = Regex.Replace(title, regEx, "");
-        //        fullRequest += " " + title;
-        //    }
-
-        //    this.fullRequest = fullRequest;
-
-        //    //Thread thread = new Thread(new ThreadStart(getData));
-        //    //thread.IsBackground = true;
-        //    //thread.Start();
-
-        //    SongData tempSong = new SongData();
-
-        //    await getData(tempSong, this.fullRequest);
-        //}
-
-
-
-
-
         public async Task<SongData> getAmazonInfo(SongData song)
         {
             var fullRequest = parseInfo(song);
