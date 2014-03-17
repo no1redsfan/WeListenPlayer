@@ -12,7 +12,7 @@ namespace WeListenPlayer.FormHandler
     {
         private SongData newSong = new SongData();
 
-        public async Task<List<SongData>> fileDiag()
+        public List<SongData> fileDiag()
         {
             //These variables are string array lists to store song locations.
             var newPaths = new ArrayList();

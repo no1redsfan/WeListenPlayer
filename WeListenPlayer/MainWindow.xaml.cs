@@ -1,5 +1,4 @@
-﻿using System.Windows.Threading;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using NAudio.CoreAudioApi;
 using System;
 using System.Collections;
@@ -8,12 +7,12 @@ using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using WeListenPlayer.AmazonHandler;
 using WeListenPlayer.APIClasses;
 using WeListenPlayer.ButtonHandler;
@@ -212,7 +211,7 @@ namespace WeListenPlayer
 
             try
             {
-                var addList = await xmlParser.GetTrackInfo(playlistSongs, false);
+                var addList = await Task.Run(() => xmlParser.GetTrackInfo(playlistSongs, false));
 
                 foreach (SongData song in addList)
                 {
@@ -327,7 +326,7 @@ namespace WeListenPlayer
         private async void fileSelector (object sender, RoutedEventArgs e)
         {
             // Return from file dialog
-            var files = await fileHandler.fileDiag();
+            var files = fileHandler.fileDiag();
 
             // Get songs in playlist
             var playlistSongs = getPlaylistSongs();
@@ -688,7 +687,7 @@ namespace WeListenPlayer
 
 
         #region NAudio Engine Events
-        private async void NAudioEngine_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void NAudioEngine_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var engine = NAudioEngine.Instance;
             switch (e.PropertyName)
@@ -974,7 +973,6 @@ namespace WeListenPlayer
 
         private async void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            var loggedIn = false;
             User returnedUser;
 
             var usr = tbUserName.Text;

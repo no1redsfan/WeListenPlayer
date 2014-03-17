@@ -40,9 +40,6 @@ namespace WeListenPlayer.NAudioHandler
 
         //wasapiOut Conversion
         private WasapiOut wasapiOutDevice;
-        private AudioFileReader wReader;
-
-        private WaveOut waveOutDevice;
         private Mp3FileReader reader;
         private WaveStream activeStream;
         private WaveChannel32 inputStream;

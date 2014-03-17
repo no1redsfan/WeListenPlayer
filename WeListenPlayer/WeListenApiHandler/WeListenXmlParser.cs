@@ -27,7 +27,7 @@ namespace WeListenPlayer.LastFmHandler
         //              k.GetTrackInfo();
         // - Output     Returns object list of all songs pulled from API
         ///////////////////////////////////////////////////////
-        public async Task<List<SongData>> GetTrackInfo(List<SongData> playlistSongs, bool randomSong)
+        public List<SongData> GetTrackInfo(List<SongData> playlistSongs, bool randomSong)
         {
             // Create master / finalized list
             var pullList = new List<SongData>();
