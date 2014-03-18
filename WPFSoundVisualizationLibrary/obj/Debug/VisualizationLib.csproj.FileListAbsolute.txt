@@ -30,6 +30,7 @@ C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.xml
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.dll
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csprojResolveAssemblyReference.cache
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.cache
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.lref
@@ -39,4 +40,3 @@ C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csproj.GenerateResource.Cache
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.dll
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.pdb
-C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csprojResolveAssemblyReference.cache

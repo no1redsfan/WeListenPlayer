@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer\App.xaml
-32128152351
+7845507311
 
-27-467016735
-39-1926736302
-MainWindow.xaml;Themes\ExpressionDark.xaml;Themes\ExpressionLight.xaml;
+29-1338326444
+411061543390
+Control\General\WindowHeaderControl.xaml;MainWindow.xaml;Resources\IconResources.xaml;Style\ExpressionDark.xaml;Style\Generic.xaml;Themes\ExpressionDark.xaml;Themes\ExpressionLight.xaml;
 
 False
 

@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -121,7 +122,14 @@ namespace WeListenPlayer
             }
         }
 
-
+        //// Player UI Management
+        private void BorderMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
 
         ////////////////////////////
         //Playlist Control Methods//
@@ -462,7 +470,7 @@ namespace WeListenPlayer
                 var playListId = playItem.PlaylistId;
                 //report a song as played to the DB
                 //var response = client.PostAsJsonAsync("api/locations", playListId).Result;
-                FileText.Text = path;
+                //FileText.Text = path;
                 random = false;
 
                 setLabels(playlist[0]);
@@ -954,15 +962,8 @@ namespace WeListenPlayer
 
         private void setLabels(SongData localObj)
         {
-            // Assign Local labels
-            tbLocalTitleInfo.Text = localObj.Title;
-            tbLocalArtistInfo.Text = localObj.Artist;
-            tbLocalAlbumInfo.Text = localObj.Album;
-            tbLocalYearInfo.Text = localObj.Year.ToString();
-            tbLocalGenreInfo.Text = localObj.Genre;
-            tbLocalFilePathInfo.Text = localObj.FilePath;
-
-            // Assign Amazon labels
+           
+            // Assign Song labels
             tbAmazonArtistInfo.Text = localObj.Artist;
             tbAmazonAlbumInfo.Text = localObj.Album;
             tbAmazonTitleInfo.Text = localObj.Title;

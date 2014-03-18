@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="WeListenPlayer.Control.General.WindowHeaderControl"
+             x:Name="HeaderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="60">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityOfBool" />
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal">
+        <TextBlock Name="MinimizeButton" Style="{StaticResource HeaderButton}" Text="0" FontFamily="Webdings" Margin="5,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" MouseLeftButtonUp="MinimizeButtonMouseLeftButtonUp" Visibility="{Binding ElementName=HeaderControl, Path=CanMinimize, Converter={StaticResource VisibilityOfBool}}" />
+        <TextBlock Name="MaximizeButton" Style="{StaticResource HeaderButton}" Text="1" FontFamily="Webdings" Margin="5,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" MouseLeftButtonUp="MaximizeButtonMouseLeftButtonUp" Visibility="{Binding ElementName=HeaderControl, Path=CanMaximize, Converter={StaticResource VisibilityOfBool}}" />
+        <TextBlock Name="CloseButton" Style="{StaticResource HeaderButton}" Text="r" FontFamily="Webdings" Margin="5,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" MouseLeftButtonUp="CloseButtonMouseLeftButtonUp" />
+    </StackPanel>
+</UserControl>
