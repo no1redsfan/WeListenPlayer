@@ -318,9 +318,9 @@
                                                         <ColumnDefinition Width="45*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock x:Name="txtUserName" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="User Name:" VerticalAlignment="Top"/>
-                                                    <TextBox x:Name="tbUserName" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Height="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+                                                    <TextBox x:Name="tbUserName" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
                                                     <TextBlock x:Name="txtPassword" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top"/>
-                                                    <PasswordBox x:Name="pwbPassword" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Height="16"/>
+                                                    <PasswordBox x:Name="pwbPassword" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Height="20"/>
                                                     <Button x:Name="btnSubmit" Grid.Column="1" Grid.Row="2" Content="Log In" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Click="btnSubmit_Click" Margin="93,0,0,7"/>
                                                     <Button x:Name="btnRegisterLink" Content="Register" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="btnRegisterLink_Click"/>
                                                 </Grid>

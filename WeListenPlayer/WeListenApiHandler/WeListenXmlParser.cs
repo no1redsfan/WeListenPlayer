@@ -49,7 +49,7 @@ namespace WeListenPlayer.LastFmHandler
 
             //string sendSongUrl = requestUrl + "&" + weListenApiKey;
 
-            var serviceResponse = new XmlAccesser().GetServiceResponse(requestUrl, "text/html");
+            var serviceResponse = new XmlAccesser().GetServiceResponse(requestUrl, "text/xml");
 
             if (serviceResponse != null)
             {

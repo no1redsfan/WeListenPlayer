@@ -31,14 +31,14 @@ namespace WeListenPlayer.WeListenApiHandler
 
                 string requestUrl = baseURL + "?username=" + user + "&password=" + password;
 
-                string serviceResponse = await new XmlAccesser().GetServiceResponse(requestUrl, "text/html");
+                string serviceResponse = await new XmlAccesser().GetServiceResponse(requestUrl, "text/xml");
 
                 if (serviceResponse != null)
                 {
                     var xDoc = XDocument.Parse(serviceResponse);
                     XNamespace ns = xDoc.Root.Name.Namespace;
 
-                    var returnedUser = (from list in xDoc.Descendants(ns + "UserController.AuthenticatedUser")
+                    var returnedUser = (from list in xDoc.Descendants(ns + "AuthenticatedUser")
                                     select new User
                                     {
                                         EmailAddress = (string)list.Element(ns + "Email"),
