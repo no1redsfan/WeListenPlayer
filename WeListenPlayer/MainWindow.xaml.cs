@@ -23,7 +23,13 @@ using WeListenPlayer.NAudioHandler;
 using WeListenPlayer.TagLibHandler;
 using WeListenPlayer.WeListenApiHandler;
 
-
+/////////////////////////////////////////
+//// Noted BUGS to fix
+//// ------------------------------------
+//// - Song ends with no songs left in que (null reference error)
+//// - Playlist recieving requests does not send updated que id (endless que'd songs)
+//// - Removing song does not update Artwork / Wave form (-probably add queueNextSong();)
+/////////////////////////////////////////
 
 namespace WeListenPlayer
 {
@@ -439,9 +445,9 @@ namespace WeListenPlayer
         public void QueueNextSong()
         {
             // Add method call to upload to database
-            //HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri("http://welistenmusic.com/");
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://welistenmusic.com/api/locations/1");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var playlist = getPlaylistSongs();
 
@@ -468,8 +474,10 @@ namespace WeListenPlayer
 
                 NAudioEngine.Instance.OpenFile(path);
                 var playListId = playItem.PlaylistId;
+                
                 //report a song as played to the DB
-                //var response = client.PostAsJsonAsync("api/locations", playListId).Result;
+                var response = Task.Run(() => client.PostAsJsonAsync("api/locations", playListId).Result);
+                
                 //FileText.Text = path;
                 random = false;
 
@@ -526,9 +534,17 @@ namespace WeListenPlayer
 
             // Set master List
             List<SongData> songList = new List<SongData>();
+            List<SongData> files;
 
-            // Return from directory dialog
-            var files = await dirHandler.dirDiag(targetDiredctory, songList);
+            try
+            {
+                // Return from directory dialog
+                files = await dirHandler.dirDiag(targetDiredctory, songList);
+            }
+            catch
+            {
+                files = null;
+            }
 
             if (files != null)
             {
@@ -539,6 +555,10 @@ namespace WeListenPlayer
 
                     // Get full request
                     SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
+
+                    // Set location / user ID
+                    amazonSong.UserID = 1;
+                    amazonSong.LocationID = 1;
 
                     // Set and adjust file paths for DB storage
                     amazonSong.FilePath = path;
