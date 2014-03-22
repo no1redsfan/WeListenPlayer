@@ -127,7 +127,8 @@
                                         <!--PLAYLIST DATA GRID-->
                                         <Grid Margin="1">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="106*"/>
+                                                <ColumnDefinition Width="18*"/>
+                                                <ColumnDefinition Width="88*"/>
                                                 <ColumnDefinition Width="155*"/>
                                                 <ColumnDefinition Width="28*"/>
                                             </Grid.ColumnDefinitions>
@@ -138,7 +139,7 @@
                                                 <RowDefinition Height="5*"/>
                                             </Grid.RowDefinitions>
 
-                                            <Button x:Name="btnStartReceiving" Grid.Column="0" Grid.Row="0" Content="Start Receiving Requests" Click="OnRecieveRequestClick" Grid.ColumnSpan="2" />
+                                            <Button x:Name="btnStartReceiving" Grid.Column="0" Grid.Row="0" Content="Start Receiving Requests" Click="OnRecieveRequestClick" Grid.ColumnSpan="3" />
 
                                             <DataGrid 
             	                            x:Name="dgvPlayList"
@@ -168,7 +169,7 @@
             	                            CanUserSortColumns="False" 
             	                            AreRowDetailsFrozen="True" 
             	                            FontFamily="Verdana" 
-            	                            FontSize="10" Grid.ColumnSpan="2">
+            	                            FontSize="10" Grid.ColumnSpan="3">
 
                                                 <DataGrid.Resources>
                                                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFFFFF"/>
@@ -218,10 +219,10 @@
                                                 </DataGrid.Columns>
                                             </DataGrid>
 
-                                            <Button x:Name="btnAddSongs" Grid.Column="0" Grid.Row="2"  Content="Add Songs" Click="fileSelector" Grid.ColumnSpan="2" />
-                                            <Button x:Name="btnImport" Grid.Column="0" Grid.Row="3" Content="Add Folder" Click="dirSelector" Grid.ColumnSpan="2"/>
+                                            <Button x:Name="btnAddSongs" Grid.Column="0" Grid.Row="2"  Content="Add Songs" Click="fileSelector" Grid.ColumnSpan="3" />
+                                            <Button x:Name="btnImport" Grid.Column="0" Grid.Row="3" Content="Add Folder" Click="dirSelector" Grid.ColumnSpan="3"/>
 
-                                            <Button x:Name="btnMoveUp" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="OnMoveUpClick" Height="25" Grid.Column="2" Grid.Row="1" >
+                                            <Button x:Name="btnMoveUp" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Click="OnMoveUpClick" Height="25" Grid.Column="3" Grid.Row="1" >
                                                 <Button.RenderTransform>
                                                     <TransformGroup>
                                                         <ScaleTransform/>
@@ -232,20 +233,37 @@
                                                 </Button.RenderTransform>
                                                 <Path Fill="Red" Margin="3" Width="15" Height="15" Data="M0,0 L2,0 L1,1 Z" Stretch="Fill" StrokeLineJoin="Round"/>
                                             </Button>
-                                            <Button x:Name="btnRemoveSong" VerticalAlignment="Center" Height="25" Background="Red" Content="X" IsCancel="True" FontWeight="Bold" Foreground="White" Click="OnRemoveSongClick" Grid.Column="2" Grid.Row="1" Margin="0,252" />
+                                            <Button x:Name="btnRemoveSong" VerticalAlignment="Center" Height="25" Background="Red" Content="X" IsCancel="True" FontWeight="Bold" Foreground="White" Click="OnRemoveSongClick" Grid.Column="3" Grid.Row="1" Margin="0,252" />
 
-                                            <Button x:Name="btnMoveDown" VerticalAlignment="Bottom" Click="OnMoveDownClick" Height="25" Grid.Column="2" Grid.Row="1">
+                                            <Button x:Name="btnMoveDown" VerticalAlignment="Bottom" Click="OnMoveDownClick" Height="25" Grid.Column="3" Grid.Row="1">
                                                 <Path Fill="Red" Margin="3" Width="15" Height="15" Data="M0,0 L2,0 L1,1 Z" Stretch="Fill" StrokeLineJoin="Round"/>
                                             </Button>
                                         </Grid>
 
                                     </ad:DockableContent>
                                     <ad:DockableContent Title="Database" IsCloseable="False" x:Name="content_db">
-
-                                        <Button x:Name="btnUploadFolderToDB" Height="25" 
+                                        <Grid Margin="1" Row="5" Column="2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="5*"/>
+                                                <RowDefinition Height="5*"/>
+                                                <RowDefinition Height="5*"/>
+                                                <RowDefinition Height="5*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50*" />
+                                                <ColumnDefinition Width="50*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button x:Name="btnUploadFolderToDB" Height="25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
                                           Content="Add Folder To Catalog" Click="OnUploadFolderToDbClick" 
-                                          VerticalAlignment="Top" />                                        
-                                        <!--<Label x:Name="LblProgressCount" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0"></Label>-->
+                                          VerticalAlignment="Top" />
+                                            <Label x:Name="lblProgress" Grid.Row="1" Grid.Column="0" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Processed:</Label>
+                                            <Label x:Name="lblProgressCount" Grid.Row="1" Grid.Column="1" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
+                                            <Label x:Name="lblAdded" Grid.Row="2" Grid.Column="0" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Added:</Label>
+                                            <Label x:Name="lblAddedCount" Grid.Row="2" Grid.Column="1" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
+                                            <Label x:Name="lblRejected" Grid.Row="3" Grid.Column="0" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Rejected:</Label>
+                                            <Label x:Name="lblRejectedCount" Grid.Row="3" Grid.Column="1" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
+                                        </Grid>
+                                        
 
                                     </ad:DockableContent>
                                 </ad:DockablePane>

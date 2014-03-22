@@ -562,6 +562,7 @@ namespace WeListenPlayer
 
             if (files != null)
             {
+                var processCount = 0;
                 var addedCount = 0;
                 var notAddedCount = 0;
                 foreach (SongData song in files)
@@ -569,6 +570,9 @@ namespace WeListenPlayer
                     // Assign path to variable
                     var path = song.FilePath;
 
+                    processCount++;
+                    lblProgressCount.Content = processCount;
+                    ProcessEvent();
                     // Get full request
                     SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
 
@@ -586,15 +590,34 @@ namespace WeListenPlayer
                     {
                         //MessageBox.Show("Song Added");
                         addedCount++;
+                        lblAddedCount.Content = addedCount;
+                        ProcessEvent();
                     }
                     else
                     {
                         notAddedCount++;
+                        lblRejectedCount.Content = notAddedCount;
+                        ProcessEvent();
                         //MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
                     }
                 }
                 MessageBox.Show("Songs Added:  " + addedCount + "  Songs Rejected:  " + notAddedCount);
             }
+        }
+
+        public void ProcessEvent()
+        {
+            var frame = new DispatcherFrame();
+            Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background,
+                new DispatcherOperationCallback(ExitFrames), frame);
+            Dispatcher.PushFrame(frame);
+        }
+
+        public object ExitFrames(object f)
+        {
+            ((DispatcherFrame)f).Continue = false;
+
+            return null;
         }
 
         ///////////////////////////////////////////////////////
