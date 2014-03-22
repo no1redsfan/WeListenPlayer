@@ -629,7 +629,7 @@ namespace WeListenPlayer.NAudioHandler
             catch
             {
                 // Catch from ChannelPosition NullReference Error, Just Stop(). Jeeze.
-                wasapiOutDevice.Stop();
+                //wasapiOutDevice.Stop();
             }
             inChannelTimerUpdate = false;
         }

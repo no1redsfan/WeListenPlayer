@@ -232,9 +232,21 @@ namespace WeListenPlayer
                     dgvPlayList.Items.Add(song);
                     QueueNextSong();
                 }
+                if (dgvPlayList.Items.Count < 2)
+                {
+                    
+                    var addRandom = await Task.Run(() => xmlParser.GetTrackInfo(playlistSongs, true));
+                    foreach (SongData song in addRandom)
+                    {
+                        dgvPlayList.Items.Add(song);
+                        QueueNextSong();
+                    }
+                }
+
             }
             catch
             {
+                
                 MessageBox.Show("No songs in request que!");
             }
 
@@ -452,13 +464,14 @@ namespace WeListenPlayer
             var playlist = getPlaylistSongs();
 
             //var k = new WeListenXmlParser();
-            if (dgvPlayList.Items.IsEmpty)
-            {
-                random = false;
-            }
-            if (dgvPlayList.Items.IsEmpty)
+            //if (dgvPlayList.Items.IsEmpty)
+            //{
+            //    random = false;
+            //}
+            if (dgvPlayList.Items.Count == 1)
             {
                 random = true;
+
             }
 
             if (playlist != null)
@@ -557,8 +570,8 @@ namespace WeListenPlayer
                     SongData amazonSong = await amazonAccesser.getAmazonInfo(song);
 
                     // Set location / user ID
-                    amazonSong.UserID = 1;
-                    amazonSong.LocationID = 1;
+                    amazonSong.UserID = 3;
+                    amazonSong.LocationID = 3;
 
                     // Set and adjust file paths for DB storage
                     amazonSong.FilePath = path;

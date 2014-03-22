@@ -36,13 +36,14 @@ namespace WeListenPlayer.LastFmHandler
             if (randomSong)
             {
                 baseURL = "http://welistenmusic.com/api/randomsong/"; // call for a random song
+                
             }
             else
             {
                 baseURL = "http://welistenmusic.com/api/locations/"; // Base default url
             }
 
-            string location = "1"; // Playlist location (1 default)
+            string location = "3"; // Playlist location (1 default)
             string requestUrl = baseURL + location;
 
             //string weListenApiKey = "fPOIWBN465IOA4567VUHEPOF8G6I5banspoighao";
