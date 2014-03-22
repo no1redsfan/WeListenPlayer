@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Shell.Interop;
 using NAudio.CoreAudioApi;
 using System;
 using System.Collections;
@@ -561,6 +562,8 @@ namespace WeListenPlayer
 
             if (files != null)
             {
+                var addedCount = 0;
+                var notAddedCount = 0;
                 foreach (SongData song in files)
                 {
                     // Assign path to variable
@@ -577,16 +580,20 @@ namespace WeListenPlayer
                     amazonSong.FilePath = path;
 
                     var response = client.PostAsJsonAsync("api/song", amazonSong).Result;
+                    
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Song Added");
+                        //MessageBox.Show("Song Added");
+                        addedCount++;
                     }
                     else
                     {
-                        MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                        notAddedCount++;
+                        //MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
                     }
                 }
+                MessageBox.Show("Songs Added:  " + addedCount + "  Songs Rejected:  " + notAddedCount);
             }
         }
 
