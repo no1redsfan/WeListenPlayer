@@ -258,10 +258,10 @@
                                           VerticalAlignment="Top" />
                                             <Label x:Name="lblProgress" Grid.Row="1" Grid.Column="0" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Processed:</Label>
                                             <Label x:Name="lblProgressCount" Grid.Row="1" Grid.Column="1" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
-                                            <Label x:Name="lblAdded" Grid.Row="2" Grid.Column="0" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Added:</Label>
-                                            <Label x:Name="lblAddedCount" Grid.Row="2" Grid.Column="1" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
-                                            <Label x:Name="lblRejected" Grid.Row="3" Grid.Column="0" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Rejected:</Label>
-                                            <Label x:Name="lblRejectedCount" Grid.Row="3" Grid.Column="1" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
+                                            <Label x:Name="lblAdded" Grid.Row="2" Grid.Column="0" Foreground="Green" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Added:</Label>
+                                            <Label x:Name="lblAddedCount" Grid.Row="2" Grid.Column="1" Foreground="Green" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
+                                            <Label x:Name="lblRejected" Grid.Row="3" Grid.Column="0" Foreground="Red" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Rejected:</Label>
+                                            <Label x:Name="lblRejectedCount" Grid.Row="3" Grid.Column="1" Foreground="Red" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
                                         </Grid>
                                         
 

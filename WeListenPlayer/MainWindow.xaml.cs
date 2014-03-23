@@ -459,7 +459,7 @@ namespace WeListenPlayer
         {
             // Add method call to upload to database
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://welistenmusic.com/api/locations/1");
+            client.BaseAddress = new Uri("http://welistenmusic.com/api/locations/3");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var playlist = getPlaylistSongs();
@@ -565,6 +565,10 @@ namespace WeListenPlayer
                 var processCount = 0;
                 var addedCount = 0;
                 var notAddedCount = 0;
+                lblProgressCount.Content = processCount;
+                lblAddedCount.Content = addedCount;
+                lblRejectedCount.Content = notAddedCount;
+
                 foreach (SongData song in files)
                 {
                     // Assign path to variable
