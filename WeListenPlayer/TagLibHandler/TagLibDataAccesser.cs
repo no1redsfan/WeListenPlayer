@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using WeListenPlayer.APIClasses;
 
-namespace WeListenPlayer.TagLibHandler
+namespace WeListenPlayer
 {
     class TagLibDataAccesser
     {

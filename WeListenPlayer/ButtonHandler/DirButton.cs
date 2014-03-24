@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WeListenPlayer.ButtonHandler
+namespace WeListenPlayer
 {
     class DirButton
     {

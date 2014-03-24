@@ -14,14 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using WeListenPlayer.AmazonHandler;
-using WeListenPlayer.APIClasses;
-using WeListenPlayer.ButtonHandler;
-using WeListenPlayer.FormHandler;
-using WeListenPlayer.LastFmHandler;
-using WeListenPlayer.NAudioHandler;
-using WeListenPlayer.TagLibHandler;
-using WeListenPlayer.WeListenApiHandler;
+
 
 /////////////////////////////////////////
 //// Noted BUGS to fix
@@ -57,9 +50,6 @@ namespace WeListenPlayer
         {
 
             InitializeComponent();
-            //var initializer = new AmazonAccesser();
-            //initializer.setMain(this); // Declare MainWindow and pass as parameter
-            // initializer.getAmazonItems("test", "test", "test", "");
             PopulateCboDevices();
 
             //Load WeListen API
@@ -96,7 +86,6 @@ namespace WeListenPlayer
 
         //Declare Variables
         private bool receiving = false;
-        private bool random;
         private DispatcherTimer timer;
 
         //variable for login status
@@ -462,6 +451,8 @@ namespace WeListenPlayer
             client.BaseAddress = new Uri("http://welistenmusic.com/api/locations/3");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+            //bool random;
+
             var playlist = getPlaylistSongs();
 
             //var k = new WeListenXmlParser();
@@ -469,11 +460,11 @@ namespace WeListenPlayer
             //{
             //    random = false;
             //}
-            if (dgvPlayList.Items.Count == 1)
-            {
-                random = true;
+            //if (dgvPlayList.Items.Count == 1)
+            //{
+            //    random = true;
 
-            }
+            //}
 
             if (playlist != null)
             {
@@ -493,7 +484,7 @@ namespace WeListenPlayer
                 var response = Task.Run(() => client.PostAsJsonAsync("api/locations", playListId).Result);
                 
                 //FileText.Text = path;
-                random = false;
+                //random = false;
 
                 setLabels(playlist[0]);
             }

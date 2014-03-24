@@ -6,7 +6,7 @@
 using System;
 using NAudio.Dsp;
 
-namespace WeListenPlayer.NAudioHandler
+namespace WeListenPlayer
 {
     public class SampleAggregator
     {

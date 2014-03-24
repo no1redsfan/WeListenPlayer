@@ -6,9 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeListenPlayer.Amazon.PAAPI;
-using WeListenPlayer.APIClasses;
 
-namespace WeListenPlayer.AmazonHandler
+namespace WeListenPlayer
 {
     class AmazonAccesser
     {

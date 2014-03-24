@@ -8,10 +8,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using WeListenPlayer.APIClasses;
-using WeListenPlayer.TagLibHandler;
 
-namespace WeListenPlayer.FormHandler
+namespace WeListenPlayer
 {
     class DirectoryHandler
     {

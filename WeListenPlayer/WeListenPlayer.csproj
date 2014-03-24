@@ -128,7 +128,6 @@
     <Compile Include="Amazon.ECS.Addons\AmazonSigningEndpointBehavior.cs" />
     <Compile Include="Amazon.ECS.Addons\AmazonSigningMessageInspector.cs" />
     <Compile Include="AmazonHandler\AmazonAccesser.cs" />
-    <Compile Include="APIClasses\asyncWorker.cs" />
     <Compile Include="APIClasses\RequestQueued.cs" />
     <Compile Include="APIClasses\User.cs" />
     <Compile Include="App.xaml.cs">
