@@ -54,10 +54,19 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Label="SlowCheetah">
+    <SlowCheetahToolsPath>$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\SlowCheetah.2.5.10.3\tools\))</SlowCheetahToolsPath>
+    <SlowCheetah_EnableImportFromNuGet Condition=" '$(SC_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
+    <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
+    <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="lastfm-sharp">
-      <HintPath>bin\Debug\lastfm-sharp.dll</HintPath>
+    <Reference Include="AvalonDock">
+      <HintPath>..\packages\AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="AvalonDock.Themes">
+      <HintPath>..\packages\AvalonDock.Themes.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net45\Microsoft.Threading.Tasks.dll</HintPath>
@@ -66,13 +75,13 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net45\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack">
-      <HintPath>..\..\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <HintPath>..\Packages\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
-      <HintPath>..\..\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <HintPath>..\Packages\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="NAudio">
-      <HintPath>bin\Debug\NAudio.dll</HintPath>
+      <HintPath>..\Packages\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -102,7 +111,7 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="taglib-sharp">
-      <HintPath>bin\Debug\taglib-sharp.dll</HintPath>
+      <HintPath>..\Packages\taglib-sharp.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
@@ -110,20 +119,38 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="XmlLib">
-      <HintPath>..\..\XmlLib-master\bin\debug\XmlLib.dll</HintPath>
+      <HintPath>..\Packages\XmlLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Amazon.ECS.Addons\AmazonHeader.cs" />
+    <Compile Include="Amazon.ECS.Addons\AmazonSigningBehaviorExtensionElement.cs" />
+    <Compile Include="Amazon.ECS.Addons\AmazonSigningEndpointBehavior.cs" />
+    <Compile Include="Amazon.ECS.Addons\AmazonSigningMessageInspector.cs" />
     <Compile Include="AmazonHandler\AmazonAccesser.cs" />
     <Compile Include="APIClasses\asyncWorker.cs" />
     <Compile Include="APIClasses\RequestQueued.cs" />
+    <Compile Include="APIClasses\User.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ButtonHandler\DirButton.cs" />
-    <Compile Include="FormHandler\DataGridHandler.cs" />
-    <Compile Include="FormHandler\DefaultSongInfoAccesser.cs" />
+    <Compile Include="Control\General\CustomWindow.cs" />
+    <Compile Include="Control\General\WindowHeaderControl.xaml.cs">
+      <DependentUpon>WindowHeaderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FormHandler\DirectoryHandler.cs" />
+    <Compile Include="FormHandler\DuplicateCheck.cs" />
+    <Compile Include="FormHandler\FileHandler.cs" />
+    <Compile Include="NAudioHandler\NAudioEngine.cs" />
+    <Compile Include="NAudioHandler\SampleAggregator.cs" />
+    <Compile Include="NAudioHandler\UIHelper.cs" />
+    <Compile Include="Service References\Amazon.PAAPI\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="WeListenApiHandler\UserXmlParser.cs" />
     <Compile Include="WeListenApiHandler\WeListenXmlParser.cs" />
     <Compile Include="TagLibHandler\TagLibDataAccesser.cs" />
     <Compile Include="WeListenApiHandler\XmlAccesser.cs" />
@@ -131,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Control\General\WindowHeaderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -142,6 +173,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\IconResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\ExpressionDark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ExpressionDark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ExpressionLight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -167,6 +218,61 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\Amazon.PAAPI\AWSECommerceService.wsdl" />
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.BrowseNodeLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.BrowseNodeLookupResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartAddResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartClearResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartClearResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartCreateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartCreateResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartGetResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartModifyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartModifyResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.ItemLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.ItemLookupResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.ItemSearchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.ItemSearchResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.SimilarityLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.SimilarityLookupResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -174,14 +280,43 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Amazon.PAAPI.WCF\Amazon.PAAPI.WCF.csproj">
-      <Project>{d38b4a40-d315-4158-9bd1-34c1697668bb}</Project>
-      <Name>Amazon.PAAPI.WCF</Name>
+    <ProjectReference Include="..\WPFSoundVisualizationLibrary\VisualizationLib.csproj">
+      <Project>{90f96222-1c39-4a19-abe8-1b00fb330985}</Project>
+      <Name>VisualizationLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AmazonSOAP\AmazonSOAP.csproj">
-      <Project>{986d8407-0e81-4992-8387-7ee9dcec5cff}</Project>
-      <Name>AmazonSOAP</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WeListenLogo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bg.jpg" />
+    <Resource Include="Resources\Icons\iStudio_128x128.png" />
+    <Resource Include="Resources\Icons\iStudio_256x256.png" />
+    <Resource Include="Resources\Icons\iStudio_32x32.png" />
+    <Resource Include="Resources\Icons\iStudio_64x64.png" />
+    <Resource Include="Resources\Icons\iStudio_full.png" />
+    <Resource Include="Resources\Icons\message_alert_64x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Amazon.PAAPI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Amazon.PAAPI\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Amazon.PAAPI\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Amazon.PAAPI\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
@@ -189,6 +324,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
+  <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

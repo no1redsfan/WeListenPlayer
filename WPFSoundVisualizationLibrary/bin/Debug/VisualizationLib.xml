@@ -1,0 +1,1397 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VisualizationLib</name>
+    </assembly>
+    <members>
+        <member name="T:VisualizationLib.AlbumArtDisplay">
+            <summary>
+            Displays album cover artwork
+            with a CD Jewel Case overlay.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.AlbumArtDisplay.AlbumArtImageProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.AlbumArtDisplay.AlbumArtImage"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.AlbumArtDisplay.OnCoerceAlbumArtImage(System.Windows.Media.ImageSource)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.AlbumArtDisplay.AlbumArtImage"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.AlbumArtDisplay.AlbumArtImage"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.AlbumArtDisplay.AlbumArtImage"/></returns>
+        </member>
+        <member name="M:VisualizationLib.AlbumArtDisplay.OnAlbumArtImageChanged(System.Windows.Media.ImageSource,System.Windows.Media.ImageSource)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.AlbumArtDisplay.AlbumArtImage"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.AlbumArtDisplay.AlbumArtImage"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.AlbumArtDisplay.AlbumArtImage"/></param>
+        </member>
+        <member name="M:VisualizationLib.AlbumArtDisplay.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code
+            or internal processes call System.Windows.FrameworkElement.ApplyTemplate().
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.AlbumArtDisplay.AlbumArtImage">
+            <summary>
+            Gets or sets the image to display in the CD jewel case as the album art cover. If this value
+            is set to null, the CD sleeve will appear empty and show an unlabeled disc instead.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.DigitalClock">
+            <summary>
+            A digital LED clock display control with 
+            hours, minutes, seconds, and hundredths of a second.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.DigitalClock.TimeProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.DigitalClock.Time"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.DigitalClock.OnCoerceTime(System.TimeSpan)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.DigitalClock.Time"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.DigitalClock.Time"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.DigitalClock.Time"/></returns>
+        </member>
+        <member name="M:VisualizationLib.DigitalClock.OnTimeChanged(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.DigitalClock.Time"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.DigitalClock.Time"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.DigitalClock.Time"/></param>
+        </member>
+        <member name="F:VisualizationLib.DigitalClock.ShowHoursProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.DigitalClock.ShowHours"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.DigitalClock.OnCoerceShowHours(System.Boolean)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.DigitalClock.ShowHours"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.DigitalClock.ShowHours"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.DigitalClock.ShowHours"/></returns>
+        </member>
+        <member name="M:VisualizationLib.DigitalClock.OnShowHoursChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.DigitalClock.ShowHours"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.DigitalClock.ShowHours"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.DigitalClock.ShowHours"/></param>
+        </member>
+        <member name="F:VisualizationLib.DigitalClock.ShowSubSecondsProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.DigitalClock.ShowSubSeconds"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.DigitalClock.OnCoerceShowSubSeconds(System.Boolean)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.DigitalClock.ShowSubSeconds"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.DigitalClock.ShowSubSeconds"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.DigitalClock.ShowSubSeconds"/></returns>
+        </member>
+        <member name="M:VisualizationLib.DigitalClock.OnShowSubSecondsChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.DigitalClock.ShowSubSeconds"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.DigitalClock.ShowSubSeconds"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.DigitalClock.ShowSubSeconds"/></param>
+        </member>
+        <member name="M:VisualizationLib.DigitalClock.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code
+            or internal processes call System.Windows.FrameworkElement.ApplyTemplate().
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.DigitalClock.OnTemplateChanged(System.Windows.Controls.ControlTemplate,System.Windows.Controls.ControlTemplate)">
+            <summary>
+            Called whenever the control's template changes. 
+            </summary>
+            <param name="oldTemplate">The old template</param>
+            <param name="newTemplate">The new template</param>
+        </member>
+        <member name="P:VisualizationLib.DigitalClock.Time">
+            <summary>
+            Gets or sets the time to be displayed in the Digital Clock.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.DigitalClock.ShowHours">
+            <summary>
+            Gets or sets whether the digital clock will show the hours portion
+            in the digital clock display. This is useful if the times displayed
+            are always less than an hour.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.DigitalClock.ShowSubSeconds">
+            <summary>
+            Gets or sets whether fractions of a second are displayed in the digital
+            clock display.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.Equalizer">
+            <summary>
+            A control that displays and edits banded frequency amplification.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.Equalizer.EqualizerValuesProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.Equalizer.EqualizerValues"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.Equalizer.OnCoerceEqualizerValues(System.Single[])">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.Equalizer.EqualizerValues"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.Equalizer.EqualizerValues"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.Equalizer.EqualizerValues"/></returns>
+        </member>
+        <member name="M:VisualizationLib.Equalizer.OnEqualizerValuesChanged(System.Single[],System.Single[])">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.Equalizer.EqualizerValues"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.Equalizer.EqualizerValues"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.Equalizer.EqualizerValues"/></param>
+        </member>
+        <member name="F:VisualizationLib.Equalizer.NumberOfBandsProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.Equalizer.NumberOfBands"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.Equalizer.OnCoerceNumberOfBands(System.Int32)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.Equalizer.NumberOfBands"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.Equalizer.NumberOfBands"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.Equalizer.NumberOfBands"/></returns>
+        </member>
+        <member name="M:VisualizationLib.Equalizer.OnNumberOfBandsChanged(System.Int32,System.Int32)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.Equalizer.NumberOfBands"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.Equalizer.NumberOfBands"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.Equalizer.NumberOfBands"/></param>
+        </member>
+        <member name="M:VisualizationLib.Equalizer.#ctor">
+            <summary>
+            Creates an instance of Equalizer.
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.Equalizer.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code
+            or internal processes call System.Windows.FrameworkElement.ApplyTemplate().
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.Equalizer.OnTemplateChanged(System.Windows.Controls.ControlTemplate,System.Windows.Controls.ControlTemplate)">
+            <summary>
+            Called whenever the control's template changes. 
+            </summary>
+            <param name="oldTemplate">The old template</param>
+            <param name="newTemplate">The new template</param>
+        </member>
+        <member name="P:VisualizationLib.Equalizer.EqualizerValues">
+            <summary>
+            Gets or sets the values of each equalizer band.
+            </summary>
+            <remarks>The number of elements in the EqualizerValues array must be equal to the number of bands. If not, all values will be set to zero.</remarks>
+        </member>
+        <member name="P:VisualizationLib.Equalizer.NumberOfBands">
+            <summary>
+            Gets or sets the number of bands that the equalizer will display.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.FFTDataSize">
+            <summary>
+            The various FFT dataset sizes that can be used for processing. Note that
+            when a control requires an array of real intensity results, the array will
+            be half the size specified here.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.FFTDataSize.FFT256">
+            <summary>
+            A 256 point FFT. Real data will be 128 floating point values.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.FFTDataSize.FFT512">
+            <summary>
+            A 512 point FFT. Real data will be 256 floating point values.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.FFTDataSize.FFT1024">
+            <summary>
+            A 1024 point FFT. Real data will be 512 floating point values.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.FFTDataSize.FFT2048">
+            <summary>
+            A 2048 point FFT. Real data will be 1024 floating point values.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.FFTDataSize.FFT4096">
+            <summary>
+            A 4096 point FFT. Real data will be 2048 floating point values.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.FFTDataSize.FFT8192">
+            <summary>
+            A 8192 point FFT. Real data will be 4096 floating point values.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.FFTDataSize.FFT16384">
+            <summary>
+            A 16384 point FFT. Real data will be 8192 floating point values.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.ISoundPlayer">
+            <summary>
+            Provides access to functionality that is common
+            across all sound players.
+            </summary>
+            <seealso cref="T:VisualizationLib.IWaveformPlayer"/>
+            <seealso cref="T:VisualizationLib.ISpectrumPlayer"/>
+        </member>
+        <member name="P:VisualizationLib.ISoundPlayer.IsPlaying">
+            <summary>
+            Gets whether the sound player is currently playing audio.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.BarHeightScalingStyles">
+            <summary>
+            The different ways that the bar height can be scaled by the spectrum analyzer.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.BarHeightScalingStyles.Decibel">
+            <summary>
+            A decibel scale. Formula: 20 * Log10(FFTValue). Total bar height
+            is scaled from -90 to 0 dB.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.BarHeightScalingStyles.Sqrt">
+            <summary>
+            A non-linear squareroot scale. Formula: Sqrt(FFTValue) * 2 * BarHeight.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.BarHeightScalingStyles.Linear">
+            <summary>
+            A linear scale. Formula: 9 * FFTValue * BarHeight.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.ISpectrumPlayer">
+            <summary>
+            Provides access to sound player functionality needed to
+            render a spectrum analyzer.
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.ISpectrumPlayer.GetFFTData(System.Single[])">
+            <summary>
+            Assigns current FFT data to a buffer.
+            </summary>
+            <remarks>
+            The FFT data in the buffer should consist only of the real number intensity values. This means that if your FFT algorithm returns
+            complex numbers (as many do), you'd run an algorithm similar to:
+            for(int i = 0; i &lt; complexNumbers.Length / 2; i++)
+                fftResult[i] = Math.Sqrt(complexNumbers[i].Real * complexNumbers[i].Real + complexNumbers[i].Imaginary * complexNumbers[i].Imaginary);
+            </remarks>
+            <param name="fftDataBuffer">The buffer to copy FFT data. The buffer should consist of only non-imaginary numbers.</param>
+            <returns>True if data was written to the buffer, otherwise false.</returns>
+        </member>
+        <member name="M:VisualizationLib.ISpectrumPlayer.GetFFTFrequencyIndex(System.Int32)">
+            <summary>
+            Gets the index in the FFT data buffer for a given frequency.
+            </summary>
+            <param name="frequency">The frequency for which to obtain a buffer index</param>
+            <returns>An index in the FFT data buffer</returns>
+        </member>
+        <member name="T:VisualizationLib.SpectrumAnalyzer">
+            <summary>
+            A spectrum analyzer control for visualizing audio level and frequency data.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.MaximumFrequencyProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.MaximumFrequency"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceMaximumFrequency(System.Int32)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.MaximumFrequency"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.MaximumFrequency"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.MaximumFrequency"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnMaximumFrequencyChanged(System.Int32,System.Int32)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.MaximumFrequency"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.MaximumFrequency"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.MaximumFrequency"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.MinimumFrequencyProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.MinimumFrequency"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceMinimumFrequency(System.Int32)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.MinimumFrequency"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.MinimumFrequency"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.MinimumFrequency"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnMinimumFrequencyChanged(System.Int32,System.Int32)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.MinimumFrequency"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.MinimumFrequency"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.MinimumFrequency"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.BarCountProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.BarCount"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceBarCount(System.Int32)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarCount"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.BarCount"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarCount"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnBarCountChanged(System.Int32,System.Int32)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.BarCount"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarCount"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarCount"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.BarSpacingProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.BarSpacing"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceBarSpacing(System.Double)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarSpacing"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.BarSpacing"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarSpacing"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnBarSpacingChanged(System.Double,System.Double)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.BarSpacing"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarSpacing"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarSpacing"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.PeakFallDelayProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakFallDelay"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoercePeakFallDelay(System.Int32)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakFallDelay"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakFallDelay"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakFallDelay"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnPeakFallDelayChanged(System.Int32,System.Int32)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakFallDelay"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakFallDelay"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakFallDelay"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.IsFrequencyScaleLinearProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.IsFrequencyScaleLinear"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceIsFrequencyScaleLinear(System.Boolean)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.IsFrequencyScaleLinear"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.IsFrequencyScaleLinear"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.IsFrequencyScaleLinear"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnIsFrequencyScaleLinearChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.IsFrequencyScaleLinear"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.IsFrequencyScaleLinear"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.IsFrequencyScaleLinear"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.BarHeightScalingProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.BarHeightScaling"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceBarHeightScaling(VisualizationLib.BarHeightScalingStyles)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarHeightScaling"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.BarHeightScaling"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarHeightScaling"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnBarHeightScalingChanged(VisualizationLib.BarHeightScalingStyles,VisualizationLib.BarHeightScalingStyles)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.BarHeightScaling"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarHeightScaling"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarHeightScaling"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.AveragePeaksProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.AveragePeaks"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceAveragePeaks(System.Boolean)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.AveragePeaks"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.AveragePeaks"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.AveragePeaks"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnAveragePeaksChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.AveragePeaks"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.AveragePeaks"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.AveragePeaks"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.BarStyleProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.BarStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceBarStyle(System.Windows.Style)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarStyle"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.BarStyle"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarStyle"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnBarStyleChanged(System.Windows.Style,System.Windows.Style)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.BarStyle"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarStyle"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.BarStyle"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.PeakStyleProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakStyle"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoercePeakStyle(System.Windows.Style)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakStyle"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakStyle"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakStyle"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnPeakStyleChanged(System.Windows.Style,System.Windows.Style)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakStyle"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakStyle"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.PeakStyle"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.ActualBarWidthProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.ActualBarWidth"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceActualBarWidth(System.Double)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.ActualBarWidth"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.ActualBarWidth"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.ActualBarWidth"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnActualBarWidthChanged(System.Double,System.Double)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.ActualBarWidth"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.ActualBarWidth"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.ActualBarWidth"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.RefreshIntervalProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.RefreshInterval"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceRefreshInterval(System.Int32)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.RefreshInterval"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.RefreshInterval"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.RefreshInterval"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnRefreshIntervalChanged(System.Int32,System.Int32)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.RefreshInterval"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.RefreshInterval"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.RefreshInterval"/></param>
+        </member>
+        <member name="F:VisualizationLib.SpectrumAnalyzer.FFTComplexityProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.SpectrumAnalyzer.FFTComplexity"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnCoerceFFTComplexity(VisualizationLib.FFTDataSize)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.SpectrumAnalyzer.FFTComplexity"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.SpectrumAnalyzer.FFTComplexity"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.SpectrumAnalyzer.FFTComplexity"/></returns>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnFFTComplexityChanged(VisualizationLib.FFTDataSize,VisualizationLib.FFTDataSize)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.SpectrumAnalyzer.FFTComplexity"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.SpectrumAnalyzer.FFTComplexity"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.SpectrumAnalyzer.FFTComplexity"/></param>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code
+            or internal processes call System.Windows.FrameworkElement.ApplyTemplate().
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnTemplateChanged(System.Windows.Controls.ControlTemplate,System.Windows.Controls.ControlTemplate)">
+            <summary>
+            Called whenever the control's template changes. 
+            </summary>
+            <param name="oldTemplate">The old template</param>
+            <param name="newTemplate">The new template</param>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:VisualizationLib.SpectrumAnalyzer"/> class.
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.RegisterSoundPlayer(VisualizationLib.ISpectrumPlayer)">
+            <summary>
+            Register a sound player from which the spectrum analyzer
+            can get the necessary playback data.
+            </summary>
+            <param name="soundPlayer">A sound player that provides spectrum data through the ISpectrumPlayer interface methods.</param>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnRender(System.Windows.Media.DrawingContext)">
+            <summary>
+            When overridden in a derived class, participates in rendering operations that are directed by the layout system. 
+            The rendering instructions for this element are not used directly when this method is invoked, and are 
+            instead preserved for later asynchronous use by layout and drawing.
+            </summary>
+            <param name="dc">The drawing instructions for a specific element. This context is provided to the layout system.</param>
+        </member>
+        <member name="M:VisualizationLib.SpectrumAnalyzer.OnRenderSizeChanged(System.Windows.SizeChangedInfo)">
+            <summary>
+            Raises the SizeChanged event, using the specified information as part of the eventual event data.
+            </summary>
+            <param name="sizeInfo">Details of the old and new size involved in the change.</param>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.MaximumFrequency">
+            <summary>
+            Gets or sets the maximum display frequency (right side) for the spectrum analyzer.
+            </summary>
+            <remarks>In usual practice, this value should be somewhere between 0 and half of the maximum sample rate. If using
+            the maximum sample rate, this would be roughly 22000.</remarks>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.MinimumFrequency">
+            <summary>
+            Gets or sets the minimum display frequency (left side) for the spectrum analyzer.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.BarCount">
+            <summary>
+            Gets or sets the number of bars to show on the sprectrum analyzer.
+            </summary>
+            <remarks>A bar's width can be a minimum of 1 pixel. If the BarSpacing and BarCount property result
+            in the bars being wider than the chart itself, the BarCount will automatically scale down.</remarks>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.BarSpacing">
+            <summary>
+            Gets or sets the spacing between the bars.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.PeakFallDelay">
+            <summary>
+            Gets or sets the delay factor for the peaks falling.
+            </summary>
+            <remarks>
+            The delay is relative to the refresh rate of the chart.
+            </remarks>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.IsFrequencyScaleLinear">
+            <summary>
+            Gets or sets a value indicating whether the bars are layed out on a linear scale horizontally.
+            </summary>
+            <remarks>
+            If true, the bars will represent frequency buckets on a linear scale (making them all
+            have equal band widths on the frequency scale). Otherwise, the bars will be layed out
+            on a logrithmic scale, with each bar having a larger bandwidth than the one previous.
+            </remarks>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.BarHeightScaling">
+            <summary>
+            Gets or sets a value indicating to what scale the bar heights are drawn.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.AveragePeaks">
+            <summary>
+            Gets or sets a value indicating whether each bar's peak 
+            value will be averaged with the previous bar's peak.
+            This creates a smoothing effect on the bars.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.BarStyle">
+            <summary>
+            Gets or sets a style with which to draw the bars on the spectrum analyzer.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.PeakStyle">
+            <summary>
+            Gets or sets a style with which to draw the falling peaks on the spectrum analyzer.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.ActualBarWidth">
+            <summary>
+            Gets the actual width that the bars will be drawn at.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.RefreshInterval">
+            <summary>
+            Gets or sets the refresh interval, in milliseconds, of the Spectrum Analyzer.
+            </summary>
+            <remarks>
+            The valid range of the interval is 10 milliseconds to 1000 milliseconds.
+            </remarks>
+        </member>
+        <member name="P:VisualizationLib.SpectrumAnalyzer.FFTComplexity">
+            <summary>
+            Gets or sets the complexity of FFT results the Spectrum Analyzer expects. Larger values
+            will be more accurate at converting time domain data to frequency data, but slower.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.TimeEditor">
+            <summary>
+            A control that allows the user to
+            see and edit TimeSpans.
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.#ctor">
+            <summary>
+            Creates an instance of TimeEditor
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code
+            or internal processes call System.Windows.FrameworkElement.ApplyTemplate().
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnTemplateChanged(System.Windows.Controls.ControlTemplate,System.Windows.Controls.ControlTemplate)">
+            <summary>
+            Called whenever the control's template changes. 
+            </summary>
+            <param name="oldTemplate">The old template</param>
+            <param name="newTemplate">The new template</param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.IsReadOnlyProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.TimeEditor.IsReadOnly"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCoerceIsReadOnly(System.Boolean)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.TimeEditor.IsReadOnly"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.TimeEditor.IsReadOnly"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.TimeEditor.IsReadOnly"/></returns>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnIsReadOnlyChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.TimeEditor.IsReadOnly"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.TimeEditor.IsReadOnly"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.TimeEditor.IsReadOnly"/></param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.MinimumProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.TimeEditor.Minimum"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCoerceMinimum(System.TimeSpan)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.TimeEditor.Minimum"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.TimeEditor.Minimum"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.TimeEditor.Minimum"/></returns>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnMinimumChanged(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.TimeEditor.Minimum"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.TimeEditor.Minimum"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.TimeEditor.Minimum"/></param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.MaximumProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.TimeEditor.Maximum"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCoerceMaximum(System.TimeSpan)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.TimeEditor.Maximum"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.TimeEditor.Maximum"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.TimeEditor.Maximum"/></returns>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnMaximumChanged(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.TimeEditor.Maximum"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.TimeEditor.Maximum"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.TimeEditor.Maximum"/></param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.ValueProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.TimeEditor.Value"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCoerceValue(System.TimeSpan)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.TimeEditor.Value"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.TimeEditor.Value"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.TimeEditor.Value"/></returns>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnValueChanged(System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.TimeEditor.Value"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.TimeEditor.Value"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.TimeEditor.Value"/></param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.HoursProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.TimeEditor.Hours"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCoerceHours(System.Int32)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.TimeEditor.Hours"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.TimeEditor.Hours"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.TimeEditor.Hours"/></returns>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnHoursChanged(System.Int32,System.Int32)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.TimeEditor.Hours"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.TimeEditor.Hours"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.TimeEditor.Hours"/></param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.MinutesProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.TimeEditor.Minutes"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCoerceMinutes(System.Int32)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.TimeEditor.Minutes"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.TimeEditor.Minutes"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.TimeEditor.Minutes"/></returns>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnMinutesChanged(System.Int32,System.Int32)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.TimeEditor.Minutes"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.TimeEditor.Minutes"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.TimeEditor.Minutes"/></param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.SecondsProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.TimeEditor.Seconds"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCoerceSeconds(System.Double)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.TimeEditor.Seconds"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.TimeEditor.Seconds"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.TimeEditor.Seconds"/></returns>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnSecondsChanged(System.Double,System.Double)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.TimeEditor.Seconds"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.TimeEditor.Seconds"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.TimeEditor.Seconds"/></param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.CaretBrushProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.TimeEditor.CaretBrush"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCoerceCaretBrush(System.Windows.Media.Brush)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.TimeEditor.CaretBrush"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.TimeEditor.CaretBrush"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.TimeEditor.CaretBrush"/></returns>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCaretBrushChanged(System.Windows.Media.Brush,System.Windows.Media.Brush)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.TimeEditor.CaretBrush"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.TimeEditor.CaretBrush"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.TimeEditor.CaretBrush"/></param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.NeedsHourProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.TimeEditor.NeedsHour"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnCoerceNeedsHour(System.Boolean)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.TimeEditor.NeedsHour"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.TimeEditor.NeedsHour"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.TimeEditor.NeedsHour"/></returns>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnNeedsHourChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.TimeEditor.NeedsHour"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.TimeEditor.NeedsHour"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.TimeEditor.NeedsHour"/></param>
+        </member>
+        <member name="F:VisualizationLib.TimeEditor.EditingEvent">
+            <summary>
+            Identifies the <see cref="E:VisualizationLib.TimeEditor.Editing"/> routed event.
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditor.OnGotFocus(System.Windows.RoutedEventArgs)">
+            <summary>
+            Invoked whenever an unhandled System.Windows.UIElement.GotFocus event reaches
+            this element in its route.
+            </summary>
+            <param name="e">The System.Windows.RoutedEventArgs that contains the event data.</param>
+        </member>
+        <member name="P:VisualizationLib.TimeEditor.IsReadOnly">
+            <summary>
+            Gets or sets whether the TimeEditor is readonly
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.TimeEditor.Minimum">
+            <summary>
+            Gets or sets the minimum value that is allowed by the TimeEditor
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.TimeEditor.Maximum">
+            <summary>
+            Gets or sets the maximum value that is allowed by the TimeEditor
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.TimeEditor.Value">
+            <summary>
+            Gets or sets the value of the TimeEditor
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.TimeEditor.Hours">
+            <summary>
+            Gets or sets just the hours portion of the <see cref="P:VisualizationLib.TimeEditor.Value"/>
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.TimeEditor.Minutes">
+            <summary>
+            Gets or sets just the hours portion of the <see cref="P:VisualizationLib.TimeEditor.Minutes"/>
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.TimeEditor.Seconds">
+            <summary>
+            Gets or sets just the seconds portion of the <see cref="P:VisualizationLib.TimeEditor.Value"/>
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.TimeEditor.CaretBrush">
+            <summary>
+            Gets or sets the brush used by the caret in text fields.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.TimeEditor.NeedsHour">
+            <summary>
+            Gets whether the <see cref="P:VisualizationLib.TimeEditor.Maximum"/> value is greater than the 1 hour
+            to indicate whether the hour field needs to be displayed.
+            </summary>
+        </member>
+        <member name="E:VisualizationLib.TimeEditor.Editing">
+            <summary>
+            Occurs when the time editor's values are being edited.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.TimeEditorAction">
+            <summary>
+            An action performed on a TimeEditor.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.TimeEditorAction.None">
+            <summary>
+            No action performed
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.TimeEditorAction.UpPressed">
+            <summary>
+            Up button pressed.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.TimeEditorAction.DownPressed">
+            <summary>
+            Down button pressed
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.TimeEditorAction.ValueEntered">
+            <summary>
+            A field value was entered.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.TimeEditorEventArgs">
+            <summary>
+            Provides data for the time editor change events. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.TimeEditorEventArgs.#ctor(VisualizationLib.TimeEditorAction,VisualizationLib.TimeEditorField)">
+            <summary>
+            Initializes a new instance of the TimeEditorEventArgs class.
+            </summary>
+            <param name="action">The action performed on the TimeEditor</param>
+            <param name="activeField">The field on which the action was performed.</param>
+        </member>
+        <member name="M:VisualizationLib.TimeEditorEventArgs.#ctor(System.Windows.RoutedEvent,VisualizationLib.TimeEditorAction,VisualizationLib.TimeEditorField)">
+            <summary>
+            Initializes a new instance of the TimeEditorEventArgs class, using the supplied routed event identifier.
+            </summary>
+            <param name="routedEvent">The routed event identifier for this instance of the RoutedEventArgs class.</param>
+            <param name="action">The action performed on the TimeEditor</param>
+            <param name="activeField">The field on which the action was performed.</param>
+        </member>
+        <member name="M:VisualizationLib.TimeEditorEventArgs.#ctor(System.Windows.RoutedEvent,System.Object,VisualizationLib.TimeEditorAction,VisualizationLib.TimeEditorField)">
+            <summary>
+            Initializes a new instance of the TimeEditorEventArgs class, using the supplied routed event identifier, and
+            providing the opportunity to declar a different source for the event.
+            </summary>
+            <param name="routedEvent">The routed event identifier for this instance of the RoutedEventArgs class.</param>
+            <param name="source">An alternate source that will be reported when the event is handled. This
+            pre-populates the RoutedEventArgs.Source property.</param>
+            <param name="action">The action performed on the TimeEditor</param>
+            <param name="activeField">The field on which the action was performed.</param>
+        </member>
+        <member name="P:VisualizationLib.TimeEditorEventArgs.Action">
+            <summary>
+            The action performed on the TimeEditor.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.TimeEditorEventArgs.ActiveField">
+            <summary>
+            The field on which the <see cref="P:VisualizationLib.TimeEditorEventArgs.Action"/> is performed
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.TimeEditorEventHandler">
+            <summary>
+            Represents the method that will handle the <see cref="E:VisualizationLib.TimeEditor.Editing"/>
+            routed events.
+            </summary>
+            <param name="sender">The object where the event handler is attached.</param>
+            <param name="e">The event data.</param>
+        </member>
+        <member name="T:VisualizationLib.TimeEditorField">
+            <summary>
+            Fields of a TimeEditor
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.TimeEditorField.None">
+            <summary>
+            No field.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.TimeEditorField.Hours">
+            <summary>
+            The hours field.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.TimeEditorField.Minutes">
+            <summary>
+            The minutes field.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.TimeEditorField.Seconds">
+            <summary>
+            The seconds field.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.WaveformTimeline">
+            <summary>
+            A control that displays a stereo waveform and
+            allows a user to change playback position.
+            </summary>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.LeftLevelBrushProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.LeftLevelBrush"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceLeftLevelBrush(System.Windows.Media.Brush)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.LeftLevelBrush"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.LeftLevelBrush"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.LeftLevelBrush"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnLeftLevelBrushChanged(System.Windows.Media.Brush,System.Windows.Media.Brush)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.LeftLevelBrush"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.LeftLevelBrush"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.LeftLevelBrush"/></param>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.RightLevelBrushProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.RightLevelBrush"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceRightLevelBrush(System.Windows.Media.Brush)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.RightLevelBrush"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.RightLevelBrush"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.RightLevelBrush"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnRightLevelBrushChanged(System.Windows.Media.Brush,System.Windows.Media.Brush)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.RightLevelBrush"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.RightLevelBrush"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.RightLevelBrush"/></param>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.ProgressBarBrushProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarBrush"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceProgressBarBrush(System.Windows.Media.Brush)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarBrush"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarBrush"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarBrush"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnProgressBarBrushChanged(System.Windows.Media.Brush,System.Windows.Media.Brush)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarBrush"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarBrush"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarBrush"/></param>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.ProgressBarThicknessProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarThickness"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceProgressBarThickness(System.Double)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarThickness"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarThickness"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarThickness"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnProgressBarThicknessChanged(System.Double,System.Double)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarThickness"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarThickness"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.ProgressBarThickness"/></param>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.CenterLineBrushProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.CenterLineBrush"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceCenterLineBrush(System.Windows.Media.Brush)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.CenterLineBrush"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.CenterLineBrush"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.CenterLineBrush"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCenterLineBrushChanged(System.Windows.Media.Brush,System.Windows.Media.Brush)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.CenterLineBrush"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.CenterLineBrush"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.CenterLineBrush"/></param>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.CenterLineThicknessProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.CenterLineThickness"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceCenterLineThickness(System.Double)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.CenterLineThickness"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.CenterLineThickness"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.CenterLineThickness"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCenterLineThicknessChanged(System.Double,System.Double)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.CenterLineThickness"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.CenterLineThickness"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.CenterLineThickness"/></param>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.RepeatRegionBrushProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.RepeatRegionBrush"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceRepeatRegionBrush(System.Windows.Media.Brush)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.RepeatRegionBrush"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.RepeatRegionBrush"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.RepeatRegionBrush"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnRepeatRegionBrushChanged(System.Windows.Media.Brush,System.Windows.Media.Brush)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.RepeatRegionBrush"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.RepeatRegionBrush"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.RepeatRegionBrush"/></param>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.AllowRepeatRegionsProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.AllowRepeatRegions"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceAllowRepeatRegions(System.Boolean)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.AllowRepeatRegions"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.AllowRepeatRegions"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.AllowRepeatRegions"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnAllowRepeatRegionsChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.AllowRepeatRegions"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.AllowRepeatRegions"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.AllowRepeatRegions"/></param>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.TimelineTickBrushProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.TimelineTickBrush"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceTimelineTickBrush(System.Windows.Media.Brush)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.TimelineTickBrush"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.TimelineTickBrush"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.TimelineTickBrush"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnTimelineTickBrushChanged(System.Windows.Media.Brush,System.Windows.Media.Brush)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.TimelineTickBrush"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.TimelineTickBrush"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.TimelineTickBrush"/></param>
+        </member>
+        <member name="F:VisualizationLib.WaveformTimeline.AutoScaleWaveformCacheProperty">
+            <summary>
+            Identifies the <see cref="P:VisualizationLib.WaveformTimeline.AutoScaleWaveformCache"/> dependency property. 
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnCoerceAutoScaleWaveformCache(System.Boolean)">
+            <summary>
+            Coerces the value of <see cref="P:VisualizationLib.WaveformTimeline.AutoScaleWaveformCache"/> when a new value is applied.
+            </summary>
+            <param name="value">The value that was set on <see cref="P:VisualizationLib.WaveformTimeline.AutoScaleWaveformCache"/></param>
+            <returns>The adjusted value of <see cref="P:VisualizationLib.WaveformTimeline.AutoScaleWaveformCache"/></returns>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnAutoScaleWaveformCacheChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called after the <see cref="P:VisualizationLib.WaveformTimeline.AutoScaleWaveformCache"/> value has changed.
+            </summary>
+            <param name="oldValue">The previous value of <see cref="P:VisualizationLib.WaveformTimeline.AutoScaleWaveformCache"/></param>
+            <param name="newValue">The new value of <see cref="P:VisualizationLib.WaveformTimeline.AutoScaleWaveformCache"/></param>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code
+            or internal processes call System.Windows.FrameworkElement.ApplyTemplate().
+            </summary>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnTemplateChanged(System.Windows.Controls.ControlTemplate,System.Windows.Controls.ControlTemplate)">
+            <summary>
+            Called whenever the control's template changes. 
+            </summary>
+            <param name="oldTemplate">The old template</param>
+            <param name="newTemplate">The new template</param>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.RegisterSoundPlayer(VisualizationLib.IWaveformPlayer)">
+            <summary>
+            Register a sound player from which the waveform timeline
+            can get the necessary playback data.
+            </summary>
+            <param name="soundPlayer">A sound player that provides waveform data through the IWaveformPlayer interface methods.</param>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnRenderSizeChanged(System.Windows.SizeChangedInfo)">
+            <summary>
+            Raises the SizeChanged event, using the specified information as part of the eventual event data. 
+            </summary>
+            <param name="sizeInfo">Details of the old and new size involved in the change.</param>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Invoked when an unhandled MouseLeftButtonDown routed event is raised on this element. Implement this method to add class handling for this event.
+            </summary>
+            <param name="e">The MouseButtonEventArgs that contains the event data. The event data reports that the left mouse button was pressed.</param>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Invoked when an unhandled MouseLeftButtonUp routed event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.
+            </summary>
+            <param name="e">The MouseButtonEventArgs that contains the event data. The event data reports that the left mouse button was released.</param>
+        </member>
+        <member name="M:VisualizationLib.WaveformTimeline.OnMouseMove(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Invoked when an unhandled Mouse.MouseMove attached event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.
+            </summary>
+            <param name="e">The MouseEventArgs that contains the event data.</param>
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.LeftLevelBrush">
+            <summary>
+            Gets or sets a brush used to draw the left channel output on the waveform.
+            </summary>        
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.RightLevelBrush">
+            <summary>
+            Gets or sets a brush used to draw the right speaker levels on the waveform.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.ProgressBarBrush">
+            <summary>
+            Gets or sets a brush used to draw the track progress indicator bar.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.ProgressBarThickness">
+            <summary>
+            Get or sets the thickness of the progress indicator bar.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.CenterLineBrush">
+            <summary>
+            Gets or sets a brush used to draw the center line separating left and right levels.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.CenterLineThickness">
+            <summary>
+            Gets or sets the thickness of the center line separating left and right levels.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.RepeatRegionBrush">
+            <summary>
+            Gets or sets a brush used to draw the repeat region on the waveform.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.AllowRepeatRegions">
+            <summary>
+            Gets or sets a value that indicates whether repeat regions will be created via mouse drag across the waveform.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.TimelineTickBrush">
+            <summary>
+            Gets or sets a brush used to draw the tickmarks on the timeline.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.WaveformTimeline.AutoScaleWaveformCache">
+            <summary>
+            Gets or sets a value indicating whether the waveform should attempt to autoscale
+            its render buffer in size.
+            </summary>
+            <remarks>
+            If true, the control will attempt to set the waveform's bitmap cache
+            at a resolution based on the sum of all ScaleTransforms applied
+            in the control's visual tree heirarchy. This can make the waveform appear
+            less blurry if a ScaleTransform is applied at a higher level.
+            The only ScaleTransforms that are considered here are those that have 
+            uniform vertical and horizontal scaling (generally used to "zoom in"
+            on a window or controls).
+            </remarks>
+        </member>
+        <member name="T:VisualizationLib.IWaveformPlayer">
+            <summary>
+            Provides access to sound player functionality needed to
+            generate a Waveform.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.IWaveformPlayer.ChannelPosition">
+            <summary>
+            Gets or sets the current sound streams playback position.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.IWaveformPlayer.ChannelLength">
+            <summary>
+            Gets the total channel length in seconds.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.IWaveformPlayer.WaveformData">
+            <summary>
+            Gets the raw level data for the waveform.
+            </summary>
+            <remarks>
+            Level data should be structured in an array where each sucessive index
+            alternates between left or right channel data, starting with left. Index 0
+            should be the first left level, index 1 should be the first right level, index
+            2 should be the second left level, etc.
+            </remarks>
+        </member>
+        <member name="P:VisualizationLib.IWaveformPlayer.SelectionBegin">
+            <summary>
+            Gets or sets the starting time for a section of repeat/looped audio.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.IWaveformPlayer.SelectionEnd">
+            <summary>
+            Gets or sets the ending time for a section of repeat/looped audio.
+            </summary>
+        </member>
+        <member name="T:VisualizationLib.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:VisualizationLib.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -53,7 +53,7 @@ namespace WeListenPlayer.ButtonHandler
             {
                 string folder = dlg.FileName;
 
-                mainWindow.tbMusicDir.Text = folder;
+                //mainWindow.FileText.Text = folder;
 
                 return folder;
             }

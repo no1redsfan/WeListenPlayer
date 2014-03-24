@@ -1,0 +1,70 @@
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\bin\Debug\license.txt
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.xml
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csprojResolveAssemblyReference.cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.lref
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\Themes\Generic.baml
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.g.resources
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.Properties.Resources.resources
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csproj.GenerateResource.Cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\bin\Debug\license.txt
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.xml
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.pdb
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csprojResolveAssemblyReference.cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.lref
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\Themes\Generic.baml
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.g.resources
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.Properties.Resources.resources
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csproj.GenerateResource.Cache
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.dll
+C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository - Copy\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.pdb
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\license.txt
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.xml
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.dll
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.pdb
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csprojResolveAssemblyReference.cache
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.cache
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.lref
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\Themes\Generic.baml
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.g.resources
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.Properties.Resources.resources
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csproj.GenerateResource.Cache
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.dll
+F:\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.pdb
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\bin\Debug\license.txt
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.xml
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.dll
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.pdb
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csprojResolveAssemblyReference.cache
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.cache
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.lref
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\Themes\Generic.baml
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.g.resources
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.Properties.Resources.resources
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csproj.GenerateResource.Cache
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.dll
+C:\Users\Chris\Desktop\WeListenPlayer_Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\license.txt
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.xml
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.dll
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\bin\Debug\VisualizationLib.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib_MarkupCompile.lref
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\Themes\Generic.baml
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.g.resources
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.Properties.Resources.resources
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csproj.GenerateResource.Cache
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.dll
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.pdb
+C:\Users\Rozzly\Desktop\WeListen Player Repository\WPFSoundVisualizationLibrary\obj\Debug\VisualizationLib.csprojResolveAssemblyReference.cache
