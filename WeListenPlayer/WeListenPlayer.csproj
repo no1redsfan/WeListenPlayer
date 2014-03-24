@@ -144,6 +144,11 @@
     <Compile Include="NAudioHandler\NAudioEngine.cs" />
     <Compile Include="NAudioHandler\SampleAggregator.cs" />
     <Compile Include="NAudioHandler\UIHelper.cs" />
+    <Compile Include="Service References\Amazon.PAAPI\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="WeListenApiHandler\UserXmlParser.cs" />
     <Compile Include="WeListenApiHandler\WeListenXmlParser.cs" />
     <Compile Include="TagLibHandler\TagLibDataAccesser.cs" />
@@ -212,6 +217,61 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\Amazon.PAAPI\AWSECommerceService.wsdl" />
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.BrowseNodeLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.BrowseNodeLookupResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartAddResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartClearResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartClearResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartCreateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartCreateResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartGetResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartGetResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartModifyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.CartModifyResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.ItemLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.ItemLookupResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.ItemSearchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.ItemSearchResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.SimilarityLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Amazon.PAAPI\WeListenPlayer.Amazon.PAAPI.SimilarityLookupResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -223,10 +283,6 @@
       <Project>{d38b4a40-d315-4158-9bd1-34c1697668bb}</Project>
       <Name>Amazon.PAAPI.WCF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AmazonSOAP\AmazonSOAP.csproj">
-      <Project>{986d8407-0e81-4992-8387-7ee9dcec5cff}</Project>
-      <Name>AmazonSOAP</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WPFSoundVisualizationLibrary\VisualizationLib.csproj">
       <Project>{90f96222-1c39-4a19-abe8-1b00fb330985}</Project>
       <Name>VisualizationLib</Name>
@@ -235,7 +291,9 @@
   <ItemGroup>
     <Resource Include="Images\WeListenLogo2.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\bg.jpg" />
     <Resource Include="Resources\Icons\iStudio_128x128.png" />
@@ -247,6 +305,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Amazon.PAAPI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Amazon.PAAPI\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Amazon.PAAPI\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Amazon.PAAPI\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />

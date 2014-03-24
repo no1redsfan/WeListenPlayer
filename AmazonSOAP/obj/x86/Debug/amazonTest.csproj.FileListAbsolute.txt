@@ -1,2 +1,0 @@
-C:\Users\don\documents\visual studio 2010\Projects\amazonTest\amazonTest\bin\Debug\amazonTest.exe.config
-C:\Users\don\documents\visual studio 2010\Projects\amazonTest\amazonTest\bin\Debug\AmazonSOAP.exe.config
