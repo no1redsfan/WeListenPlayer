@@ -20,4 +20,3 @@ C:\Users\Rozzly\Desktop\WeListen Player Repository\Amazon.PAAPI.WCF\bin\x86\Debu
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Amazon.PAAPI.WCF\bin\x86\Debug\Amazon.PAAPI.WCF.pdb
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Amazon.PAAPI.WCF\obj\x86\Debug\Amazon.PAAPI.WCF.dll
 C:\Users\Rozzly\Desktop\WeListen Player Repository\Amazon.PAAPI.WCF\obj\x86\Debug\Amazon.PAAPI.WCF.pdb
-C:\Users\Rozzly\Desktop\WeListen Player Repository\Amazon.PAAPI.WCF\obj\x86\Debug\Amazon.PAAPI.WCF.csprojResolveAssemblyReference.cache

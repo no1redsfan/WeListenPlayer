@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using Microsoft.WindowsAPICodePack.Shell.Interop;
 using NAudio.CoreAudioApi;
 using System;
 using System.Collections;
@@ -30,6 +29,7 @@ using WeListenPlayer.WeListenApiHandler;
 //// - Song ends with no songs left in que (null reference error)
 //// - Playlist recieving requests does not send updated que id (endless que'd songs)
 //// - Removing song does not update Artwork / Wave form (-probably add queueNextSong();)
+//// - Hitting next song with no next song available (null reference error)
 /////////////////////////////////////////
 
 namespace WeListenPlayer

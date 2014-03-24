@@ -14,7 +14,6 @@
     <summary>Extended WPF Toolkit is the number one collection of WPF controls for creating next-gen Windows apps. Community Edition v2.1 provides another 70 bug fixes and improvements.</summary>
     <releaseNotes>Community Edition v2.1 provides another 70 bug fixes and improvements.</releaseNotes>
     <copyright>Copyright © Xceed Software Inc. 2010-2014</copyright>
-    <language />
     <tags>Extended WPF Toolkit Community Edition Free</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework3.5, .NETFramework4.0" />

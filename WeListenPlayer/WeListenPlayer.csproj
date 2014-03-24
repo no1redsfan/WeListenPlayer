@@ -68,9 +68,6 @@
     <Reference Include="AvalonDock.Themes">
       <HintPath>..\packages\AvalonDock.Themes.dll</HintPath>
     </Reference>
-    <Reference Include="lastfm-sharp">
-      <HintPath>bin\Debug\lastfm-sharp.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net45\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -78,13 +75,13 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net45\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack">
-      <HintPath>..\..\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <HintPath>..\Packages\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
-      <HintPath>..\..\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <HintPath>..\Packages\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="NAudio">
-      <HintPath>bin\Debug\NAudio.dll</HintPath>
+      <HintPath>..\Packages\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -114,7 +111,7 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="taglib-sharp">
-      <HintPath>bin\Debug\taglib-sharp.dll</HintPath>
+      <HintPath>..\Packages\taglib-sharp.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
@@ -122,7 +119,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="XmlLib">
-      <HintPath>..\..\XmlLib-master\bin\debug\XmlLib.dll</HintPath>
+      <HintPath>..\Packages\XmlLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
