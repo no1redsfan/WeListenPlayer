@@ -123,6 +123,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Amazon.ECS.Addons\AmazonHeader.cs" />
+    <Compile Include="Amazon.ECS.Addons\AmazonSigningBehaviorExtensionElement.cs" />
+    <Compile Include="Amazon.ECS.Addons\AmazonSigningEndpointBehavior.cs" />
+    <Compile Include="Amazon.ECS.Addons\AmazonSigningMessageInspector.cs" />
     <Compile Include="AmazonHandler\AmazonAccesser.cs" />
     <Compile Include="APIClasses\asyncWorker.cs" />
     <Compile Include="APIClasses\RequestQueued.cs" />
@@ -276,10 +280,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Amazon.PAAPI.WCF\Amazon.PAAPI.WCF.csproj">
-      <Project>{d38b4a40-d315-4158-9bd1-34c1697668bb}</Project>
-      <Name>Amazon.PAAPI.WCF</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WPFSoundVisualizationLibrary\VisualizationLib.csproj">
       <Project>{90f96222-1c39-4a19-abe8-1b00fb330985}</Project>
       <Name>VisualizationLib</Name>

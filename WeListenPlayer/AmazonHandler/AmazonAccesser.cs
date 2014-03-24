@@ -1,5 +1,4 @@
-﻿using Amazon.PAAPI;
-using System;
+﻿using System;
 using System.Configuration;
 using System.ServiceModel;
 using System.Text.RegularExpressions;
@@ -13,6 +12,10 @@ namespace WeListenPlayer.AmazonHandler
 {
     class AmazonAccesser
     {
+        // Amazon Keys
+        private const string accessKeyId = "*****";
+        private const string secretKey   = "*****";
+
         public async Task<SongData> getAmazonInfo(SongData song)
         {
             var fullRequest = parseInfo(song);
@@ -58,7 +61,14 @@ namespace WeListenPlayer.AmazonHandler
             try
             {
                 // Instantiate Amazon ProductAdvertisingAPI client
-                AWSECommerceServicePortTypeClient amazonClient = new AWSECommerceServicePortTypeClient();
+                BasicHttpBinding binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport);
+                binding.MaxReceivedMessageSize = int.MaxValue;
+                AWSECommerceServicePortTypeClient amazonClient = new AWSECommerceServicePortTypeClient(
+                binding,
+                new EndpointAddress("https://webservices.amazon.com/onca/soap?Service=AWSECommerceService"));
+
+                // add authentication to the ECS client
+                amazonClient.ChannelFactory.Endpoint.Behaviors.Add(new AmazonSigningEndpointBehavior(accessKeyId, secretKey));
 
                 // prepare an ItemSearch request
                 ItemSearchRequest request = new ItemSearchRequest();
@@ -70,7 +80,7 @@ namespace WeListenPlayer.AmazonHandler
 
                 ItemSearch itemSearch = new ItemSearch();
                 itemSearch.Request = new ItemSearchRequest[] { request };
-                itemSearch.AWSAccessKeyId = ConfigurationManager.AppSettings["accessKeyId"];
+                itemSearch.AWSAccessKeyId = accessKeyId;
                 itemSearch.AssociateTag = "1330-3170-0573";
 
                 // send the ItemSearch request
@@ -81,7 +91,7 @@ namespace WeListenPlayer.AmazonHandler
                 //<ProductTypeName>DOWNLOADABLE_MUSIC_TRACK</ProductTypeName>
                 if (response.Items[0].Item[0].ItemAttributes.ProductTypeName == "DOWNLOADABLE_MUSIC_ALBUM")
                 {
-                    item = response.Items[1].Item[1];
+                    item = response.Items[0].Item[1];
                 }
 
                 // if no response to search
@@ -91,7 +101,7 @@ namespace WeListenPlayer.AmazonHandler
                     {
                         // Try new search and remove the album
                         newSong.Album = "UNKNOWN";
-                        
+
                         // Re-iterate over the search method
                         await getData(newSong, fullRequest);
                     }
