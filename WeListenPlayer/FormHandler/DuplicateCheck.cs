@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeListenPlayer.APIClasses;
 
-namespace WeListenPlayer.FormHandler
+namespace WeListenPlayer
 {
     class DuplicateCheck
     {

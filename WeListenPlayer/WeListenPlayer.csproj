@@ -128,7 +128,6 @@
     <Compile Include="Amazon.ECS.Addons\AmazonSigningEndpointBehavior.cs" />
     <Compile Include="Amazon.ECS.Addons\AmazonSigningMessageInspector.cs" />
     <Compile Include="AmazonHandler\AmazonAccesser.cs" />
-    <Compile Include="APIClasses\asyncWorker.cs" />
     <Compile Include="APIClasses\RequestQueued.cs" />
     <Compile Include="APIClasses\User.cs" />
     <Compile Include="App.xaml.cs">
@@ -166,9 +165,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="APIClasses\LoginClass.cs" />
     <Compile Include="APIClasses\SongData.cs" />
-    <Compile Include="APIClasses\RequestCollection.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

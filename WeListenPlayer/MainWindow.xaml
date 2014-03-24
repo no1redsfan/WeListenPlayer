@@ -214,8 +214,8 @@
                                                 </DataGrid.RowStyle>
 
                                                 <DataGrid.Columns>
-                                                    <DataGridTextColumn x:Name="Title" Header="Title" Binding="{Binding Title}" Width="3*" />
-                                                    <DataGridTextColumn x:Name="Artist" Header="Artist" Binding="{Binding Artist}" Width="2*" />
+                                                    <DataGridTextColumn x:Name="colTitle" Header="Title" Binding="{Binding Title}" Width="3*" />
+                                                    <DataGridTextColumn x:Name="colArtist" Header="Artist" Binding="{Binding Artist}" Width="2*" />
                                                 </DataGrid.Columns>
                                             </DataGrid>
 

@@ -6,15 +6,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeListenPlayer.Amazon.PAAPI;
-using WeListenPlayer.APIClasses;
 
-namespace WeListenPlayer.AmazonHandler
+namespace WeListenPlayer
 {
     class AmazonAccesser
     {
         // Amazon Keys
-        private const string accessKeyId = "*****";
-        private const string secretKey   = "*****";
+        private const string accessKeyId = "AKIAIEUPYITONT562FSA";
+        private const string secretKey = "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";
 
         public async Task<SongData> getAmazonInfo(SongData song)
         {

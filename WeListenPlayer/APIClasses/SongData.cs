@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeListenPlayer.APIClasses
+namespace WeListenPlayer
 {
     public class SongData
     {

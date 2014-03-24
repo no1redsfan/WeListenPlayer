@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
 using System.Xml.Linq;
 using Newtonsoft.Json;
-using WeListenPlayer.APIClasses;
-using WeListenPlayer.FormHandler;
-using WeListenPlayer.WeListenApiHandler;
-using WeListenPlayer.AmazonHandler;
 
-namespace WeListenPlayer.LastFmHandler
+namespace WeListenPlayer
 {
     class WeListenXmlParser
     {

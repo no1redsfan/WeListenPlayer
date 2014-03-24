@@ -3,10 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WeListenPlayer.APIClasses;
-using WeListenPlayer.TagLibHandler;
 
-namespace WeListenPlayer.FormHandler
+namespace WeListenPlayer
 {
     class FileHandler
     {

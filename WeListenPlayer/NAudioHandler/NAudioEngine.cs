@@ -15,7 +15,7 @@ using VisualizationLib;
 using System.Threading;
 
 
-namespace WeListenPlayer.NAudioHandler
+namespace WeListenPlayer
 {
     class NAudioEngine : INotifyPropertyChanged, ISpectrumPlayer, IWaveformPlayer, IDisposable
     {

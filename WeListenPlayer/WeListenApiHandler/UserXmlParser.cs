@@ -4,11 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using WeListenPlayer.AmazonHandler;
-using WeListenPlayer.APIClasses;
-using WeListenPlayer.FormHandler;
 
-namespace WeListenPlayer.WeListenApiHandler
+namespace WeListenPlayer
 {
     class UserXmlParser
     {
