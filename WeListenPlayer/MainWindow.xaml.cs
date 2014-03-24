@@ -43,8 +43,6 @@ namespace WeListenPlayer
 
         //HttpClient for WeListen API
         HttpClient client = new HttpClient();
-        RequestCollection _requests = new RequestCollection();
-        LoginClass login = new LoginClass();
 
         public MainWindow()
         {
@@ -717,9 +715,6 @@ namespace WeListenPlayer
             {
                 var response = await client.GetAsync("api/login");
                 response.EnsureSuccessStatusCode(); // Throw on error code.
-
-                var requests = await response.Content.ReadAsAsync<LoginClass>();
-                //_requests.CopyFrom(requests);
             }
             catch (Newtonsoft.Json.JsonException jEx)
             {
