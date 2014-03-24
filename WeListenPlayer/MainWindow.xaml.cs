@@ -221,23 +221,8 @@ namespace WeListenPlayer
             // Declare new object
             // await xmlParser.GetTrackInfo(random);
 
-<<<<<<< HEAD
-            // Repeat this loop until cancelled.
-            while (!token.IsCancellationRequested)
-            {
-                // TODO: call for requests from database
-                
-                //await k.GetTrackInfo();
-
-                // Wait to repeat again.
-                if (interval > TimeSpan.Zero)
-                    await Task.Delay(interval, token);
-            }
-        }
-=======
             // TODO: call for requests from database
             var playlistSongs = getPlaylistSongs();
->>>>>>> dev
 
             try
             {

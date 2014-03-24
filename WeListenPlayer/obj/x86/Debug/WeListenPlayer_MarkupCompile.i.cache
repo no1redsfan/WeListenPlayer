@@ -4,30 +4,17 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
-C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\obj\x86\Debug\
-=======
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer\obj\x86\Debug\
->>>>>>> dev
 WeListenPlayer
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
-C:\Users\Chris Korczyk\Desktop\WeListenPlayer_Repository\WeListenPlayer\App.xaml
-11151548125
-
-221580239990
-38-1995850057
-MainWindow.xaml;
-=======
 C:\Users\Rozzly\Desktop\WeListen Player Repository\WeListenPlayer\App.xaml
 7845507311
 
 34744640509
 38983585800
 Control\General\WindowHeaderControl.xaml;MainWindow.xaml;Resources\IconResources.xaml;Style\ExpressionDark.xaml;Style\Generic.xaml;Themes\ExpressionDark.xaml;Themes\ExpressionLight.xaml;
->>>>>>> dev
 
-True
+False
 
