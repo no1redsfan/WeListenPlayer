@@ -19,10 +19,10 @@ using System.Windows.Threading;
 /////////////////////////////////////////
 //// Noted BUGS to fix
 //// ------------------------------------
-//// - Song ends with no songs left in que (null reference error)
-//// - Playlist recieving requests does not send updated que id (endless que'd songs)
+//// //// - Song ends with no songs left in que (null reference error)
+//// //// - Playlist recieving requests does not send updated que id (endless que'd songs)
 //// - Removing song does not update Artwork / Wave form (-probably add queueNextSong();)
-//// - Hitting next song with no next song available (null reference error)
+//// //// - Hitting next song with no next song available (null reference error)
 /////////////////////////////////////////
 
 namespace WeListenPlayer
