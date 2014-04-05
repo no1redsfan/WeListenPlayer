@@ -258,13 +258,93 @@
                                           VerticalAlignment="Top" />
                                             <Label x:Name="lblProgress" Grid.Row="1" Grid.Column="0" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Processed:</Label>
                                             <Label x:Name="lblProgressCount" Grid.Row="1" Grid.Column="1" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
-                                            <Label x:Name="lblAdded" Grid.Row="2" Grid.Column="0" Foreground="Green" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Added:</Label>
-                                            <Label x:Name="lblAddedCount" Grid.Row="2" Grid.Column="1" Foreground="Green" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
-                                            <Label x:Name="lblRejected" Grid.Row="3" Grid.Column="0" Foreground="Red" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Rejected:</Label>
-                                            <Label x:Name="lblRejectedCount" Grid.Row="3" Grid.Column="1" Foreground="Red" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
+                                            <Label x:Name="lblAdded" Grid.Row="2" Grid.Column="0" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Added:</Label>
+                                            <Label x:Name="lblAddedCount" Grid.Row="2" Grid.Column="1" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
+                                            <Label x:Name="lblRejected" Grid.Row="3" Grid.Column="0" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">Songs Rejected:</Label>
+                                            <Label x:Name="lblRejectedCount" Grid.Row="3" Grid.Column="1" Foreground="White" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="10,6,0,0">0</Label>
                                         </Grid>
-                                        
+                                    </ad:DockableContent>
+                                    <ad:DockableContent Title="Purchases" IsCloseable="False" x:Name="content_PurchasedMusic">
+                                        <Grid Margin="1">
+                                            <DataGrid 
+            	                            x:Name="dgvPurchasedSong"
+            	                            Grid.Column="0"
+            	                            Padding="0, 0, 0, 0"
+            	                            RowHeaderWidth="0"
+            	                            GridLinesVisibility="None"
+                        
+            	                            BorderBrush="Black"
+            	                            BorderThickness="0"
+            	                            AlternatingRowBackground="#FF313131" 
+            	                            AlternationCount="1" 
+            	                            RowBackground="#FF373737" 
+            	                            Background="#FF373737" 
+            	                            Foreground="White" 
+                        
+            	                            AllowDrop="True"
+            	                            SelectionMode="Single" 
+            	                            CanUserReorderColumns="False" 
+            	                            CanUserResizeRows="False" 
+            	                            IsReadOnly="True" 
+            	                            CanUserSortColumns="False" 
+            	                            AreRowDetailsFrozen="True" 
+            	                            FontFamily="Verdana" 
+            	                            FontSize="10">
+                                                <DataGrid.Resources>
+                                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFFFFF"/>
+                                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#000000"/>
 
+                                                    <Style TargetType="{x:Type DataGridCell}">
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                                        <Setter Property="Padding" Value="3,2,0,2" />
+                                                    </Style>
+
+                                                    <Style TargetType="{x:Type DataGridColumnHeader}" x:Name="PurchaseHeader">
+                                                        <Setter Property="Padding" Value="3,2,0,2" />
+                                                        <Setter Property="FontWeight" Value="Bold" />
+                                                        <Setter Property="FontSize" Value="12" />
+                                                        <Setter Property="Foreground" Value="#FF140E1E" />
+                                                        <Setter Property="Background">
+                                                            <Setter.Value>
+                                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                                    <GradientStop Offset="0.01" Color="#C7C7C7" />
+                                                                    <GradientStop Offset="0.02" Color="#AAAAAA" />
+                                                                    <GradientStop Offset="0.98" Color="#636363" />
+                                                                    <GradientStop Offset="0.99" Color="#2E2E2E" />
+                                                                </LinearGradientBrush>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Setter Property="BorderBrush" Value="#6F6E6C" />
+                                                        <Setter Property="BorderThickness" Value="0 0 1 0" />
+                                                    </Style>
+                                                </DataGrid.Resources>
+                                                <DataGrid.RowStyle>
+                                                    <Style TargetType="{x:Type DataGridRow}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="White" />
+                                                                <Setter Property="Foreground" Value="Black" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGrid.RowStyle>
+
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn x:Name="colPurchaseTitle" Header="Title" Binding="{Binding title}" Width="2*" />
+                                                    <DataGridTemplateColumn x:Name="colDownload" Header="Download" Width="2*">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <Button x:Name="btnDownloadSong" Content="Download" Click="OnDownloadClick" />
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                    <DataGridTextColumn x:Name="colLinkURL" Header="Path" Width="2*" Visibility="Hidden"></DataGridTextColumn>
+                                                    <!--<DataGridHyperlinkColumn x:Name="colLinkURL" Header="Link" Binding="{Binding htmlPath}" Width="3*"></DataGridHyperlinkColumn>-->
+                                                    
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </Grid>
                                     </ad:DockableContent>
                                 </ad:DockablePane>
                             </ad:ResizingPanel>

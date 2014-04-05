@@ -68,6 +68,9 @@
     <Reference Include="AvalonDock.Themes">
       <HintPath>..\packages\AvalonDock.Themes.dll</HintPath>
     </Reference>
+    <Reference Include="EAGetMail">
+      <HintPath>..\..\..\..\..\Program Files (x86)\EAGetMail\EAGetMail.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net45\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -128,6 +131,7 @@
     <Compile Include="Amazon.ECS.Addons\AmazonSigningEndpointBehavior.cs" />
     <Compile Include="Amazon.ECS.Addons\AmazonSigningMessageInspector.cs" />
     <Compile Include="AmazonHandler\AmazonAccesser.cs" />
+    <Compile Include="APIClasses\PurchaseEmail.cs" />
     <Compile Include="APIClasses\RequestQueued.cs" />
     <Compile Include="APIClasses\User.cs" />
     <Compile Include="App.xaml.cs">
@@ -144,6 +148,7 @@
     <Compile Include="NAudioHandler\NAudioEngine.cs" />
     <Compile Include="NAudioHandler\SampleAggregator.cs" />
     <Compile Include="NAudioHandler\UIHelper.cs" />
+    <Compile Include="PurchaseEmailHandler\PurchaseEmailHandler.cs" />
     <Compile Include="Service References\Amazon.PAAPI\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -315,6 +320,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

@@ -15,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-
 /////////////////////////////////////////
 //// Noted BUGS to fix
 //// ------------------------------------
@@ -24,6 +23,7 @@ using System.Windows.Threading;
 //// - Removing song does not update Artwork / Wave form (-probably add queueNextSong();)
 //// //// - Hitting next song with no next song available (null reference error)
 /////////////////////////////////////////
+using WeListenPlayer.APIClasses;
 
 namespace WeListenPlayer
 {
@@ -197,7 +197,19 @@ namespace WeListenPlayer
             }
         }
 
+        private void OnDownloadClick(object sender, RoutedEventArgs e)
+        {
+            var DownloadItem = (PurchaseEmail)dgvPurchasedSong.SelectedItem;
 
+            var index = dgvPurchasedSong.SelectedIndex;
+
+            //open default browser  ---  probably a better way to do this
+            System.Diagnostics.Process.Start(DownloadItem.htmlPath);
+
+            dgvPurchasedSong.Items.RemoveAt(index);
+
+            
+        }
         /////////////////////////////////////////////
         //Methods for handling requests from the web
         /////////////////////////////////////////////
@@ -207,7 +219,7 @@ namespace WeListenPlayer
         {
             // Declare new object
             // await xmlParser.GetTrackInfo(random);
-
+            var retrieveEmail = new PurchaseEmailHandler.PurchaseEmailHandler();
             // TODO: call for requests from database
             var playlistSongs = getPlaylistSongs();
 
@@ -238,6 +250,20 @@ namespace WeListenPlayer
                 MessageBox.Show("No songs in request que!");
             }
 
+            try
+            {
+                var purchaseEmailList = retrieveEmail.CheckEmail();
+
+                foreach (var Purchase in purchaseEmailList)
+                {
+                    dgvPurchasedSong.Items.Add(Purchase);
+                }
+                
+            }
+            catch
+            {
+                MessageBox.Show("Unable to retrieve purchase");
+            }
         }
 
         ////////////////////////////////////////
