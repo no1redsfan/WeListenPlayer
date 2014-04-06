@@ -201,7 +201,12 @@ namespace WeListenPlayer.PurchaseEmailHandler
             newHtmlLocation = String.Format("{0}\\htmlInbox", newHtmlLocation);
             string newFileName = htmlName.Split('\\').Last();
             htmlName = newHtmlLocation + "\\" + newFileName;
-            var songTitle = "New download";  //need to extract the title from the html body.
+
+            // Parse out song title
+            string pattern = "<div style=\"font-family: verdana,arial,helvetica,sans-serif; font-weight: bold;\">(.*)</div>";
+            MatchCollection matches = Regex.Matches(html, pattern);
+
+            string songTitle = matches[0].Groups[1].ToString();
 
             currentHtMLEmail.fileName = newFileName;
             currentHtMLEmail.htmlPath = htmlName;
@@ -289,7 +294,7 @@ namespace WeListenPlayer.PurchaseEmailHandler
             for (int i = 0; i < files.Length; i++)
             {
                 var convertedMessage = ConvertMailToHtml(files[i]);
-                if (System.IO.File.Exists(files[i]));
+                if (System.IO.File.Exists(files[i]))
                 {
                     // Use a try block to catch IOExceptions, to 
                     // handle the case of the file already being 

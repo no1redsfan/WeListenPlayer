@@ -230,6 +230,19 @@ namespace WeListenPlayer
                 foreach (SongData song in addList)
                 {
                     dgvPlayList.Items.Add(song);
+
+                    if (File.Exists(song.FilePath))
+                    {
+                        // Do Nothing!
+                    }
+                    else
+                    {
+                        //// If path is invalid (on current pc), Set row background as RED (as a warning)
+                        var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items.CurrentItem) as DataGridRow;
+                        row.Background = Brushes.Red;
+                        row.IsEnabled = false;
+                    }
+
                     QueueNextSong();
                 }
                 if (dgvPlayList.Items.Count < 2)
@@ -239,6 +252,19 @@ namespace WeListenPlayer
                     foreach (SongData song in addRandom)
                     {
                         dgvPlayList.Items.Add(song);
+
+                        if (File.Exists(song.FilePath))
+                        {
+                            // Do Nothing!
+                        }
+                        else
+                        {
+                            //// If path is invalid (on current pc), Set row background as RED (as a warning)
+                            var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items.CurrentItem) as DataGridRow;
+                            row.Background = Brushes.Red;
+                            row.IsEnabled = false;
+                        }
+
                         QueueNextSong();
                     }
                 }
@@ -246,13 +272,13 @@ namespace WeListenPlayer
             }
             catch
             {
-                
-                MessageBox.Show("No songs in request que!");
+                QueueNextSong();
+                Console.WriteLine("No songs in request que!");
             }
 
             try
             {
-                var purchaseEmailList = retrieveEmail.CheckEmail();
+                var purchaseEmailList = await Task.Run(() => retrieveEmail.CheckEmail());
 
                 foreach (var Purchase in purchaseEmailList)
                 {
@@ -495,10 +521,6 @@ namespace WeListenPlayer
                 var playItem = (SongData)dgvPlayList.Items[0];
                 var path = playItem.FilePath.Replace("\\\\", "\\");
 
-                //// If path is invalid (on current pc), Set row background as RED (as a warning)
-                //var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items[0]) as DataGridRow;
-                //row.Background = Brushes.Red;
-
                 //NAudioEngine.Instance.Volume((float)sldrVolume.Value);  
 
                 NAudioEngine.Instance.OpenFile(path);
@@ -520,6 +542,7 @@ namespace WeListenPlayer
             
             if (!receiving)
             {
+                DoPeriodicRequestCall();
                 timer.Start();
                 receiving = true;
                 btnStartReceiving.Content = "Stop Receiving Requests";
