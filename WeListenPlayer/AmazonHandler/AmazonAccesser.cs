@@ -14,7 +14,7 @@ namespace WeListenPlayer
         // Amazon Keys
         private const string accessKeyId = "***";
         private const string secretKey = "***";
-
+        //Never forget to take this out
         public async Task<SongData> getAmazonInfo(SongData song)
         {
             var fullRequest = parseInfo(song);
