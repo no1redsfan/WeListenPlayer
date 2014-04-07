@@ -206,7 +206,13 @@ namespace WeListenPlayer
             //open default browser  ---  probably a better way to do this
             System.Diagnostics.Process.Start(DownloadItem.htmlPath);
 
-            dgvPurchasedSong.Items.RemoveAt(index);
+            //// If path is invalid (on current pc), Set row background as RED (as a warning)
+            var row = (DataGridRow)dgvPurchasedSong.ItemContainerGenerator.ContainerFromIndex(index);
+            row.IsEnabled = false;
+
+
+            //dgvPurchasedSong.Items.RemoveAt(index);
+            
 
             
         }
@@ -230,6 +236,7 @@ namespace WeListenPlayer
                 foreach (SongData song in addList)
                 {
                     dgvPlayList.Items.Add(song);
+                    dgvPlayList.SelectedItem = song;
 
                     if (File.Exists(song.FilePath))
                     {
@@ -238,7 +245,10 @@ namespace WeListenPlayer
                     else
                     {
                         //// If path is invalid (on current pc), Set row background as RED (as a warning)
-                        var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items.CurrentItem) as DataGridRow;
+                        var index = dgvPurchasedSong.SelectedIndex;
+
+                        //// If path is invalid (on current pc), Set row background as RED (as a warning)
+                        var row = (DataGridRow)dgvPlayList.ItemContainerGenerator.ContainerFromIndex(index);
                         row.Background = Brushes.Red;
                         row.IsEnabled = false;
                     }
@@ -253,16 +263,24 @@ namespace WeListenPlayer
                     {
                         dgvPlayList.Items.Add(song);
 
+                        // Update virtualized layout
+                        dgvPlayList.UpdateLayout();
+
+                        var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(song) as DataGridRow;
+
                         if (File.Exists(song.FilePath))
                         {
                             // Do Nothing!
                         }
                         else
                         {
-                            //// If path is invalid (on current pc), Set row background as RED (as a warning)
-                            var row = dgvPlayList.ItemContainerGenerator.ContainerFromItem(dgvPlayList.Items.CurrentItem) as DataGridRow;
+                            ////// If path is invalid (on current pc), Set row background as RED (as a warning)
+                            //var index = dgvPurchasedSong.SelectedIndex;
+
+                            //////// If path is invalid (on current pc), Set row background as RED (as a warning)
+                            //var row = (DataGridRow)dgvPlayList.ItemContainerGenerator.ContainerFromIndex(index);
                             row.Background = Brushes.Red;
-                            row.IsEnabled = false;
+                            //row.IsEnabled = false;
                         }
 
                         QueueNextSong();
@@ -272,7 +290,10 @@ namespace WeListenPlayer
             }
             catch
             {
+                // Random Song Pulled!
                 QueueNextSong();
+
+                // Log
                 Console.WriteLine("No songs in request que!");
             }
 
@@ -1072,6 +1093,11 @@ namespace WeListenPlayer
             tbAmazonYearInfo.Text = localObj.Year.ToString();
             tbAmazonAsinInfo.Text = localObj.ASIN;
             tbAmazonPriceInfo.Text = localObj.Price;
+           
+            if (localObj.Artwork != null)
+            {
+                albumArtPanel.AlbumArtImage = BitmapFrame.Create(new Uri(localObj.Artwork));
+            }
         }
 
         private async void btnSubmit_Click(object sender, RoutedEventArgs e)
